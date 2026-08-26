@@ -2,91 +2,100 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    >
-
-    <title>GameHub Football</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Legends</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div id="game-container"></div>
+    <header>
+        <div class="logo">⚽ FOOTBALL LEGENDS</div>
+        <div class="coins">🪙 <span id="coins">1000</span></div>
+    </header>
 
-    <!-- Match HUD -->
-    <div id="hud">
+    <main>
 
-        <div class="scoreboard">
-            <div class="team-name" id="home-team">GAMEHUB FC</div>
+        <section class="hero">
+            <h1>Football Legends</h1>
+            <p>Build your dream squad with legendary football players.</p>
 
-            <div class="score">
-                <span id="home-score">0</span>
-                <span>-</span>
-                <span id="away-score">0</span>
+            <button id="packButton" onclick="openPack()">
+                OPEN PACK — 100 🪙
+            </button>
+        </section>
+
+        <section class="team-section">
+            <h2>Your Squad</h2>
+
+            <div id="squad" class="players">
+                <div class="empty">
+                    Open a pack to get your first player!
+                </div>
+            </div>
+        </section>
+
+        <section class="players-section">
+            <h2>Featured Players</h2>
+
+            <div class="players">
+
+                <div class="player-card">
+                    <div class="rating">99</div>
+                    <div class="position">LW</div>
+                    <div class="player-avatar">CR7</div>
+                    <h3>Cristiano Ronaldo</h3>
+                    <p>Portugal</p>
+                </div>
+
+                <div class="player-card">
+                    <div class="rating">98</div>
+                    <div class="position">RW</div>
+                    <div class="player-avatar">LM10</div>
+                    <h3>Lionel Messi</h3>
+                    <p>Argentina</p>
+                </div>
+
+                <div class="player-card">
+                    <div class="rating">97</div>
+                    <div class="position">ST</div>
+                    <div class="player-avatar">MB</div>
+                    <h3>Kylian Mbappé</h3>
+                    <p>France</p>
+                </div>
+
+                <div class="player-card">
+                    <div class="rating">96</div>
+                    <div class="position">CM</div>
+                    <div class="player-avatar">JDB</div>
+                    <h3>Kevin De Bruyne</h3>
+                    <p>Belgium</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <div id="packResult" class="pack-result hidden">
+        <div class="result-box">
+            <button class="close" onclick="closePack()">✕</button>
+
+            <p>YOU PACKED</p>
+
+            <div id="resultRating" class="result-rating">99</div>
+            <div id="resultPosition" class="result-position">LW</div>
+
+            <div id="resultAvatar" class="result-avatar">
+                CR7
             </div>
 
-            <div class="team-name" id="away-team">RIVALS FC</div>
+            <h2 id="resultName">Cristiano Ronaldo</h2>
+            <p id="resultCountry">Portugal</p>
 
-            <div class="timer" id="timer">02:00</div>
+            <button onclick="closePack()">KEEP PLAYER</button>
         </div>
-
-        <div class="player-info">
-            <strong id="player-name">Cristiano Ronaldo</strong>
-            <span>OVR <b id="player-rating">90</b></span>
-
-            <div class="stamina-bar">
-                <div id="stamina-fill"></div>
-            </div>
-        </div>
-
     </div>
-
-    <!-- Start screen -->
-    <div id="start-screen">
-
-        <div class="start-box">
-            <div class="football-icon">⚽</div>
-
-            <h1>GAMEHUB<br><span>FOOTBALL</span></h1>
-
-            <p>ARCADE FOOTBALL</p>
-
-            <button id="start-button">KICK OFF</button>
-
-            <small>
-                PC: WASD / Arrow Keys to move<br>
-                SPACE: Shoot &nbsp; | &nbsp; SHIFT: Sprint
-            </small>
-        </div>
-
-    </div>
-
-    <!-- Goal message -->
-    <div id="goal-message">
-        <h1>GOAL!</h1>
-        <p id="goal-scorer">Cristiano Ronaldo</p>
-    </div>
-
-    <!-- Mobile controls -->
-    <div id="mobile-controls">
-
-        <div id="joystick">
-            <div id="joystick-stick"></div>
-        </div>
-
-        <div class="action-buttons">
-            <button id="pass-button">PASS</button>
-            <button id="shoot-button">SHOOT</button>
-            <button id="sprint-button">SPRINT</button>
-        </div>
-
-    </div>
-
-    <!-- Three.js -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
     <script src="game.js"></script>
 
