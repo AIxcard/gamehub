@@ -1,138 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Football Legends</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Football Legends 3D</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Three.js Library for 3D Graphics -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
 
-  <!-- TOP NAVBAR -->
+  <!-- NAVBAR -->
   <nav class="navbar">
-    <div class="brand" data-page="home">
-      <div class="logo-icon">⚽</div>
-      <span>FOOTBALL <strong>LEGENDS</strong></span>
-    </div>
-    
+    <div class="brand" data-page="home">FOOTBALL <span>3D</span></div>
     <div class="nav-links">
-      <button data-page="home" class="nav-btn active">HOME</button>
-      <button data-page="play" class="nav-btn">PLAY</button>
-      <button data-page="squad" class="nav-btn">SQUAD</button>
-      <button data-page="shop" class="nav-btn">SHOP</button>
-      <button data-page="teams" class="nav-btn">TEAMS</button>
-      <button data-page="settings" class="nav-btn">SETTINGS</button>
+      <button class="active" data-page="home">HOME</button>
+      <button data-page="squad">SQUAD</button>
+      <button data-page="shop">SHOP</button>
     </div>
-    
-    <div class="currency">
-      🪙 <span>1000</span>
-    </div>
+    <div class="currency">🪙 15,000</div>
   </nav>
 
-  <!-- PAGE 1: HOME -->
+  <!-- HOME PAGE -->
   <main id="home" class="page active">
     <div class="hero">
-      <div class="badge">⚽ BUILD • PLAY • CONQUER</div>
-      <h1>FOOTBALL<br><span class="green-text">LEGENDS</span></h1>
-      <p>Build your ultimate squad, collect football's greatest players, and take your team onto the pitch.</p>
-      
+      <h1>NEXT-GEN <br/><span class="green-text">3D FOOTBALL</span></h1>
+      <p>Build your squad, open card packs, and play in full 3D across PC, Tablet, and Mobile.</p>
       <div class="hero-buttons">
-        <button class="primary-button" data-page="play">► PLAY FOOTBALL</button>
-        <button class="secondary-button" data-page="squad">👥 VIEW SQUAD</button>
-      </div>
-
-      <div class="card-grid">
-        <div class="nav-card" data-page="squad">
-          <span class="card-subtitle">YOUR CLUB</span>
-          <h3>MY SQUAD ➔</h3>
-        </div>
-        <div class="nav-card" data-page="shop">
-          <span class="card-subtitle">BUILD YOUR COLLECTION</span>
-          <h3>PACK SHOP ➔</h3>
-        </div>
-        <div class="nav-card" data-page="teams">
-          <span class="card-subtitle">CHOOSE YOUR CLUB</span>
-          <h3>TEAMS ➔</h3>
-        </div>
+        <button class="primary-btn" id="start-match-btn">► PLAY 3D MATCH</button>
+        <button class="secondary-btn" data-page="squad">👥 VIEW SQUAD</button>
       </div>
     </div>
   </main>
 
-  <!-- PAGE 2: PLAY -->
-  <section id="play" class="page">
-    <div class="page-container">
-      <h2>SELECT MATCH MODE</h2>
-      <div class="mode-selection">
-        <div class="mode-card">
-          <h3>QUICK MATCH</h3>
-          <p>Jump right into action against AI.</p>
-          <button id="start-match-btn" class="primary-button">KICK OFF</button>
+  <!-- SQUAD PAGE -->
+  <main id="squad" class="page">
+    <h2>My Ultimate Squad</h2>
+    <div class="squad-grid" id="squad-container">
+      <!-- Cards render dynamically via JavaScript -->
+    </div>
+  </main>
+
+  <!-- SHOP PAGE -->
+  <main id="shop" class="page">
+    <h2>Pack Shop</h2>
+    <div class="shop-card">
+      <h3>GOLD LEGENDS PACK</h3>
+      <p>Contains 1 High-Rated Legend Player</p>
+      <button class="primary-btn" id="open-pack-btn">OPEN PACK (1,000 🪙)</button>
+    </div>
+  </main>
+
+  <!-- PACK OPENING ANIMATION OVERLAY -->
+  <div id="pack-overlay" class="pack-overlay"></div>
+
+  <!-- 3D MATCH SCREEN OVERLAY -->
+  <div id="match-screen" class="match-screen">
+    <div class="match-ui">
+      <span>HOME</span>
+      <span id="match-score">0 - 0</span>
+      <span>AWAY</span>
+    </div>
+
+    <button id="exit-match-btn" class="exit-match-btn">✕ EXIT</button>
+
+    <!-- 3D WebGL Canvas Container -->
+    <div id="canvas-container"></div>
+
+    <!-- Mobile Touch Controls -->
+    <div class="mobile-controls">
+      <div class="dpad">
+        <button id="btn-up">▲</button>
+        <div class="dpad-mid">
+          <button id="btn-left">◀</button>
+          <button id="btn-right">▶</button>
         </div>
+        <button id="btn-down">▼</button>
+      </div>
+      <div class="action-btns">
+        <button id="btn-shoot" class="action-btn shoot-btn">SHOOT</button>
+        <button id="btn-pass" class="action-btn pass-btn">PASS</button>
       </div>
     </div>
-  </section>
-
-  <!-- PAGE 3: SQUAD -->
-  <section id="squad" class="page">
-    <div class="page-container squad-layout">
-      <div class="squad-pitch-container">
-        <h3>STARTING XI</h3>
-        <div class="starting-xi"></div>
-      </div>
-      <div class="squad-sidebar">
-        <h3>RESERVES & COLLECTION</h3>
-        <div class="player-list"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PAGE 4: SHOP -->
-  <section id="shop" class="page">
-    <div class="page-container">
-      <h2>PACK SHOP</h2>
-      <div class="shop-grid">
-        <div class="shop-card">
-          <h3>GOLD PACK</h3>
-          <p>Contains 1 top-tier player</p>
-          <button class="primary-button" onclick="openPack(500)">OPEN FOR 500 🪙</button>
-        </div>
-      </div>
-      <h3 style="margin-top: 30px;">YOUR COLLECTION</h3>
-      <div class="collection-grid"></div>
-    </div>
-  </section>
-
-  <!-- PAGE 5: TEAMS -->
-  <section id="teams" class="page">
-    <div class="page-container">
-      <h2>SELECT TEAM</h2>
-      <p>Choose your default club aesthetic.</p>
-    </div>
-  </section>
-
-  <!-- PAGE 6: SETTINGS -->
-  <section id="settings" class="page">
-    <div class="page-container">
-      <h2>SETTINGS</h2>
-      <p>Configure sound, controls, and difficulty.</p>
-    </div>
-  </section>
-
-  <!-- PACK OPENING MODAL -->
-  <div class="pack-result">
-    <div class="pack-result-box"></div>
-  </div>
-
-  <!-- IN-MATCH OVERLAY SCREEN -->
-  <div class="match-screen">
-    <div class="scoreboard">
-      <div class="score-team home">RED DRAGONS <strong>0</strong></div>
-      <div class="score-middle"><strong id="match-timer">0'</strong></div>
-      <div class="score-team away">BLUE TITANS <strong>0</strong></div>
-    </div>
-    <div class="goal-message">GOAL!</div>
-    <button class="exit-match">EXIT MATCH</button>
-    <canvas id="match-canvas"></canvas>
   </div>
 
   <script src="game.js"></script>
