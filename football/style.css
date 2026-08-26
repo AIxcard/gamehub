@@ -18,12 +18,12 @@
 body {
   background: var(--bg-dark);
   color: var(--text-main);
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
   min-height: 100vh;
 }
 
-/* NAVBAR */
+/* NAVIGATION */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -91,7 +91,7 @@ body {
   display: block;
 }
 
-/* HERO */
+/* HERO SECTION */
 .hero {
   padding: 60px 0;
 }
@@ -127,11 +127,17 @@ body {
   border-radius: 8px;
   cursor: pointer;
   border: none;
+  transition: transform 0.1s ease, background 0.2s ease;
 }
 
 .primary-btn {
   background-color: var(--primary-green);
   color: #000;
+}
+
+.primary-btn:hover {
+  background-color: var(--primary-green-hover);
+  transform: translateY(-2px);
 }
 
 .secondary-btn {
@@ -140,7 +146,12 @@ body {
   border: 1px solid var(--border-color);
 }
 
-/* CARDS */
+.secondary-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* FUT CARDS */
 .squad-grid {
   display: flex;
   flex-wrap: wrap;
@@ -159,17 +170,25 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.fut-card:hover {
+  transform: translateY(-6px);
 }
 
 .card-top {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
 }
 
 .card-rating {
   font-size: 1.8rem;
   font-weight: 900;
+  line-height: 1;
 }
 
 .card-position {
@@ -191,6 +210,7 @@ body {
   font-size: 1rem;
   font-weight: 900;
   margin-bottom: 6px;
+  text-transform: uppercase;
 }
 
 .card-stats {
@@ -222,7 +242,7 @@ body {
   margin: 10px 0 20px;
 }
 
-/* PACK OVERLAY */
+/* PACK ANIMATION OVERLAY */
 .pack-overlay {
   display: none;
   position: fixed;
@@ -296,7 +316,7 @@ body {
   z-index: 10;
 }
 
-/* MOBILE CONTROLS */
+/* CONTROLS (DPAD & ACTIONS) */
 .mobile-controls {
   position: absolute;
   bottom: 20px;
@@ -320,6 +340,7 @@ body {
   color: #fff;
   font-weight: 900;
   border-radius: 50%;
+  user-select: none;
 }
 
 .dpad {
@@ -334,8 +355,8 @@ body {
 }
 
 .dpad button {
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 48px;
 }
 
 .action-btns {
@@ -344,8 +365,8 @@ body {
 }
 
 .action-btn {
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
 }
 
 .shoot-btn { background: rgba(225, 29, 72, 0.6); }
