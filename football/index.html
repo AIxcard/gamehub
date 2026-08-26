@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Football Legends 3D</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Three.js Library for 3D Graphics -->
+  <!-- Three.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
@@ -14,9 +14,9 @@
   <nav class="navbar">
     <div class="brand" data-page="home">FOOTBALL <span>3D</span></div>
     <div class="nav-links">
-      <button class="active" data-page="home">HOME</button>
-      <button data-page="squad">SQUAD</button>
-      <button data-page="shop">SHOP</button>
+      <button class="nav-btn active" data-page="home">HOME</button>
+      <button class="nav-btn" data-page="squad">SQUAD</button>
+      <button class="nav-btn" data-page="shop">SHOP</button>
     </div>
     <div class="currency">🪙 15,000</div>
   </nav>
@@ -36,9 +36,7 @@
   <!-- SQUAD PAGE -->
   <main id="squad" class="page">
     <h2>My Ultimate Squad</h2>
-    <div class="squad-grid" id="squad-container">
-      <!-- Cards render dynamically via JavaScript -->
-    </div>
+    <div class="squad-grid" id="squad-container"></div>
   </main>
 
   <!-- SHOP PAGE -->
@@ -51,10 +49,10 @@
     </div>
   </main>
 
-  <!-- PACK OPENING ANIMATION OVERLAY -->
+  <!-- PACK OVERLAY -->
   <div id="pack-overlay" class="pack-overlay"></div>
 
-  <!-- 3D MATCH SCREEN OVERLAY -->
+  <!-- 3D MATCH SCREEN -->
   <div id="match-screen" class="match-screen">
     <div class="match-ui">
       <span>HOME</span>
@@ -64,10 +62,8 @@
 
     <button id="exit-match-btn" class="exit-match-btn">✕ EXIT</button>
 
-    <!-- 3D WebGL Canvas Container -->
     <div id="canvas-container"></div>
 
-    <!-- Mobile Touch Controls -->
     <div class="mobile-controls">
       <div class="dpad">
         <button id="btn-up">▲</button>
