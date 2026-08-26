@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Football Legends 3D</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <!-- Three.js Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
 
+  <!-- NAVIGATION BAR -->
   <nav class="navbar">
     <div class="brand" data-page="home">FOOTBALL <span>3D</span></div>
     <div class="nav-links">
@@ -16,36 +18,41 @@
       <button class="nav-btn" data-page="squad">SQUAD</button>
       <button class="nav-btn" data-page="shop">SHOP</button>
     </div>
-    <div class="currency">15,000</div>
+    <div class="currency">🪙 15,000</div>
   </nav>
 
+  <!-- HOME PAGE -->
   <main id="home" class="page active">
     <div class="hero">
-      <h1>NEXT-GEN <br><span class="green-text">3D FOOTBALL</span></h1>
+      <h1>NEXT-GEN <br/><span class="green-text">3D FOOTBALL</span></h1>
       <p>Build your squad, open card packs, and play in full 3D across PC, Tablet, and Mobile.</p>
       <div class="hero-buttons">
-        <button class="primary-btn" id="start-match-btn">PLAY 3D MATCH</button>
-        <button class="secondary-btn" data-page="squad">VIEW SQUAD</button>
+        <button class="primary-btn" id="start-match-btn">► PLAY 3D MATCH</button>
+        <button class="secondary-btn" data-page="squad">👥 VIEW SQUAD</button>
       </div>
     </div>
   </main>
 
+  <!-- SQUAD PAGE -->
   <main id="squad" class="page">
     <h2>My Ultimate Squad</h2>
     <div class="squad-grid" id="squad-container"></div>
   </main>
 
+  <!-- SHOP PAGE -->
   <main id="shop" class="page">
     <h2>Pack Shop</h2>
     <div class="shop-card">
       <h3>GOLD LEGENDS PACK</h3>
       <p>Contains 1 High-Rated Legend Player</p>
-      <button class="primary-btn" id="open-pack-btn">OPEN PACK (1,000)</button>
+      <button class="primary-btn" id="open-pack-btn">OPEN PACK (1,000 🪙)</button>
     </div>
   </main>
 
+  <!-- PACK OVERLAY ANIMATION -->
   <div id="pack-overlay" class="pack-overlay"></div>
 
+  <!-- 3D MATCH SCREEN -->
   <div id="match-screen" class="match-screen">
     <div class="match-ui">
       <span>HOME</span>
@@ -53,18 +60,19 @@
       <span>AWAY</span>
     </div>
 
-    <button id="exit-match-btn" class="exit-match-btn">EXIT</button>
+    <button id="exit-match-btn" class="exit-match-btn">✕ EXIT</button>
 
     <div id="canvas-container"></div>
 
+    <!-- TOUCH CONTROLS FOR MOBILE/TABLET -->
     <div class="mobile-controls">
       <div class="dpad">
-        <button id="btn-up">UP</button>
+        <button id="btn-up">▲</button>
         <div class="dpad-mid">
-          <button id="btn-left">LEFT</button>
-          <button id="btn-right">RIGHT</button>
+          <button id="btn-left">◀</button>
+          <button id="btn-right">▶</button>
         </div>
-        <button id="btn-down">DOWN</button>
+        <button id="btn-down">▼</button>
       </div>
       <div class="action-btns">
         <button id="btn-shoot" class="action-btn shoot-btn">SHOOT</button>
