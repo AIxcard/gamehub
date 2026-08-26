@@ -2,101 +2,541 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Football Legends</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>GameHub Football</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- Three.js -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 </head>
 
 <body>
 
-    <header>
-        <div class="logo">⚽ FOOTBALL LEGENDS</div>
-        <div class="coins">🪙 <span id="coins">1000</span></div>
-    </header>
+    <!-- =====================================================
+         MAIN MENU
+         ===================================================== -->
 
-    <main>
+    <div id="home-screen" class="screen active">
 
-        <section class="hero">
-            <h1>Football Legends</h1>
-            <p>Build your dream squad with legendary football players.</p>
+        <div class="home-background"></div>
 
-            <button id="packButton" onclick="openPack()">
-                OPEN PACK — 100 🪙
-            </button>
-        </section>
+        <div class="home-content">
 
-        <section class="team-section">
-            <h2>Your Squad</h2>
-
-            <div id="squad" class="players">
-                <div class="empty">
-                    Open a pack to get your first player!
-                </div>
-            </div>
-        </section>
-
-        <section class="players-section">
-            <h2>Featured Players</h2>
-
-            <div class="players">
-
-                <div class="player-card">
-                    <div class="rating">99</div>
-                    <div class="position">LW</div>
-                    <div class="player-avatar">CR7</div>
-                    <h3>Cristiano Ronaldo</h3>
-                    <p>Portugal</p>
-                </div>
-
-                <div class="player-card">
-                    <div class="rating">98</div>
-                    <div class="position">RW</div>
-                    <div class="player-avatar">LM10</div>
-                    <h3>Lionel Messi</h3>
-                    <p>Argentina</p>
-                </div>
-
-                <div class="player-card">
-                    <div class="rating">97</div>
-                    <div class="position">ST</div>
-                    <div class="player-avatar">MB</div>
-                    <h3>Kylian Mbappé</h3>
-                    <p>France</p>
-                </div>
-
-                <div class="player-card">
-                    <div class="rating">96</div>
-                    <div class="position">CM</div>
-                    <div class="player-avatar">JDB</div>
-                    <h3>Kevin De Bruyne</h3>
-                    <p>Belgium</p>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <div id="packResult" class="pack-result hidden">
-        <div class="result-box">
-            <button class="close" onclick="closePack()">✕</button>
-
-            <p>YOU PACKED</p>
-
-            <div id="resultRating" class="result-rating">99</div>
-            <div id="resultPosition" class="result-position">LW</div>
-
-            <div id="resultAvatar" class="result-avatar">
-                CR7
+            <div class="game-logo">
+                <span>⚽</span>
+                <h1>GAMEHUB</h1>
+                <h2>FOOTBALL</h2>
             </div>
 
-            <h2 id="resultName">Cristiano Ronaldo</h2>
-            <p id="resultCountry">Portugal</p>
+            <p class="subtitle">
+                THE BEAUTIFUL GAME
+            </p>
 
-            <button onclick="closePack()">KEEP PLAYER</button>
+            <div class="menu-buttons">
+
+                <button class="main-button play-button" onclick="openMatch()">
+                    <span>⚽</span>
+                    PLAY MATCH
+                </button>
+
+                <button class="main-button" onclick="openPage('squad-screen')">
+                    <span>👥</span>
+                    MY SQUAD
+                </button>
+
+                <button class="main-button" onclick="openPage('teams-screen')">
+                    <span>🏆</span>
+                    TEAMS
+                </button>
+
+                <button class="main-button" onclick="openPage('settings-screen')">
+                    <span>⚙️</span>
+                    SETTINGS
+                </button>
+
+            </div>
+
         </div>
+
     </div>
 
+
+    <!-- =====================================================
+         TOP NAVIGATION
+         ===================================================== -->
+
+    <nav id="navigation" class="navigation">
+
+        <div class="nav-logo" onclick="goHome()">
+            ⚽ GAMEHUB
+        </div>
+
+        <div class="nav-links">
+
+            <button onclick="goHome()">HOME</button>
+
+            <button onclick="openMatch()">MATCH</button>
+
+            <button onclick="openPage('squad-screen')">
+                SQUAD
+            </button>
+
+            <button onclick="openPage('teams-screen')">
+                TEAMS
+            </button>
+
+            <button onclick="openPage('settings-screen')">
+                SETTINGS
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         SQUAD
+         ===================================================== -->
+
+    <section id="squad-screen" class="page-screen">
+
+        <div class="page-header">
+            <div>
+                <span class="page-kicker">MY CLUB</span>
+                <h1>MY SQUAD</h1>
+            </div>
+
+            <button class="back-button" onclick="goHome()">
+                ← HOME
+            </button>
+        </div>
+
+        <div class="club-card">
+
+            <div class="club-info">
+                <div class="club-badge">⚽</div>
+
+                <div>
+                    <h2>GAMEHUB FC</h2>
+                    <p>Squad Rating <strong>94</strong></p>
+                </div>
+            </div>
+
+            <div class="formation">
+                <span>FORMATION</span>
+                <strong>4 - 3 - 3</strong>
+            </div>
+
+        </div>
+
+
+        <div class="football-pitch">
+
+            <div class="pitch-line center-line"></div>
+            <div class="pitch-circle"></div>
+
+            <div class="position-card striker">
+                <strong>99</strong>
+                <span>CR7</span>
+                <small>ST</small>
+            </div>
+
+            <div class="position-card lw">
+                <strong>95</strong>
+                <span>VINI</span>
+                <small>LW</small>
+            </div>
+
+            <div class="position-card rw">
+                <strong>98</strong>
+                <span>MESSI</span>
+                <small>RW</small>
+            </div>
+
+            <div class="position-card cm1">
+                <strong>96</strong>
+                <span>KDB</span>
+                <small>CM</small>
+            </div>
+
+            <div class="position-card cm2">
+                <strong>95</strong>
+                <span>Jude</span>
+                <small>CM</small>
+            </div>
+
+            <div class="position-card cm3">
+                <strong>94</strong>
+                <span>MODRIC</span>
+                <small>CM</small>
+            </div>
+
+            <div class="position-card gk">
+                <strong>95</strong>
+                <span>COURTOIS</span>
+                <small>GK</small>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         TEAMS
+         ===================================================== -->
+
+    <section id="teams-screen" class="page-screen">
+
+        <div class="page-header">
+            <div>
+                <span class="page-kicker">FOOTBALL WORLD</span>
+                <h1>TEAMS</h1>
+            </div>
+
+            <button class="back-button" onclick="goHome()">
+                ← HOME
+            </button>
+        </div>
+
+        <div class="team-grid">
+
+            <div class="team-card">
+                <div class="team-logo">🇵🇹</div>
+                <h2>Portugal</h2>
+                <p>Cristiano Ronaldo</p>
+                <span>WORLD RANKING</span>
+            </div>
+
+            <div class="team-card">
+                <div class="team-logo">🇦🇷</div>
+                <h2>Argentina</h2>
+                <p>Lionel Messi</p>
+                <span>WORLD RANKING</span>
+            </div>
+
+            <div class="team-card">
+                <div class="team-logo">🇧🇷</div>
+                <h2>Brazil</h2>
+                <p>Vinícius Júnior</p>
+                <span>WORLD RANKING</span>
+            </div>
+
+            <div class="team-card">
+                <div class="team-logo">🇫🇷</div>
+                <h2>France</h2>
+                <p>Kylian Mbappé</p>
+                <span>WORLD RANKING</span>
+            </div>
+
+            <div class="team-card">
+                <div class="team-logo">🇪🇸</div>
+                <h2>Spain</h2>
+                <p>Pedri</p>
+                <span>WORLD RANKING</span>
+            </div>
+
+            <div class="team-card">
+                <div class="team-logo">🇬🇧</div>
+                <h2>England</h2>
+                <p>Jude Bellingham</p>
+                <span>WORLD RANKING</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SETTINGS
+         ===================================================== -->
+
+    <section id="settings-screen" class="page-screen">
+
+        <div class="page-header">
+
+            <div>
+                <span class="page-kicker">GAME OPTIONS</span>
+                <h1>SETTINGS</h1>
+            </div>
+
+            <button class="back-button" onclick="goHome()">
+                ← HOME
+            </button>
+
+        </div>
+
+        <div class="settings-panel">
+
+            <div class="setting">
+                <div>
+                    <h3>Graphics</h3>
+                    <p>3D match quality</p>
+                </div>
+
+                <select>
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
+                </select>
+            </div>
+
+            <div class="setting">
+                <div>
+                    <h3>Camera</h3>
+                    <p>Match camera style</p>
+                </div>
+
+                <select>
+                    <option>Follow Player</option>
+                    <option>Classic</option>
+                </select>
+            </div>
+
+            <div class="setting">
+                <div>
+                    <h3>Sound</h3>
+                    <p>Match audio</p>
+                </div>
+
+                <button class="toggle active">ON</button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MATCH
+         ===================================================== -->
+
+    <section id="match-screen" class="match-screen">
+
+        <!-- 3D GAME -->
+        <div id="game-container"></div>
+
+
+        <!-- SCOREBOARD -->
+
+        <div class="scoreboard">
+
+            <div class="team-score home-team">
+                <span>GAMEHUB FC</span>
+                <strong id="home-score">0</strong>
+            </div>
+
+            <div class="match-clock">
+                <span>MATCH</span>
+                <strong id="timer">02:00</strong>
+            </div>
+
+            <div class="team-score away-team">
+                <strong id="away-score">0</strong>
+                <span>OPPONENT</span>
+            </div>
+
+        </div>
+
+
+        <!-- STAMINA -->
+
+        <div class="stamina-container">
+
+            <div class="stamina-label">
+                STAMINA
+            </div>
+
+            <div class="stamina-bar">
+                <div id="stamina-fill"></div>
+            </div>
+
+        </div>
+
+
+        <!-- GOAL MESSAGE -->
+
+        <div id="goal-message" class="goal-message">
+
+            <span>GOAL!</span>
+
+            <strong id="goal-scorer">
+                Cristiano Ronaldo
+            </strong>
+
+        </div>
+
+
+        <!-- START SCREEN -->
+
+        <div id="start-screen" class="match-start">
+
+            <div class="match-start-box">
+
+                <span class="match-kicker">
+                    FRIENDLY MATCH
+                </span>
+
+                <h1>GAMEHUB FC</h1>
+
+                <div class="versus">
+                    <span>HOME</span>
+                    <strong>VS</strong>
+                    <span>OPPONENT</span>
+                </div>
+
+                <button id="start-button">
+                    KICK OFF ⚽
+                </button>
+
+                <button class="leave-match" onclick="goHome()">
+                    BACK TO MENU
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- MOBILE CONTROLS -->
+
+        <div class="mobile-controls">
+
+            <div id="joystick" class="joystick">
+                <div id="joystick-stick" class="joystick-stick"></div>
+            </div>
+
+            <div class="action-buttons">
+
+                <button id="pass-button">
+                    PASS
+                </button>
+
+                <button id="shoot-button" class="shoot">
+                    SHOOT
+                </button>
+
+                <button id="sprint-button">
+                    SPRINT
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PC CONTROLS -->
+
+        <div class="pc-controls">
+            <span><b>WASD</b> MOVE</span>
+            <span><b>SHIFT</b> SPRINT</span>
+            <span><b>SPACE</b> SHOOT</span>
+        </div>
+
+
+        <button class="exit-match" onclick="goHome()">
+            ✕ EXIT
+        </button>
+
+    </section>
+
+
+    <!-- =====================================================
+         UI SCRIPT
+         ===================================================== -->
+
+    <script>
+
+        const screens = [
+            "home-screen",
+            "squad-screen",
+            "teams-screen",
+            "settings-screen"
+        ];
+
+        function openPage(id) {
+
+            screens.forEach(screen => {
+
+                const element =
+                    document.getElementById(screen);
+
+                if (element) {
+                    element.classList.remove("active");
+                }
+
+            });
+
+            const target =
+                document.getElementById(id);
+
+            if (target) {
+                target.classList.add("active");
+            }
+
+            document
+                .getElementById("navigation")
+                .classList.add("visible");
+        }
+
+
+        function goHome() {
+
+            screens.forEach(screen => {
+
+                const element =
+                    document.getElementById(screen);
+
+                if (element) {
+                    element.classList.remove("active");
+                }
+
+            });
+
+            document
+                .getElementById("home-screen")
+                .classList.add("active");
+
+            document
+                .getElementById("navigation")
+                .classList.remove("visible");
+
+            document
+                .getElementById("match-screen")
+                .classList.remove("active");
+        }
+
+
+        function openMatch() {
+
+            screens.forEach(screen => {
+
+                const element =
+                    document.getElementById(screen);
+
+                if (element) {
+                    element.classList.remove("active");
+                }
+
+            });
+
+            document
+                .getElementById("navigation")
+                .classList.remove("visible");
+
+            document
+                .getElementById("match-screen")
+                .classList.add("active");
+
+        }
+
+    </script>
+
+
+    <!-- YOUR EXISTING GAME SCRIPT -->
     <script src="game.js"></script>
 
 </body>
