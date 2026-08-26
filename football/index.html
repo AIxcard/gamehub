@@ -14,794 +14,915 @@
 
 <body>
 
-<!-- =====================================================
-     FOOTBALL MAIN MENU
-===================================================== -->
+    <!-- =====================================================
+         TOP NAVIGATION
+    ====================================================== -->
 
-<div id="home-screen" class="screen active">
+    <header id="top-nav" class="top-nav">
 
-    <div class="stadium-bg"></div>
-
-    <div class="home-overlay"></div>
-
-    <div class="home-content">
-
-        <div class="game-logo">
-            <div class="football-icon">⚽</div>
-
-            <h1>FOOTBALL</h1>
-            <h2>LEGENDS</h2>
-
-            <p>
-                BUILD YOUR SQUAD • PLAY MATCHES • BECOME A LEGEND
-            </p>
-        </div>
-
-
-        <div class="menu-grid">
-
-            <button class="menu-card play-card" onclick="openPage('match-menu')">
-                <span>▶</span>
-                <div>
-                    <strong>PLAY MATCH</strong>
-                    <small>Enter the stadium</small>
-                </div>
-            </button>
-
-            <button class="menu-card" onclick="openPage('squad-page')">
-                <span>👥</span>
-                <div>
-                    <strong>SQUAD</strong>
-                    <small>Manage your players</small>
-                </div>
-            </button>
-
-            <button class="menu-card" onclick="openPage('shop-page')">
-                <span>🎁</span>
-                <div>
-                    <strong>PACK SHOP</strong>
-                    <small>Open packs & collect players</small>
-                </div>
-            </button>
-
-            <button class="menu-card" onclick="openPage('teams-page')">
-                <span>🏆</span>
-                <div>
-                    <strong>TEAMS</strong>
-                    <small>Choose your club</small>
-                </div>
-            </button>
-
-            <button class="menu-card" onclick="openPage('settings-page')">
-                <span>⚙️</span>
-                <div>
-                    <strong>SETTINGS</strong>
-                    <small>Controls & keybinds</small>
-                </div>
-            </button>
-
-        </div>
-
-    </div>
-</div>
-
-
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
-
-<nav id="navigation" class="navigation">
-
-    <div class="nav-logo" onclick="showHome()">
-        ⚽ FOOTBALL <b>LEGENDS</b>
-    </div>
-
-    <div class="nav-links">
-
-        <button onclick="showHome()">HOME</button>
-        <button onclick="openPage('match-menu')">PLAY</button>
-        <button onclick="openPage('squad-page')">SQUAD</button>
-        <button onclick="openPage('shop-page')">SHOP</button>
-        <button onclick="openPage('teams-page')">TEAMS</button>
-        <button onclick="openPage('settings-page')">SETTINGS</button>
-
-    </div>
-
-    <div class="coin-display">
-        🪙 <span id="coins">1000</span>
-    </div>
-
-</nav>
-
-
-<!-- =====================================================
-     MATCH MENU
-===================================================== -->
-
-<section id="match-menu" class="page-screen">
-
-    <div class="page-header">
-
-        <div>
-            <span class="page-kicker">MATCHDAY</span>
-            <h1>Choose Your Match</h1>
-        </div>
-
-        <button class="back-button" onclick="showHome()">
-            ← BACK
+        <button class="brand" onclick="showPage('home')">
+            <span class="brand-ball">⚽</span>
+            <span>FOOTBALL <b>LEGENDS</b></span>
         </button>
 
-    </div>
+        <nav class="nav-links">
 
+            <button onclick="showPage('home')">HOME</button>
+            <button onclick="showPage('play')">PLAY</button>
+            <button onclick="showPage('squad')">SQUAD</button>
+            <button onclick="showPage('shop')">SHOP</button>
+            <button onclick="showPage('teams')">TEAMS</button>
+            <button onclick="showPage('settings')">SETTINGS</button>
 
-    <div class="match-selection">
+        </nav>
 
-        <div class="match-card">
-
-            <div class="match-stadium">🏟️</div>
-
-            <span>FRIENDLY MATCH</span>
-
-            <h2>LEGENDS FC</h2>
-
-            <div class="versus-large">
-                <b>YOUR TEAM</b>
-                <strong>VS</strong>
-                <b>RIVAL FC</b>
-            </div>
-
-            <p>
-                A quick 2-minute football match.
-                Control your player and score goals.
-            </p>
-
-            <button
-                id="start-button"
-                class="big-play-button"
-                onclick="startGame()"
-            >
-                ▶ START MATCH
-            </button>
-
+        <div class="currency">
+            <span>🪙</span>
+            <strong id="coins">1,000</strong>
         </div>
 
-    </div>
-
-</section>
+    </header>
 
 
-<!-- =====================================================
-     SQUAD PAGE
-===================================================== -->
+    <!-- =====================================================
+         HOME
+    ====================================================== -->
 
-<section id="squad-page" class="page-screen">
+    <main id="home-page" class="page active">
 
-    <div class="page-header">
+        <div class="stadium-background"></div>
+        <div class="stadium-overlay"></div>
 
-        <div>
-            <span class="page-kicker">MY CLUB</span>
-            <h1>Your Squad</h1>
-        </div>
+        <section class="hero">
 
-        <button class="back-button" onclick="showHome()">
-            ← BACK
-        </button>
+            <div class="hero-content">
 
-    </div>
+                <div class="hero-ball">⚽</div>
 
-
-    <div class="club-card">
-
-        <div class="club-info">
-
-            <div class="club-badge">⚽</div>
-
-            <div>
-                <h2>Football Legends FC</h2>
-                <p>
-                    Squad Rating:
-                    <strong id="squad-rating">85</strong>
+                <p class="eyebrow">
+                    BUILD • PLAY • CONQUER
                 </p>
+
+                <h1>
+                    FOOTBALL
+                    <span>LEGENDS</span>
+                </h1>
+
+                <p class="hero-description">
+                    Build your ultimate squad, collect football's greatest
+                    players and take your team onto the pitch.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <button
+                        class="primary-button"
+                        onclick="showPage('play')"
+                    >
+                        <span>▶</span>
+                        PLAY FOOTBALL
+                    </button>
+
+                    <button
+                        class="secondary-button"
+                        onclick="showPage('squad')"
+                    >
+                        👥 VIEW SQUAD
+                    </button>
+
+                </div>
+
             </div>
 
-        </div>
-
-        <div class="formation">
-            <span>FORMATION</span>
-            <strong>4-3-3</strong>
-        </div>
-
-    </div>
+        </section>
 
 
-    <div id="squad" class="players squad-grid">
-
-        <div class="empty">
-            <strong>Your squad is empty.</strong>
-            <p>Open packs in the Shop to get players.</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     PACK SHOP
-===================================================== -->
-
-<section id="shop-page" class="page-screen">
-
-    <div class="page-header">
-
-        <div>
-            <span class="page-kicker">TRANSFER MARKET</span>
-            <h1>Pack Shop</h1>
-        </div>
-
-        <button class="back-button" onclick="showHome()">
-            ← BACK
-        </button>
-
-    </div>
-
-
-    <div class="shop-grid">
-
-        <div class="pack-card standard-pack">
-
-            <div class="pack-art">
-                ⚽
-            </div>
-
-            <span class="pack-rarity">STANDARD</span>
-
-            <h2>Football Pack</h2>
-
-            <p>
-                Contains 1 random football player.
-            </p>
-
-            <div class="pack-odds">
-                <span>⭐ Rare Chance</span>
-                <span>🔥 Elite Chance</span>
-            </div>
+        <section class="home-panels">
 
             <button
-                class="pack-button"
-                onclick="openPack()"
+                class="home-panel"
+                onclick="showPage('squad')"
             >
-                OPEN — 100 🪙
+                <span class="panel-icon">👥</span>
+
+                <div>
+                    <small>YOUR CLUB</small>
+                    <strong>MY SQUAD</strong>
+                </div>
+
+                <span class="panel-arrow">→</span>
             </button>
 
-        </div>
-
-
-        <div class="pack-card premium-pack">
-
-            <div class="pack-art">
-                👑
-            </div>
-
-            <span class="pack-rarity">PREMIUM</span>
-
-            <h2>Legend Pack</h2>
-
-            <p>
-                Better chance of getting elite players.
-            </p>
-
-            <div class="pack-odds">
-                <span>🔥 Elite Chance</span>
-                <span>👑 Legend Chance</span>
-            </div>
 
             <button
-                class="pack-button premium"
-                onclick="openPremiumPack()"
+                class="home-panel"
+                onclick="showPage('shop')"
             >
-                OPEN — 250 🪙
+                <span class="panel-icon">🎁</span>
+
+                <div>
+                    <small>BUILD YOUR COLLECTION</small>
+                    <strong>PACK SHOP</strong>
+                </div>
+
+                <span class="panel-arrow">→</span>
             </button>
 
-        </div>
 
-    </div>
+            <button
+                class="home-panel"
+                onclick="showPage('teams')"
+            >
+                <span class="panel-icon">🏆</span>
+
+                <div>
+                    <small>CHOOSE YOUR CLUB</small>
+                    <strong>TEAMS</strong>
+                </div>
+
+                <span class="panel-arrow">→</span>
+            </button>
+
+        </section>
+
+    </main>
 
 
-    <div class="featured-section">
+    <!-- =====================================================
+         PLAY
+    ====================================================== -->
 
-        <span class="page-kicker">AVAILABLE PLAYERS</span>
+    <main id="play-page" class="page">
 
-        <h2>Player Collection</h2>
+        <section class="page-container">
 
-        <div class="players">
+            <div class="page-heading">
 
-            <div class="player-card">
-                <div class="rating">99</div>
-                <div class="position">LW</div>
-                <div class="player-avatar ronaldo">CR7</div>
-                <h3>Cristiano Ronaldo</h3>
-                <p>Portugal</p>
+                <div>
+                    <p class="eyebrow">MATCHDAY</p>
+                    <h2>PLAY FOOTBALL</h2>
+                    <p>
+                        Choose how you want to take your team onto the pitch.
+                    </p>
+                </div>
+
+                <button
+                    class="back-button"
+                    onclick="showPage('home')"
+                >
+                    ← BACK
+                </button>
+
             </div>
 
-            <div class="player-card">
-                <div class="rating">98</div>
-                <div class="position">RW</div>
-                <div class="player-avatar messi">LM10</div>
-                <h3>Lionel Messi</h3>
-                <p>Argentina</p>
+
+            <div class="mode-grid">
+
+                <button
+                    class="mode-card featured"
+                    onclick="startMatch('friendly')"
+                >
+
+                    <div class="mode-image">
+                        ⚽
+                    </div>
+
+                    <div class="mode-info">
+
+                        <span class="mode-tag">
+                            QUICK MATCH
+                        </span>
+
+                        <h3>FRIENDLY MATCH</h3>
+
+                        <p>
+                            Take your squad into a quick match
+                            against a rival team.
+                        </p>
+
+                        <strong>
+                            PLAY NOW →
+                        </strong>
+
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="mode-card"
+                    onclick="showNotification('League mode coming soon!')"
+                >
+
+                    <div class="mode-image">
+                        🏆
+                    </div>
+
+                    <div class="mode-info">
+
+                        <span class="mode-tag">
+                            CAREER
+                        </span>
+
+                        <h3>LEAGUE</h3>
+
+                        <p>
+                            Climb the table and become champions.
+                        </p>
+
+                        <strong>
+                            COMING SOON
+                        </strong>
+
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="mode-card"
+                    onclick="showNotification('Tournament mode coming soon!')"
+                >
+
+                    <div class="mode-image">
+                        👑
+                    </div>
+
+                    <div class="mode-info">
+
+                        <span class="mode-tag">
+                            COMPETITION
+                        </span>
+
+                        <h3>TOURNAMENT</h3>
+
+                        <p>
+                            Battle through knockout rounds
+                            to lift the trophy.
+                        </p>
+
+                        <strong>
+                            COMING SOON
+                        </strong>
+
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="mode-card"
+                    onclick="showNotification('Practice mode coming soon!')"
+                >
+
+                    <div class="mode-image">
+                        🎯
+                    </div>
+
+                    <div class="mode-info">
+
+                        <span class="mode-tag">
+                            TRAINING
+                        </span>
+
+                        <h3>PRACTICE</h3>
+
+                        <p>
+                            Improve your skills without pressure.
+                        </p>
+
+                        <strong>
+                            COMING SOON
+                        </strong>
+
+                    </div>
+
+                </button>
+
             </div>
 
-            <div class="player-card">
-                <div class="rating">97</div>
-                <div class="position">ST</div>
-                <div class="player-avatar mbappe">KM</div>
-                <h3>Kylian Mbappé</h3>
-                <p>France</p>
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         SQUAD
+    ====================================================== -->
+
+    <main id="squad-page" class="page">
+
+        <section class="page-container">
+
+            <div class="page-heading">
+
+                <div>
+                    <p class="eyebrow">MY CLUB</p>
+                    <h2>MY SQUAD</h2>
+                    <p>
+                        Build your starting eleven and manage your players.
+                    </p>
+                </div>
+
+                <button
+                    class="back-button"
+                    onclick="showPage('home')"
+                >
+                    ← BACK
+                </button>
+
             </div>
 
-            <div class="player-card">
-                <div class="rating">96</div>
-                <div class="position">CM</div>
-                <div class="player-avatar kdb">KDB</div>
-                <h3>Kevin De Bruyne</h3>
-                <p>Belgium</p>
+
+            <div class="club-summary">
+
+                <div class="club-badge">
+                    ⚽
+                </div>
+
+                <div class="club-details">
+
+                    <span>YOUR CLUB</span>
+
+                    <h3>
+                        <span id="club-name">
+                            Football Legends FC
+                        </span>
+                    </h3>
+
+                    <p>
+                        Overall Rating:
+                        <strong id="squad-rating">0</strong>
+                    </p>
+
+                </div>
+
+
+                <div class="formation-box">
+
+                    <span>FORMATION</span>
+
+                    <strong id="formation-name">
+                        4-3-3
+                    </strong>
+
+                </div>
+
             </div>
 
-            <div class="player-card">
-                <div class="rating">96</div>
-                <div class="position">ST</div>
-                <div class="player-avatar haaland">EH</div>
-                <h3>Erling Haaland</h3>
-                <p>Norway</p>
+
+            <div class="squad-layout">
+
+                <div class="pitch-wrapper">
+
+                    <div class="pitch">
+
+                        <div class="pitch-line halfway"></div>
+
+                        <div class="pitch-circle"></div>
+
+                        <div class="pitch-box top-box"></div>
+                        <div class="pitch-box bottom-box"></div>
+
+                        <div
+                            id="starting-xi"
+                            class="starting-xi"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="squad-list-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span>COLLECTION</span>
+                            <h3>YOUR PLAYERS</h3>
+                        </div>
+
+                        <strong id="player-count">
+                            0
+                        </strong>
+
+                    </div>
+
+                    <div
+                        id="squad"
+                        class="player-list"
+                    ></div>
+
+                </div>
+
             </div>
 
-            <div class="player-card">
-                <div class="rating">95</div>
-                <div class="position">LW</div>
-                <div class="player-avatar vinicius">VJR</div>
-                <h3>Vinícius Jr.</h3>
-                <p>Brazil</p>
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         SHOP
+    ====================================================== -->
+
+    <main id="shop-page" class="page">
+
+        <section class="page-container">
+
+            <div class="page-heading">
+
+                <div>
+                    <p class="eyebrow">TRANSFER MARKET</p>
+                    <h2>PACK SHOP</h2>
+                    <p>
+                        Spend coins to discover football legends.
+                    </p>
+                </div>
+
+                <button
+                    class="back-button"
+                    onclick="showPage('home')"
+                >
+                    ← BACK
+                </button>
+
             </div>
 
-            <div class="player-card">
-                <div class="rating">95</div>
-                <div class="position">CM</div>
-                <div class="player-avatar bellingham">JB</div>
-                <h3>Jude Bellingham</h3>
-                <p>England</p>
+
+            <div
+                id="shop"
+                class="pack-grid"
+            ></div>
+
+
+            <div class="collection-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="eyebrow">COLLECTION</p>
+                        <h3>AVAILABLE PLAYERS</h3>
+                    </div>
+
+                    <span>
+                        Real football stars
+                    </span>
+
+                </div>
+
+                <div
+                    id="player-collection"
+                    class="collection-grid"
+                ></div>
+
             </div>
 
-            <div class="player-card">
-                <div class="rating">94</div>
-                <div class="position">GK</div>
-                <div class="player-avatar courtois">TC</div>
-                <h3>Thibaut Courtois</h3>
-                <p>Belgium</p>
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         TEAMS
+    ====================================================== -->
+
+    <main id="teams-page" class="page">
+
+        <section class="page-container">
+
+            <div class="page-heading">
+
+                <div>
+                    <p class="eyebrow">CLUBS</p>
+                    <h2>CHOOSE YOUR TEAM</h2>
+                    <p>
+                        Select the club you want to represent.
+                    </p>
+                </div>
+
+                <button
+                    class="back-button"
+                    onclick="showPage('home')"
+                >
+                    ← BACK
+                </button>
+
             </div>
 
-        </div>
 
-    </div>
+            <div
+                id="team-grid"
+                class="team-grid"
+            ></div>
 
-</section>
+        </section>
 
-
-<!-- =====================================================
-     TEAMS
-===================================================== -->
-
-<section id="teams-page" class="page-screen">
-
-    <div class="page-header">
-
-        <div>
-            <span class="page-kicker">CLUBS</span>
-            <h1>Teams</h1>
-        </div>
-
-        <button class="back-button" onclick="showHome()">
-            ← BACK
-        </button>
-
-    </div>
+    </main>
 
 
-    <div class="team-grid">
+    <!-- =====================================================
+         SETTINGS
+    ====================================================== -->
 
-        <div class="team-card">
-            <div class="team-logo">🔴</div>
-            <h2>Manchester United</h2>
-            <p>England</p>
-            <span>SELECT TEAM</span>
-        </div>
+    <main id="settings-page" class="page">
 
-        <div class="team-card">
-            <div class="team-logo">🔵</div>
-            <h2>Manchester City</h2>
-            <p>England</p>
-            <span>SELECT TEAM</span>
-        </div>
+        <section class="page-container">
 
-        <div class="team-card">
-            <div class="team-logo">⚪</div>
-            <h2>Real Madrid</h2>
-            <p>Spain</p>
-            <span>SELECT TEAM</span>
-        </div>
+            <div class="page-heading">
 
-        <div class="team-card">
-            <div class="team-logo">🔵🔴</div>
-            <h2>Barcelona</h2>
-            <p>Spain</p>
-            <span>SELECT TEAM</span>
-        </div>
+                <div>
+                    <p class="eyebrow">GAME OPTIONS</p>
+                    <h2>SETTINGS</h2>
+                    <p>
+                        Customize your Football Legends experience.
+                    </p>
+                </div>
 
-        <div class="team-card">
-            <div class="team-logo">🔴⚫</div>
-            <h2>AC Milan</h2>
-            <p>Italy</p>
-            <span>SELECT TEAM</span>
-        </div>
+                <button
+                    class="back-button"
+                    onclick="showPage('home')"
+                >
+                    ← BACK
+                </button>
 
-        <div class="team-card">
-            <div class="team-logo">🔵⚫</div>
-            <h2>Inter Milan</h2>
-            <p>Italy</p>
-            <span>SELECT TEAM</span>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     SETTINGS
-===================================================== -->
-
-<section id="settings-page" class="page-screen">
-
-    <div class="page-header">
-
-        <div>
-            <span class="page-kicker">GAME OPTIONS</span>
-            <h1>Settings</h1>
-        </div>
-
-        <button class="back-button" onclick="showHome()">
-            ← BACK
-        </button>
-
-    </div>
-
-
-    <div class="settings-panel">
-
-        <div class="setting">
-
-            <div>
-                <h3>Movement</h3>
-                <p>Move your player</p>
             </div>
 
-            <strong class="key-display">
-                W A S D
-            </strong>
 
-        </div>
+            <div class="settings-grid">
+
+                <div class="settings-card">
+
+                    <div class="settings-title">
+                        🎮
+                        <div>
+                            <h3>CONTROLS</h3>
+                            <p>Keyboard controls for matches</p>
+                        </div>
+                    </div>
 
 
-        <div class="setting">
+                    <div class="control-row">
+                        <span>Move</span>
+                        <kbd>W A S D</kbd>
+                    </div>
 
-            <div>
-                <h3>Sprint</h3>
-                <p>Run faster while using stamina</p>
+                    <div class="control-row">
+                        <span>Sprint</span>
+                        <kbd>SHIFT</kbd>
+                    </div>
+
+                    <div class="control-row">
+                        <span>Shoot</span>
+                        <kbd>SPACE</kbd>
+                    </div>
+
+                    <div class="control-row">
+                        <span>Pass</span>
+                        <kbd>E</kbd>
+                    </div>
+
+                    <div class="control-row">
+                        <span>Dribble</span>
+                        <kbd>Q</kbd>
+                    </div>
+
+                </div>
+
+
+                <div class="settings-card">
+
+                    <div class="settings-title">
+                        ⚙️
+                        <div>
+                            <h3>GAMEPLAY</h3>
+                            <p>General game options</p>
+                        </div>
+                    </div>
+
+
+                    <label class="toggle-row">
+
+                        <span>
+                            <strong>Sound Effects</strong>
+                            <small>Match and menu sounds</small>
+                        </span>
+
+                        <input
+                            id="effects-toggle"
+                            type="checkbox"
+                            checked
+                        >
+
+                    </label>
+
+
+                    <label class="toggle-row">
+
+                        <span>
+                            <strong>Music</strong>
+                            <small>Background music</small>
+                        </span>
+
+                        <input
+                            id="music-toggle"
+                            type="checkbox"
+                            checked
+                        >
+
+                    </label>
+
+
+                    <label class="select-row">
+
+                        <span>
+                            <strong>Graphics</strong>
+                            <small>Visual quality</small>
+                        </span>
+
+                        <select id="graphics-setting">
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+
+                    </label>
+
+                </div>
+
             </div>
 
-            <strong class="key-display">
-                SHIFT
-            </strong>
+        </section>
 
-        </div>
+    </main>
 
 
-        <div class="setting">
-
-            <div>
-                <h3>Shoot</h3>
-                <p>Kick the ball toward goal</p>
-            </div>
-
-            <strong class="key-display">
-                SPACE
-            </strong>
-
-        </div>
-
-
-        <div class="setting">
-
-            <div>
-                <h3>Pass</h3>
-                <p>Pass to a teammate</p>
-            </div>
-
-            <strong class="key-display">
-                E
-            </strong>
-
-        </div>
-
-
-        <div class="setting">
-
-            <div>
-                <h3>Dribble</h3>
-                <p>Keep close control of the ball</p>
-            </div>
-
-            <strong class="key-display">
-                Q
-            </strong>
-
-        </div>
-
-
-        <div class="setting">
-
-            <div>
-                <h3>Graphics</h3>
-                <p>Visual quality</p>
-            </div>
-
-            <select id="graphics-setting">
-                <option>High</option>
-                <option>Medium</option>
-                <option>Low</option>
-            </select>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     MATCH
-===================================================== -->
-
-<section id="match-screen" class="match-screen">
-
-    <div id="game-container"></div>
-
-
-    <div class="scoreboard">
-
-        <div class="team-score home-team">
-            <span>LEGENDS FC</span>
-            <strong id="home-score">0</strong>
-        </div>
-
-        <div class="match-clock">
-            <span>MATCH</span>
-            <strong id="timer">02:00</strong>
-        </div>
-
-        <div class="team-score away-team">
-            <strong id="away-score">0</strong>
-            <span>RIVAL FC</span>
-        </div>
-
-    </div>
-
-
-    <button
-        class="exit-match"
-        onclick="leaveMatch()"
-    >
-        ✕ MENU
-    </button>
-
-
-    <div class="stamina-container">
-
-        <div class="stamina-label">
-            STAMINA
-        </div>
-
-        <div class="stamina-bar">
-            <div id="stamina-fill"></div>
-        </div>
-
-    </div>
-
+    <!-- =====================================================
+         MATCH SCREEN
+    ====================================================== -->
 
     <div
-        id="goal-message"
-        class="goal-message"
+        id="match-screen"
+        class="match-screen"
     >
-        <span>GOAL!</span>
-        <strong id="goal-scorer">
-            Cristiano Ronaldo
-        </strong>
-    </div>
+
+        <div
+            id="game-container"
+            class="game-container"
+        ></div>
 
 
-    <!-- MOBILE CONTROLS -->
+        <!-- SCOREBOARD -->
 
-    <div class="mobile-controls">
+        <div class="match-scoreboard">
 
-        <div id="joystick" class="joystick">
-            <div id="joystick-stick" class="joystick-stick"></div>
+            <div class="score-team home">
+
+                <span id="match-home-team">
+                    LEGENDS FC
+                </span>
+
+                <strong id="home-score">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="score-middle">
+
+                <span>MATCH</span>
+
+                <strong id="timer">
+                    02:00
+                </strong>
+
+            </div>
+
+
+            <div class="score-team away">
+
+                <strong id="away-score">
+                    0
+                </strong>
+
+                <span id="match-away-team">
+                    RIVAL FC
+                </span>
+
+            </div>
+
         </div>
 
 
-        <div class="action-buttons">
-
-            <button
-                id="pass-button"
-                class="action-button"
-            >
-                PASS
-            </button>
-
-            <button
-                id="sprint-button"
-                class="action-button"
-            >
-                SPRINT
-            </button>
-
-            <button
-                id="shoot-button"
-                class="shoot"
-            >
-                SHOOT
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="pc-controls">
-        <span><b>WASD</b> MOVE</span>
-        <span><b>SHIFT</b> SPRINT</span>
-        <span><b>SPACE</b> SHOOT</span>
-        <span><b>E</b> PASS</span>
-        <span><b>Q</b> DRIBBLE</span>
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     PACK RESULT
-===================================================== -->
-
-<div id="packResult" class="pack-result hidden">
-
-    <div class="result-box">
+        <!-- EXIT -->
 
         <button
-            class="close"
-            onclick="closePack()"
+            class="exit-match"
+            onclick="leaveMatch()"
         >
-            ✕
+            ✕ MENU
         </button>
 
-        <p class="packed-title">
-            PLAYER PACKED
-        </p>
 
-        <div id="resultRating" class="result-rating">
-            99
+        <!-- STAMINA -->
+
+        <div class="match-stamina">
+
+            <div class="stamina-header">
+                <span>STAMINA</span>
+                <strong id="stamina-number">100</strong>
+            </div>
+
+            <div class="stamina-track">
+                <div
+                    id="stamina-fill"
+                    class="stamina-fill"
+                ></div>
+            </div>
+
         </div>
 
-        <div id="resultPosition" class="result-position">
-            LW
-        </div>
 
-        <div id="resultAvatar" class="result-avatar">
-            CR7
-        </div>
+        <!-- GOAL -->
 
-        <h2 id="resultName">
-            Cristiano Ronaldo
-        </h2>
-
-        <p id="resultCountry">
-            Portugal
-        </p>
-
-        <button
-            class="keep-button"
-            onclick="closePack()"
+        <div
+            id="goal-message"
+            class="goal-message"
         >
-            ADD TO SQUAD
-        </button>
+
+            <span>GOAL!</span>
+
+            <strong id="goal-scorer">
+                Cristiano Ronaldo
+            </strong>
+
+        </div>
+
+
+        <!-- MOBILE CONTROLS -->
+
+        <div class="mobile-controls">
+
+            <div
+                id="joystick"
+                class="joystick"
+            >
+
+                <div
+                    id="joystick-stick"
+                    class="joystick-stick"
+                ></div>
+
+            </div>
+
+
+            <div class="action-buttons">
+
+                <button
+                    id="pass-button"
+                    class="action-button pass-button"
+                >
+                    PASS
+                </button>
+
+                <button
+                    id="dribble-button"
+                    class="action-button dribble-button"
+                >
+                    DRIBBLE
+                </button>
+
+                <button
+                    id="sprint-button"
+                    class="action-button sprint-button"
+                >
+                    SPRINT
+                </button>
+
+                <button
+                    id="shoot-button"
+                    class="action-button shoot-button"
+                >
+                    SHOOT
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PC CONTROLS -->
+
+        <div class="pc-controls">
+
+            <span><b>WASD</b> MOVE</span>
+            <span><b>SHIFT</b> SPRINT</span>
+            <span><b>SPACE</b> SHOOT</span>
+            <span><b>E</b> PASS</span>
+            <span><b>Q</b> DRIBBLE</span>
+
+        </div>
 
     </div>
 
-</div>
+
+    <!-- =====================================================
+         PACK OPENING RESULT
+    ====================================================== -->
+
+    <div
+        id="pack-result"
+        class="pack-result"
+    >
+
+        <div class="pack-result-backdrop"></div>
+
+        <div class="pack-result-box">
+
+            <button
+                class="result-close"
+                onclick="closePackResult()"
+            >
+                ✕
+            </button>
 
 
-<!-- =====================================================
-     PAGE / MENU FUNCTIONS
-===================================================== -->
-
-<script>
-
-function openPage(pageId) {
-
-    document
-        .querySelectorAll(".page-screen")
-        .forEach(page => {
-            page.classList.remove("active");
-        });
-
-    const page =
-        document.getElementById(pageId);
-
-    if (page) {
-        page.classList.add("active");
-    }
-
-    document
-        .getElementById("home-screen")
-        .classList.remove("active");
-
-    document
-        .getElementById("navigation")
-        .classList.add("visible");
-
-    window.scrollTo(0, 0);
-}
+            <p class="result-label">
+                PLAYER FOUND
+            </p>
 
 
-function showHome() {
-
-    document
-        .querySelectorAll(".page-screen")
-        .forEach(page => {
-            page.classList.remove("active");
-        });
-
-    document
-        .getElementById("match-screen")
-        .classList.remove("active");
-
-    document
-        .getElementById("home-screen")
-        .classList.add("active");
-
-    document
-        .getElementById("navigation")
-        .classList.remove("visible");
-
-    window.scrollTo(0, 0);
-}
+            <div
+                id="result-rarity"
+                class="result-rarity"
+            >
+                LEGENDARY
+            </div>
 
 
-function leaveMatch() {
+            <div class="result-card">
 
-    if (typeof gameStarted !== "undefined") {
-        gameStarted = false;
-    }
+                <div
+                    id="result-rating"
+                    class="result-rating"
+                >
+                    99
+                </div>
 
-    document
-        .getElementById("match-screen")
-        .classList.remove("active");
+                <div
+                    id="result-position"
+                    class="result-position"
+                >
+                    LW
+                </div>
 
-    openPage("match-menu");
-}
+                <div
+                    id="result-avatar"
+                    class="result-avatar"
+                >
+                    CR7
+                </div>
 
-</script>
+                <h2 id="result-name">
+                    Cristiano Ronaldo
+                </h2>
+
+                <p id="result-details">
+                    Portugal • Al Nassr
+                </p>
+
+            </div>
 
 
-<script src="game.js"></script>
+            <button
+                class="result-button"
+                onclick="closePackResult()"
+            >
+                CONTINUE
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         NOTIFICATION
+    ====================================================== -->
+
+    <div
+        id="notification"
+        class="notification"
+    ></div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="game.js"></script>
 
 </body>
 </html>
