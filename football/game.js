@@ -1,6 +1,7 @@
 /* =========================================================
    FOOTBALL LEGENDS
-   GAME.JS — COMPLETE REPLACEMENT
+   GAME.JS
+   FULL WORKING VERSION
    ========================================================= */
 
 "use strict";
@@ -10,49 +11,31 @@
    ========================================================= */
 
 const PLAYERS = [
-    {id:"ronaldo",name:"Cristiano Ronaldo",rating:99,position:"LW",country:"Portugal",club:"Al Nassr",rarity:"ICON",avatar:"CR7"},
-    {id:"messi",name:"Lionel Messi",rating:99,position:"RW",country:"Argentina",club:"Inter Miami",rarity:"ICON",avatar:"LM10"},
-    {id:"mbappe",name:"Kylian Mbappé",rating:98,position:"ST",country:"France",club:"Real Madrid",rarity:"LEGENDARY",avatar:"KM"},
-    {id:"haaland",name:"Erling Haaland",rating:98,position:"ST",country:"Norway",club:"Manchester City",rarity:"LEGENDARY",avatar:"EH9"},
-    {id:"vinicius",name:"Vinícius Júnior",rating:97,position:"LW",country:"Brazil",club:"Real Madrid",rarity:"LEGENDARY",avatar:"VJR"},
-    {id:"bellingham",name:"Jude Bellingham",rating:97,position:"CM",country:"England",club:"Real Madrid",rarity:"LEGENDARY",avatar:"JB"},
-    {id:"debruyne",name:"Kevin De Bruyne",rating:96,position:"CM",country:"Belgium",club:"Manchester City",rarity:"EPIC",avatar:"KDB"},
-    {id:"salah",name:"Mohamed Salah",rating:96,position:"RW",country:"Egypt",club:"Liverpool",rarity:"EPIC",avatar:"MS"},
-    {id:"kane",name:"Harry Kane",rating:95,position:"ST",country:"England",club:"Bayern Munich",rarity:"EPIC",avatar:"HK9"},
-    {id:"neymar",name:"Neymar Jr",rating:95,position:"LW",country:"Brazil",club:"Santos",rarity:"EPIC",avatar:"NEY"},
-    {id:"modric",name:"Luka Modrić",rating:94,position:"CM",country:"Croatia",club:"Real Madrid",rarity:"EPIC",avatar:"LM"},
-    {id:"rodri",name:"Rodri",rating:94,position:"CDM",country:"Spain",club:"Manchester City",rarity:"RARE",avatar:"RD"},
-    {id:"vandijk",name:"Virgil van Dijk",rating:94,position:"CB",country:"Netherlands",club:"Liverpool",rarity:"RARE",avatar:"VVD"},
-    {id:"courtois",name:"Thibaut Courtois",rating:94,position:"GK",country:"Belgium",club:"Real Madrid",rarity:"RARE",avatar:"TC"},
-    {id:"alisson",name:"Alisson Becker",rating:93,position:"GK",country:"Brazil",club:"Liverpool",rarity:"RARE",avatar:"AB"},
-    {id:"kvara",name:"Khvicha Kvaratskhelia",rating:91,position:"LW",country:"Georgia",club:"PSG",rarity:"RARE",avatar:"KK"},
-    {id:"musiala",name:"Jamal Musiala",rating:91,position:"CAM",country:"Germany",club:"Bayern Munich",rarity:"RARE",avatar:"JM"},
-    {id:"saka",name:"Bukayo Saka",rating:90,position:"RW",country:"England",club:"Arsenal",rarity:"RARE",avatar:"BS"},
-    {id:"foden",name:"Phil Foden",rating:90,position:"RW",country:"England",club:"Manchester City",rarity:"RARE",avatar:"PF"},
-    {id:"pedri",name:"Pedri",rating:90,position:"CM",country:"Spain",club:"Barcelona",rarity:"RARE",avatar:"PD"},
-    {id:"yamal",name:"Lamine Yamal",rating:89,position:"RW",country:"Spain",club:"Barcelona",rarity:"RARE",avatar:"LY"},
-    {id:"gavi",name:"Gavi",rating:88,position:"CM",country:"Spain",club:"Barcelona",rarity:"COMMON",avatar:"GV"},
-    {id:"wirtz",name:"Florian Wirtz",rating:89,position:"CAM",country:"Germany",club:"Liverpool",rarity:"COMMON",avatar:"FW"},
-    {id:"martinez",name:"Lautaro Martínez",rating:90,position:"ST",country:"Argentina",club:"Inter",rarity:"RARE",avatar:"LM"},
-    {id:"son",name:"Son Heung-min",rating:89,position:"LW",country:"South Korea",club:"LAFC",rarity:"COMMON",avatar:"SON"}
-];
-
-
-/* =========================================================
-   TEAMS
-   ========================================================= */
-
-const TEAMS = [
-    "Manchester United",
-    "Manchester City",
-    "Real Madrid",
-    "Barcelona",
-    "Liverpool",
-    "Arsenal",
-    "Bayern Munich",
-    "Inter Milan",
-    "AC Milan",
-    "PSG"
+    { id:"ronaldo", name:"Cristiano Ronaldo", rating:99, position:"LW", country:"Portugal", club:"Al Nassr", rarity:"ICON", avatar:"CR7" },
+    { id:"messi", name:"Lionel Messi", rating:99, position:"RW", country:"Argentina", club:"Inter Miami", rarity:"ICON", avatar:"LM10" },
+    { id:"mbappe", name:"Kylian Mbappé", rating:98, position:"ST", country:"France", club:"Real Madrid", rarity:"LEGENDARY", avatar:"KM" },
+    { id:"haaland", name:"Erling Haaland", rating:98, position:"ST", country:"Norway", club:"Manchester City", rarity:"LEGENDARY", avatar:"EH9" },
+    { id:"vinicius", name:"Vinícius Júnior", rating:97, position:"LW", country:"Brazil", club:"Real Madrid", rarity:"LEGENDARY", avatar:"VJR" },
+    { id:"bellingham", name:"Jude Bellingham", rating:97, position:"CM", country:"England", club:"Real Madrid", rarity:"LEGENDARY", avatar:"JB" },
+    { id:"debruyne", name:"Kevin De Bruyne", rating:96, position:"CM", country:"Belgium", club:"Manchester City", rarity:"EPIC", avatar:"KDB" },
+    { id:"salah", name:"Mohamed Salah", rating:96, position:"RW", country:"Egypt", club:"Liverpool", rarity:"EPIC", avatar:"MS" },
+    { id:"kane", name:"Harry Kane", rating:95, position:"ST", country:"England", club:"Bayern Munich", rarity:"EPIC", avatar:"HK9" },
+    { id:"neymar", name:"Neymar Jr", rating:95, position:"LW", country:"Brazil", club:"Santos", rarity:"EPIC", avatar:"NEY" },
+    { id:"modric", name:"Luka Modrić", rating:94, position:"CM", country:"Croatia", club:"Real Madrid", rarity:"EPIC", avatar:"LM" },
+    { id:"rodri", name:"Rodri", rating:94, position:"CDM", country:"Spain", club:"Manchester City", rarity:"RARE", avatar:"RD" },
+    { id:"van_dijk", name:"Virgil van Dijk", rating:94, position:"CB", country:"Netherlands", club:"Liverpool", rarity:"RARE", avatar:"VVD" },
+    { id:"courtois", name:"Thibaut Courtois", rating:94, position:"GK", country:"Belgium", club:"Real Madrid", rarity:"RARE", avatar:"TC" },
+    { id:"alisson", name:"Alisson Becker", rating:93, position:"GK", country:"Brazil", club:"Liverpool", rarity:"RARE", avatar:"AB" },
+    { id:"kvaratskhelia", name:"Khvicha Kvaratskhelia", rating:91, position:"LW", country:"Georgia", club:"PSG", rarity:"RARE", avatar:"KK" },
+    { id:"musiala", name:"Jamal Musiala", rating:91, position:"CAM", country:"Germany", club:"Bayern Munich", rarity:"RARE", avatar:"JM" },
+    { id:"saka", name:"Bukayo Saka", rating:90, position:"RW", country:"England", club:"Arsenal", rarity:"RARE", avatar:"BS" },
+    { id:"foden", name:"Phil Foden", rating:90, position:"RW", country:"England", club:"Manchester City", rarity:"RARE", avatar:"PF" },
+    { id:"pedri", name:"Pedri", rating:90, position:"CM", country:"Spain", club:"Barcelona", rarity:"RARE", avatar:"PD" },
+    { id:"yamal", name:"Lamine Yamal", rating:89, position:"RW", country:"Spain", club:"Barcelona", rarity:"RARE", avatar:"LY" },
+    { id:"gavi", name:"Gavi", rating:88, position:"CM", country:"Spain", club:"Barcelona", rarity:"COMMON", avatar:"GV" },
+    { id:"wirtz", name:"Florian Wirtz", rating:89, position:"CAM", country:"Germany", club:"Liverpool", rarity:"COMMON", avatar:"FW" },
+    { id:"martinez", name:"Lautaro Martínez", rating:90, position:"ST", country:"Argentina", club:"Inter", rarity:"RARE", avatar:"LM" },
+    { id:"son", name:"Son Heung-min", rating:89, position:"LW", country:"South Korea", club:"LAFC", rarity:"COMMON", avatar:"SON" }
 ];
 
 
@@ -62,16 +45,15 @@ const TEAMS = [
 
 const SAVE_KEY = "football_legends_save_v3";
 
-const DEFAULT_SAVE = {
+const defaultSave = {
     coins: 1000,
-    collection: ["ronaldo"],
-    squad: ["ronaldo"],
-    selectedTeam: "Football Legends FC",
+    collection: [],
+    squad: [],
+    selectedTeam: "Legends FC",
     settings: {
         music: true,
         effects: true,
         vibration: true,
-        graphics: "High",
         controls: {
             up: "w",
             down: "s",
@@ -88,97 +70,221 @@ const DEFAULT_SAVE = {
 let save;
 
 function cloneDefault() {
-    return JSON.parse(JSON.stringify(DEFAULT_SAVE));
+    return JSON.parse(JSON.stringify(defaultSave));
 }
 
 function loadSave() {
-    try {
-        const raw = localStorage.getItem(SAVE_KEY);
 
-        if (raw) {
-            const loaded = JSON.parse(raw);
+    try {
+
+        const stored = localStorage.getItem(SAVE_KEY);
+
+        if (stored) {
+            const parsed = JSON.parse(stored);
 
             save = {
                 ...cloneDefault(),
-                ...loaded,
+                ...parsed,
                 settings: {
                     ...cloneDefault().settings,
-                    ...(loaded.settings || {}),
+                    ...(parsed.settings || {}),
                     controls: {
                         ...cloneDefault().settings.controls,
-                        ...((loaded.settings || {}).controls || {})
+                        ...(parsed.settings?.controls || {})
                     }
                 }
             };
+
         } else {
             save = cloneDefault();
         }
-    } catch {
+
+    } catch (error) {
+
+        console.error("Save loading error:", error);
+
         save = cloneDefault();
     }
 
-    if (!Array.isArray(save.collection))
-        save.collection = [];
-
-    if (!Array.isArray(save.squad))
-        save.squad = [];
+    if (!Number.isFinite(Number(save.coins))) {
+        save.coins = 1000;
+    }
 
     save.coins = Number(save.coins);
 
-    if (!Number.isFinite(save.coins))
-        save.coins = 1000;
+    if (!Array.isArray(save.collection)) {
+        save.collection = [];
+    }
+
+    if (!Array.isArray(save.squad)) {
+        save.squad = [];
+    }
 }
 
 function saveGame() {
-    localStorage.setItem(
-        SAVE_KEY,
-        JSON.stringify(save)
-    );
+
+    try {
+        localStorage.setItem(
+            SAVE_KEY,
+            JSON.stringify(save)
+        );
+    } catch (error) {
+        console.error("Save error:", error);
+    }
 
     updateCoinsUI();
 }
 
-loadSave();
-
 
 /* =========================================================
-   HELPERS
+   DOM
    ========================================================= */
 
 function $(id) {
     return document.getElementById(id);
 }
 
-function getPlayer(id) {
-    return PLAYERS.find(p => p.id === id);
+function updateCoinsUI() {
+
+    document
+        .querySelectorAll("#coins, .coins-value")
+        .forEach(element => {
+            element.textContent = save.coins;
+        });
 }
 
-function notify(message, type = "normal") {
-    let box = $("game-notification");
 
-    if (!box) {
-        box = document.createElement("div");
-        box.id = "game-notification";
-        box.className = "game-notification";
-        document.body.appendChild(box);
+/* =========================================================
+   NOTIFICATIONS
+   ========================================================= */
+
+function showNotification(message, type = "normal") {
+
+    let notification = $("game-notification");
+
+    if (!notification) {
+
+        notification = document.createElement("div");
+
+        notification.id = "game-notification";
+        notification.className = "game-notification";
+
+        document.body.appendChild(notification);
     }
 
-    box.textContent = message;
-    box.dataset.type = type;
-    box.classList.add("visible");
+    notification.textContent = message;
+    notification.dataset.type = type;
 
-    clearTimeout(box._timer);
+    notification.classList.add("visible");
 
-    box._timer = setTimeout(() => {
-        box.classList.remove("visible");
+    clearTimeout(notification._timer);
+
+    notification._timer = setTimeout(() => {
+        notification.classList.remove("visible");
     }, 1800);
 }
 
-function updateCoinsUI() {
-    document.querySelectorAll("#coins, .coins-value").forEach(el => {
-        el.textContent = Math.floor(save.coins);
-    });
+
+/* =========================================================
+   PAGE NAVIGATION
+   ========================================================= */
+
+/*
+   IMPORTANT:
+   Your HTML uses:
+
+   openPage("match-menu")
+   openPage("squad-page")
+   openPage("shop-page")
+   openPage("teams-page")
+   openPage("settings-page")
+
+   So this function matches that EXACT system.
+*/
+
+function openPage(pageId) {
+
+    /* Stop a running match when entering a menu */
+    if (pageId !== "match-menu" && gameStarted) {
+        gameStarted = false;
+    }
+
+    document
+        .querySelectorAll(".page-screen")
+        .forEach(page => {
+            page.classList.remove("active");
+        });
+
+    const page = $(pageId);
+
+    if (page) {
+        page.classList.add("active");
+    }
+
+    const home = $("home-screen");
+
+    if (home) {
+        home.classList.remove("active");
+    }
+
+    const navigation = $("navigation");
+
+    if (navigation) {
+        navigation.classList.add("visible");
+    }
+
+    const match = $("match-screen");
+
+    if (match && pageId !== "match-menu") {
+        match.classList.remove("active");
+    }
+
+    window.scrollTo(0, 0);
+
+    if (pageId === "squad-page") {
+        renderSquad();
+    }
+
+    if (pageId === "shop-page") {
+        renderShop();
+    }
 }
+
+window.openPage = openPage;
+
+
+function showHome() {
+
+    gameStarted = false;
+
+    document
+        .querySelectorAll(".page-screen")
+        .forEach(page => {
+            page.classList.remove("active");
+        });
+
+    const match = $("match-screen");
+
+    if (match) {
+        match.classList.remove("active");
+    }
+
+    const home = $("home-screen");
+
+    if (home) {
+        home.classList.add("active");
+    }
+
+    const navigation = $("navigation");
+
+    if (navigation) {
+        navigation.classList.remove("visible");
+    }
+
+    window.scrollTo(0, 0);
+}
+
+window.showHome = showHome;
 
 
 /* =========================================================
@@ -186,101 +292,162 @@ function updateCoinsUI() {
    ========================================================= */
 
 const PACKS = {
-    bronze: {
-        name: "BRONZE PACK",
+
+    standard: {
+        name: "Football Pack",
         price: 100,
         chances: {
-            COMMON: 60,
+            COMMON: 50,
+            RARE: 35,
+            EPIC: 12,
+            LEGENDARY: 2.5,
+            ICON: 0.5
+        }
+    },
+
+    premium: {
+        name: "Legend Pack",
+        price: 250,
+        chances: {
             RARE: 30,
-            EPIC: 9,
-            LEGENDARY: 1
+            EPIC: 40,
+            LEGENDARY: 25,
+            ICON: 5
+        }
+    },
+
+    bronze: {
+        name: "Football Pack",
+        price: 100,
+        chances: {
+            COMMON: 50,
+            RARE: 35,
+            EPIC: 12,
+            LEGENDARY: 2.5,
+            ICON: 0.5
         }
     },
 
     gold: {
-        name: "GOLD PACK",
+        name: "Legend Pack",
         price: 250,
         chances: {
-            COMMON: 25,
-            RARE: 45,
-            EPIC: 25,
-            LEGENDARY: 5
-        }
-    },
-
-    elite: {
-        name: "ELITE PACK",
-        price: 750,
-        chances: {
             RARE: 30,
-            EPIC: 45,
-            LEGENDARY: 20,
+            EPIC: 40,
+            LEGENDARY: 25,
             ICON: 5
         }
     }
 };
 
+
 function weightedRarity(chances) {
-    let roll = Math.random() * 100;
 
-    for (const rarity of Object.keys(chances)) {
-        roll -= chances[rarity];
+    const random = Math.random() * 100;
 
-        if (roll <= 0)
+    let total = 0;
+
+    for (const rarity in chances) {
+
+        total += chances[rarity];
+
+        if (random < total) {
             return rarity;
+        }
     }
 
-    return Object.keys(chances)[0];
-}
-
-function getPackPlayer(pack) {
-    const rarity = weightedRarity(pack.chances);
-
-    let available = PLAYERS.filter(
-        p => p.rarity === rarity
-    );
-
-    if (!available.length) {
-        available = PLAYERS;
-    }
-
-    return available[
-        Math.floor(Math.random() * available.length)
+    return Object.keys(chances)[
+        Object.keys(chances).length - 1
     ];
 }
 
-function openPack(packId = "bronze") {
+
+function getPlayerFromPack(pack) {
+
+    let rarity = weightedRarity(pack.chances);
+
+    let possible = PLAYERS.filter(
+        player => player.rarity === rarity
+    );
+
+    /*
+       Safety fallback if a rarity somehow has
+       no players.
+    */
+
+    if (!possible.length) {
+
+        possible = PLAYERS.filter(
+            player =>
+                player.rarity === "RARE" ||
+                player.rarity === "EPIC"
+        );
+    }
+
+    return possible[
+        Math.floor(Math.random() * possible.length)
+    ];
+}
+
+
+function openPack(packId = "standard") {
+
     const pack = PACKS[packId];
 
-    if (!pack)
+    if (!pack) {
+        console.error("Unknown pack:", packId);
         return;
+    }
 
     if (save.coins < pack.price) {
-        notify("Not enough coins!", "error");
+
+        showNotification(
+            "Not enough coins!",
+            "error"
+        );
+
         return;
     }
 
     save.coins -= pack.price;
 
-    const player = getPackPlayer(pack);
+    const player = getPlayerFromPack(pack);
 
-    if (!save.collection.includes(player.id))
-        save.collection.push(player.id);
+    if (!player) {
+        save.coins += pack.price;
+        return;
+    }
+
+    save.collection.push(player.id);
+
+    /*
+       Automatically put the first 11 different
+       players into the squad.
+    */
+
+    if (
+        save.squad.length < 11 &&
+        !save.squad.includes(player.id)
+    ) {
+        save.squad.push(player.id);
+    }
 
     saveGame();
 
     showPackResult(player);
+
+    renderSquad();
 }
 
 window.openPack = openPack;
 
 
 /* =========================================================
-   PREMIUM PACK COMPATIBILITY
+   PREMIUM PACK
    ========================================================= */
 
 function openPremiumPack() {
-    openPack("gold");
+    openPack("premium");
 }
 
 window.openPremiumPack = openPremiumPack;
@@ -291,36 +458,48 @@ window.openPremiumPack = openPremiumPack;
    ========================================================= */
 
 function showPackResult(player) {
+
     const result = $("packResult");
 
-    if (!result)
+    if (!result) {
         return;
+    }
 
-    if ($("resultRating"))
+    if ($("resultRating")) {
         $("resultRating").textContent = player.rating;
+    }
 
-    if ($("resultPosition"))
+    if ($("resultPosition")) {
         $("resultPosition").textContent = player.position;
+    }
 
-    if ($("resultAvatar"))
+    if ($("resultAvatar")) {
         $("resultAvatar").textContent = player.avatar;
+    }
 
-    if ($("resultName"))
+    if ($("resultName")) {
         $("resultName").textContent = player.name;
+    }
 
-    if ($("resultCountry"))
+    if ($("resultCountry")) {
         $("resultCountry").textContent =
             `${player.country} • ${player.club}`;
+    }
 
     result.classList.remove("hidden");
     result.classList.add("show");
 }
 
+window.showPackResult = showPackResult;
+
+
 function closePack() {
+
     const result = $("packResult");
 
-    if (!result)
+    if (!result) {
         return;
+    }
 
     result.classList.remove("show");
     result.classList.add("hidden");
@@ -335,84 +514,93 @@ window.closePack = closePack;
    SQUAD
    ========================================================= */
 
+function getPlayer(id) {
+
+    return PLAYERS.find(
+        player => player.id === id
+    );
+}
+
+
 function calculateSquadRating() {
-    if (!save.squad.length)
+
+    if (!save.squad.length) {
         return 0;
+    }
 
     const ratings = save.squad
         .map(id => getPlayer(id))
         .filter(Boolean)
-        .map(p => p.rating);
+        .map(player => player.rating);
 
-    if (!ratings.length)
+    if (!ratings.length) {
         return 0;
+    }
 
     return Math.round(
-        ratings.reduce((a, b) => a + b, 0) /
-        ratings.length
+        ratings.reduce(
+            (sum, rating) => sum + rating,
+            0
+        ) / ratings.length
     );
 }
 
-function addToSquad(id) {
-    const player = getPlayer(id);
-
-    if (!player)
-        return;
-
-    if (save.squad.includes(id)) {
-        save.squad = save.squad.filter(
-            playerId => playerId !== id
-        );
-
-        notify("Player removed from squad");
-    } else {
-        if (save.squad.length >= 11) {
-            notify("Squad is full — maximum 11 players", "error");
-            return;
-        }
-
-        save.squad.push(id);
-        notify(`${player.name} added to squad`);
-    }
-
-    saveGame();
-    renderSquad();
-}
-
-window.addToSquad = addToSquad;
 
 function renderSquad() {
+
     const squad = $("squad");
 
-    if (!squad)
+    if (!squad) {
         return;
+    }
 
     squad.innerHTML = "";
 
-    const unique = [...new Set(save.collection)];
+    const rating = calculateSquadRating();
 
-    if (!unique.length) {
+    if ($("squad-rating")) {
+        $("squad-rating").textContent =
+            rating || 0;
+    }
+
+    if (!save.collection.length) {
+
         squad.innerHTML = `
             <div class="empty">
                 <strong>Your squad is empty.</strong>
                 <p>Open packs in the Shop to get players.</p>
             </div>
         `;
+
         return;
     }
 
-    unique.forEach(id => {
+    const uniquePlayers = [
+        ...new Set(save.collection)
+    ];
+
+    uniquePlayers.forEach(id => {
+
         const player = getPlayer(id);
 
-        if (!player)
+        if (!player) {
             return;
+        }
 
-        const card = document.createElement("div");
-        card.className = `player-card rarity-${player.rarity.toLowerCase()}`;
+        const card =
+            document.createElement("div");
+
+        card.className = "player-card";
+
+        const inSquad =
+            save.squad.includes(player.id);
 
         card.innerHTML = `
             <div class="rating">${player.rating}</div>
-            <div class="position">${player.position}</div>
+
+            <div class="position">
+                ${player.position}
+            </div>
 
             <div class="player-avatar">
                 ${player.avatar}
@@ -421,31 +609,72 @@ function renderSquad() {
             <h3>${player.name}</h3>
 
             <p>
-                ${player.country} • ${player.club}
+                ${player.country}
+                •
+                ${player.club}
             </p>
 
             <button class="squad-add">
-                ${
-                    save.squad.includes(player.id)
-                        ? "REMOVE"
-                        : "ADD TO SQUAD"
-                }
+                ${inSquad ? "REMOVE" : "ADD TO SQUAD"}
             </button>
         `;
 
-        card.querySelector(".squad-add")
-            .addEventListener("click", () => {
-                addToSquad(player.id);
-            });
+        const button =
+            card.querySelector(".squad-add");
+
+        button.addEventListener(
+            "click",
+            () => addToSquad(player.id)
+        );
 
         squad.appendChild(card);
     });
-
-    const rating = $("squad-rating");
-
-    if (rating)
-        rating.textContent = calculateSquadRating();
 }
+
+
+function addToSquad(id) {
+
+    const player = getPlayer(id);
+
+    if (!player) {
+        return;
+    }
+
+    if (save.squad.includes(id)) {
+
+        save.squad =
+            save.squad.filter(
+                playerId => playerId !== id
+            );
+
+        showNotification(
+            `${player.name} removed`
+        );
+
+    } else {
+
+        if (save.squad.length >= 11) {
+
+            showNotification(
+                "Your squad already has 11 players!",
+                "error"
+            );
+
+            return;
+        }
+
+        save.squad.push(id);
+
+        showNotification(
+            `${player.name} added`
+        );
+    }
+
+    saveGame();
+    renderSquad();
+}
+
+window.addToSquad = addToSquad;
 
 
 /* =========================================================
@@ -453,137 +682,149 @@ function renderSquad() {
    ========================================================= */
 
 function renderShop() {
-    const shop = $("shop");
 
-    if (!shop)
-        return;
+    /*
+       We intentionally DO NOT delete the HTML shop cards.
+       The HTML already contains the correct visual design.
 
-    shop.innerHTML = "";
+       This function only ensures the buttons work.
+    */
 
-    Object.entries(PACKS).forEach(([id, pack]) => {
-        const card = document.createElement("div");
+    const standardButtons =
+        document.querySelectorAll(
+            "#shop-page .standard-pack .pack-button"
+        );
 
-        card.className = "pack-card";
+    standardButtons.forEach(button => {
 
-        card.innerHTML = `
-            <div class="pack-icon">⚽</div>
+        button.onclick = function(event) {
 
-            <div class="pack-rarity">
-                FOOTBALL PACK
-            </div>
+            event.preventDefault();
 
-            <h2>${pack.name}</h2>
+            openPack("standard");
+        };
+    });
 
-            <p>
-                ${
-                    id === "bronze"
-                        ? "A basic pack with a chance of finding a rare player."
-                        : id === "gold"
-                            ? "A premium pack with much better player odds."
-                            : "The ultimate pack. Your best chance at an ICON."
-                }
-            </p>
 
-            <div class="pack-price">
-                🪙 ${pack.price}
-            </div>
+    const premiumButtons =
+        document.querySelectorAll(
+            "#shop-page .premium-pack .pack-button"
+        );
 
-            <button class="open-pack">
-                OPEN PACK
-            </button>
-        `;
+    premiumButtons.forEach(button => {
 
-        card.querySelector(".open-pack")
-            .addEventListener("click", () => {
-                openPack(id);
-            });
+        button.onclick = function(event) {
 
-        shop.appendChild(card);
+            event.preventDefault();
+
+            openPremiumPack();
+        };
     });
 }
 
 
 /* =========================================================
-   PAGE SYSTEM
+   TEAMS
    ========================================================= */
 
-function closeAllPages() {
-    document
-        .querySelectorAll(".page-screen")
-        .forEach(page => {
-            page.classList.remove("active");
-        });
+function setupTeams() {
+
+    const teamCards =
+        document.querySelectorAll(
+            ".team-card"
+        );
+
+    teamCards.forEach(card => {
+
+        card.style.cursor = "pointer";
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                const title =
+                    card.querySelector("h2");
+
+                if (!title) {
+                    return;
+                }
+
+                save.selectedTeam =
+                    title.textContent.trim();
+
+                saveGame();
+
+                showNotification(
+                    `${save.selectedTeam} selected!`
+                );
+
+                teamCards.forEach(
+                    other =>
+                        other.classList.remove(
+                            "selected"
+                        )
+                );
+
+                card.classList.add("selected");
+            }
+        );
+    });
 }
-
-function openPage(pageId) {
-    closeAllPages();
-
-    const page = $(pageId);
-
-    if (page)
-        page.classList.add("active");
-
-    const home = $("home-screen");
-
-    if (home)
-        home.classList.remove("active");
-
-    const nav = $("navigation");
-
-    if (nav)
-        nav.classList.add("visible");
-
-    if (pageId === "squad-page")
-        renderSquad();
-
-    window.scrollTo(0, 0);
-}
-
-window.openPage = openPage;
-
-function showHome() {
-    closeAllPages();
-
-    const match = $("match-screen");
-
-    if (match)
-        match.classList.remove("active");
-
-    const home = $("home-screen");
-
-    if (home)
-        home.classList.add("active");
-
-    const nav = $("navigation");
-
-    if (nav)
-        nav.classList.remove("visible");
-
-    window.scrollTo(0, 0);
-}
-
-window.showHome = showHome;
 
 
 /* =========================================================
-   THREE.JS MATCH VARIABLES
+   SETTINGS
+   ========================================================= */
+
+function setupSettings() {
+
+    const graphics =
+        $("graphics-setting");
+
+    if (graphics) {
+
+        graphics.addEventListener(
+            "change",
+            () => {
+
+                localStorage.setItem(
+                    "football_graphics",
+                    graphics.value
+                );
+
+                showNotification(
+                    `Graphics: ${graphics.value}`
+                );
+            }
+        );
+
+        const savedGraphics =
+            localStorage.getItem(
+                "football_graphics"
+            );
+
+        if (savedGraphics) {
+            graphics.value = savedGraphics;
+        }
+    }
+}
+
+
+/* =========================================================
+   THREE.JS MATCH
    ========================================================= */
 
 let scene = null;
 let camera = null;
 let renderer = null;
 
-let matchInitialized = false;
-let gameStarted = false;
-
-let controlledPlayer = null;
+let player = null;
 let ball = null;
 
 let teammates = [];
 let opponents = [];
 
-let ballVelocity = new THREE.Vector3();
-let ballOwner = null;
+let gameStarted = false;
 
 let homeScore = 0;
 let awayScore = 0;
@@ -591,7 +832,8 @@ let awayScore = 0;
 let matchTime = 120;
 let stamina = 100;
 
-let previousFrame = performance.now();
+let shooting = false;
+let passing = false;
 
 const keys = {};
 
@@ -601,133 +843,119 @@ const mobileInput = {
     sprint: false
 };
 
-let actionLocked = false;
+let previousTime = performance.now();
 
 
 /* =========================================================
-   MATCH OPENING
-   ========================================================= */
-
-function showMatchScreen() {
-    closeAllPages();
-
-    const home = $("home-screen");
-
-    if (home)
-        home.classList.remove("active");
-
-    const nav = $("navigation");
-
-    if (nav)
-        nav.classList.remove("visible");
-
-    const match = $("match-screen");
-
-    if (match)
-        match.classList.add("active");
-}
-
-function startMatch() {
-    showMatchScreen();
-
-    if (!matchInitialized)
-        initializeMatch();
-
-    gameStarted = true;
-
-    homeScore = 0;
-    awayScore = 0;
-    matchTime = 120;
-    stamina = 100;
-
-    resetPositions();
-
-    updateScore();
-    updateMatchTimer();
-    updateStamina();
-
-    notify("MATCH STARTED");
-}
-
-window.startGame = startMatch;
-
-
-/* =========================================================
-   INITIALIZE THREE.JS
+   MATCH INITIALIZATION
    ========================================================= */
 
 function initializeMatch() {
-    if (matchInitialized)
-        return;
-
-    const container = $("game-container");
-
-    if (!container)
-        return;
 
     if (typeof THREE === "undefined") {
-        console.error("Three.js failed to load.");
-        notify("Three.js failed to load", "error");
-        return;
+
+        console.error(
+            "Three.js is not loaded."
+        );
+
+        showNotification(
+            "Three.js failed to load!",
+            "error"
+        );
+
+        return false;
     }
 
-    matchInitialized = true;
+    const container =
+        $("game-container");
+
+    if (!container) {
+
+        console.error(
+            "game-container not found."
+        );
+
+        return false;
+    }
+
+    if (renderer) {
+        return true;
+    }
+
+
+    /* SCENE */
 
     scene = new THREE.Scene();
 
-    scene.background = new THREE.Color(0x0b1520);
+    scene.background =
+        new THREE.Color(0x78b7e8);
 
-    camera = new THREE.PerspectiveCamera(
-        58,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        300
+
+    /* CAMERA */
+
+    camera =
+        new THREE.PerspectiveCamera(
+            55,
+            window.innerWidth /
+                window.innerHeight,
+            0.1,
+            1000
+        );
+
+    camera.position.set(
+        0,
+        13,
+        18
     );
 
-    camera.position.set(0, 16, 21);
 
-    renderer = new THREE.WebGLRenderer({
-        antialias: true
-    });
+    /* RENDERER */
 
-    renderer.setPixelRatio(
-        Math.min(window.devicePixelRatio, 2)
-    );
+    renderer =
+        new THREE.WebGLRenderer({
+            antialias: true
+        });
 
     renderer.setSize(
         window.innerWidth,
         window.innerHeight
     );
 
-    renderer.shadowMap.enabled = true;
-
-    renderer.shadowMap.type =
-        THREE.PCFSoftShadowMap;
-
-    container.innerHTML = "";
-    container.appendChild(renderer.domElement);
-
-
-    /* =====================================================
-       LIGHTING
-       ===================================================== */
-
-    scene.add(
-        new THREE.HemisphereLight(
-            0xffffff,
-            0x15251b,
+    renderer.setPixelRatio(
+        Math.min(
+            window.devicePixelRatio,
             2
         )
     );
 
-    const sun = new THREE.DirectionalLight(
-        0xffffff,
-        2.2
+    renderer.shadowMap.enabled = true;
+
+    container.innerHTML = "";
+
+    container.appendChild(
+        renderer.domElement
     );
 
+
+    /* LIGHTING */
+
+    scene.add(
+        new THREE.HemisphereLight(
+            0xffffff,
+            0x315d3b,
+            2
+        )
+    );
+
+    const sun =
+        new THREE.DirectionalLight(
+            0xffffff,
+            2.5
+        );
+
     sun.position.set(
-        15,
-        30,
+        10,
+        25,
         10
     );
 
@@ -736,144 +964,25 @@ function initializeMatch() {
     scene.add(sun);
 
 
-    /* =====================================================
-       STADIUM
-       ===================================================== */
-
-    createStadium();
-
-
-    /* =====================================================
-       PLAYERS
-       ===================================================== */
-
-    controlledPlayer =
-        createPlayer3D(
-            0x111111,
-            "Cristiano Ronaldo"
-        );
-
-    scene.add(controlledPlayer);
-
-    controlledPlayer.position.set(
-        0,
-        0,
-        8
-    );
-
-
-    const teammatePositions = [
-        [-6, 5],
-        [6, 5],
-        [-4, -2],
-        [4, -3],
-        [0, -8]
-    ];
-
-    teammates = [];
-
-    teammatePositions.forEach((pos, index) => {
-        const teammate =
-            createPlayer3D(
-                0x1464d2,
-                `Teammate ${index + 1}`
-            );
-
-        teammate.position.set(
-            pos[0],
-            0,
-            pos[1]
-        );
-
-        teammates.push(teammate);
-    });
-
-
-    const opponentPositions = [
-        [-5, -1],
-        [5, -2],
-        [-3, -7],
-        [3, -8],
-        [0, -12],
-        [-7, -9]
-    ];
-
-    opponents = [];
-
-    opponentPositions.forEach((pos, index) => {
-        const opponent =
-            createPlayer3D(
-                0xd51f35,
-                `Rival ${index + 1}`
-            );
-
-        opponent.position.set(
-            pos[0],
-            0,
-            pos[1]
-        );
-
-        opponents.push(opponent);
-    });
-
-
-    /* =====================================================
-       BALL
-       ===================================================== */
-
-    ball = new THREE.Mesh(
-        new THREE.SphereGeometry(
-            0.32,
-            24,
-            24
-        ),
-        new THREE.MeshStandardMaterial({
-            color: 0xffffff,
-            roughness: 0.35
-        })
-    );
-
-    ball.castShadow = true;
-
-    scene.add(ball);
-
-    resetPositions();
-
-
-    /* =====================================================
-       CONTROLS
-       ===================================================== */
-
-    setupTouchControls();
-
-    requestAnimationFrame(matchLoop);
-}
-
-
-/* =========================================================
-   STADIUM CREATION
-   ========================================================= */
-
-function createStadium() {
-
-    const fieldWidth = 24;
-    const fieldLength = 40;
-
-
     /* FIELD */
 
-    const field = new THREE.Mesh(
-        new THREE.PlaneGeometry(
-            fieldWidth,
-            fieldLength
-        ),
-        new THREE.MeshStandardMaterial({
-            color: 0x176b38,
-            roughness: 0.9
-        })
-    );
+    const fieldWidth = 22;
+    const fieldLength = 34;
 
-    field.rotation.x = -Math.PI / 2;
+    const field =
+        new THREE.Mesh(
+            new THREE.BoxGeometry(
+                fieldWidth,
+                0.25,
+                fieldLength
+            ),
+            new THREE.MeshStandardMaterial({
+                color: 0x208548,
+                roughness: 0.9
+            })
+        );
+
+    field.position.y = -0.15;
     field.receiveShadow = true;
 
     scene.add(field);
@@ -886,22 +995,28 @@ function createStadium() {
         z < fieldLength / 2;
         z += 4
     ) {
-        const stripe = new THREE.Mesh(
-            new THREE.PlaneGeometry(
-                fieldWidth,
-                4
-            ),
-            new THREE.MeshBasicMaterial({
-                color:
-                    Math.floor(
-                        (z + fieldLength / 2) / 4
-                    ) % 2
-                        ? 0x196f3c
-                        : 0x1b7741
-            })
-        );
 
-        stripe.rotation.x = -Math.PI / 2;
+        const stripe =
+            new THREE.Mesh(
+                new THREE.PlaneGeometry(
+                    fieldWidth,
+                    4
+                ),
+                new THREE.MeshBasicMaterial({
+                    color:
+                        Math.floor(
+                            (z +
+                                fieldLength / 2) /
+                                4
+                        ) % 2 === 0
+                            ? 0x208548
+                            : 0x1c7a40
+                })
+            );
+
+        stripe.rotation.x =
+            -Math.PI / 2;
+
         stripe.position.set(
             0,
             0.01,
@@ -912,66 +1027,49 @@ function createStadium() {
     }
 
 
-    /* TOUCHLINE */
+    /* FIELD LINES */
 
-    createLine(
-        0,
-        -20,
-        24,
-        0.12
+    createMatchLine(
+        0, -17, 22, 0.12
     );
 
-    createLine(
-        0,
-        20,
-        24,
-        0.12
+    createMatchLine(
+        0, 17, 22, 0.12
     );
 
-    createLine(
-        -12,
-        0,
-        0.12,
-        40
+    createMatchLine(
+        -11, 0, 0.12, 34
     );
 
-    createLine(
-        12,
-        0,
-        0.12,
-        40
+    createMatchLine(
+        11, 0, 0.12, 34
     );
 
-
-    /* HALF WAY */
-
-    createLine(
-        0,
-        0,
-        24,
-        0.08
+    createMatchLine(
+        0, 0, 22, 0.08
     );
 
 
     /* CENTER CIRCLE */
 
-    const circlePoints = [];
+    const points = [];
 
     for (
         let i = 0;
         i <= 64;
         i++
     ) {
+
         const angle =
-            (i / 64) *
+            i / 64 *
             Math.PI *
             2;
 
-        circlePoints.push(
+        points.push(
             new THREE.Vector3(
-                Math.cos(angle) * 3.2,
+                Math.cos(angle) * 3,
                 0.04,
-                Math.sin(angle) * 3.2
+                Math.sin(angle) * 3
             )
         );
     }
@@ -979,7 +1077,7 @@ function createStadium() {
     const centerCircle =
         new THREE.LineLoop(
             new THREE.BufferGeometry()
-                .setFromPoints(circlePoints),
+                .setFromPoints(points),
             new THREE.LineBasicMaterial({
                 color: 0xffffff
             })
@@ -988,73 +1086,153 @@ function createStadium() {
     scene.add(centerCircle);
 
 
-    /* PENALTY BOXES */
-
-    createPenaltyBox(-15);
-    createPenaltyBox(15);
-
-
     /* GOALS */
 
-    createGoal(-20);
-    createGoal(20);
+    createGoal(-17);
+    createGoal(17);
 
 
-    /* STANDS */
+    /* PLAYER */
 
-    createStand(
-        -15,
+    player =
+        createPlayer3D(
+            0xffffff,
+            "Cristiano Ronaldo"
+        );
+
+    player.position.set(
         0,
-        3,
-        44
-    );
-
-    createStand(
-        15,
         0,
-        3,
-        44
-    );
-
-    createStand(
-        0,
-        -23,
-        30,
-        3
-    );
-
-    createStand(
-        0,
-        23,
-        30,
-        3
+        7
     );
 
 
-    /* FLOODLIGHTS */
+    /* TEAMMATES */
 
-    createFloodlight(-17, -17);
-    createFloodlight(17, -17);
-    createFloodlight(-17, 17);
-    createFloodlight(17, 17);
+    const teammatePositions = [
+        [-5, 0, 3],
+        [5, 0, 1],
+        [-3, 0, -4],
+        [4, 0, -7]
+    ];
+
+    teammates = [];
+
+    teammatePositions.forEach(
+        position => {
+
+            const teammate =
+                createPlayer3D(
+                    0x1769aa,
+                    "Teammate"
+                );
+
+            teammate.position.set(
+                position[0],
+                position[1],
+                position[2]
+            );
+
+            teammates.push(teammate);
+        }
+    );
+
+
+    /* OPPONENTS */
+
+    const opponentPositions = [
+        [-4, 0, -3],
+        [4, 0, -5],
+        [0, 0, -9],
+        [-5, 0, -11],
+        [5, 0, -12]
+    ];
+
+    opponents = [];
+
+    opponentPositions.forEach(
+        position => {
+
+            const opponent =
+                createPlayer3D(
+                    0xd62828,
+                    "Opponent"
+                );
+
+            opponent.position.set(
+                position[0],
+                position[1],
+                position[2]
+            );
+
+            opponents.push(opponent);
+        }
+    );
+
+
+    /* BALL */
+
+    ball =
+        new THREE.Mesh(
+            new THREE.SphereGeometry(
+                0.3,
+                24,
+                24
+            ),
+            new THREE.MeshStandardMaterial({
+                color: 0xffffff,
+                roughness: 0.4
+            })
+        );
+
+    ball.position.set(
+        0,
+        0.35,
+        5.5
+    );
+
+    ball.castShadow = true;
+
+    scene.add(ball);
+
+
+    setupMatchControls();
+
+    previousTime =
+        performance.now();
+
+    gameLoop();
+
+    return true;
 }
 
 
-function createLine(x, z, width, depth) {
-    const line = new THREE.Mesh(
-        new THREE.BoxGeometry(
-            width,
-            0.035,
-            depth
-        ),
-        new THREE.MeshBasicMaterial({
-            color: 0xffffff
-        })
-    );
+/* =========================================================
+   FIELD LINE
+   ========================================================= */
+
+function createMatchLine(
+    x,
+    z,
+    width,
+    depth
+) {
+
+    const line =
+        new THREE.Mesh(
+            new THREE.BoxGeometry(
+                width,
+                0.04,
+                depth
+            ),
+            new THREE.MeshBasicMaterial({
+                color: 0xffffff
+            })
+        );
 
     line.position.set(
         x,
-        0.035,
+        0.03,
         z
     );
 
@@ -1062,85 +1240,60 @@ function createLine(x, z, width, depth) {
 }
 
 
-function createPenaltyBox(z) {
-
-    const depth = 6;
-    const width = 14;
-
-    const front =
-        z > 0
-            ? z - depth
-            : z + depth;
-
-    createLine(
-        0,
-        front,
-        width,
-        0.07
-    );
-
-    createLine(
-        -7,
-        (z + front) / 2,
-        0.07,
-        depth
-    );
-
-    createLine(
-        7,
-        (z + front) / 2,
-        0.07,
-        depth
-    );
-}
-
+/* =========================================================
+   GOAL
+   ========================================================= */
 
 function createGoal(z) {
 
-    const group = new THREE.Group();
+    const group =
+        new THREE.Group();
 
     const material =
         new THREE.MeshStandardMaterial({
             color: 0xffffff
         });
 
-    const post1 = new THREE.Mesh(
-        new THREE.BoxGeometry(
-            0.16,
-            2.7,
-            0.16
-        ),
-        material
-    );
+    const left =
+        new THREE.Mesh(
+            new THREE.BoxGeometry(
+                0.15,
+                2.5,
+                0.15
+            ),
+            material
+        );
 
-    const post2 = post1.clone();
+    const right =
+        left.clone();
 
-    const crossbar = new THREE.Mesh(
-        new THREE.BoxGeometry(
-            5.2,
-            0.16,
-            0.16
-        ),
-        material
-    );
+    const crossbar =
+        new THREE.Mesh(
+            new THREE.BoxGeometry(
+                5,
+                0.15,
+                0.15
+            ),
+            material
+        );
 
-    post1.position.set(
-        -2.6,
-        1.35,
+    left.position.set(
+        -2.5,
+        1.25,
         0
     );
 
-    post2.position.set(
-        2.6,
-        1.35,
+    right.position.set(
+        2.5,
+        1.25,
         0
     );
 
-    crossbar.position.y = 2.7;
+    crossbar.position.y = 2.5;
 
     group.add(
-        post1,
-        post2,
+        left,
+        right,
         crossbar
     );
 
@@ -1150,221 +1303,140 @@ function createGoal(z) {
 }
 
 
-function createStand(
-    x,
-    z,
-    width,
-    depth
-) {
-    const stand = new THREE.Mesh(
-        new THREE.BoxGeometry(
-            width,
-            4,
-            depth
-        ),
-        new THREE.MeshStandardMaterial({
-            color: 0x202a35,
-            roughness: 0.8
-        })
-    );
-
-    stand.position.set(
-        x,
-        2,
-        z
-    );
-
-    scene.add(stand);
-
-
-    /* SEAT ROWS */
-
-    for (
-        let y = 1;
-        y < 4;
-        y += 0.75
-    ) {
-        const row = new THREE.Mesh(
-            new THREE.BoxGeometry(
-                width - 0.4,
-                0.12,
-                depth - 0.4
-            ),
-            new THREE.MeshStandardMaterial({
-                color: 0x364453
-            })
-        );
-
-        row.position.set(
-            x,
-            y,
-            z
-        );
-
-        scene.add(row);
-    }
-}
-
-
-function createFloodlight(x, z) {
-
-    const pole = new THREE.Mesh(
-        new THREE.CylinderGeometry(
-            0.12,
-            0.18,
-            10,
-            12
-        ),
-        new THREE.MeshStandardMaterial({
-            color: 0x3c4652
-        })
-    );
-
-    pole.position.set(
-        x,
-        5,
-        z
-    );
-
-    scene.add(pole);
-
-
-    const light = new THREE.PointLight(
-        0xffffff,
-        18,
-        30
-    );
-
-    light.position.set(
-        x,
-        10,
-        z
-    );
-
-    scene.add(light);
-}
-
-
 /* =========================================================
    PLAYER MODEL
    ========================================================= */
 
-function createPlayer3D(color, name) {
+function createPlayer3D(
+    color,
+    name
+) {
 
-    const group = new THREE.Group();
+    const group =
+        new THREE.Group();
 
-    const body = new THREE.Mesh(
-        new THREE.CapsuleGeometry(
-            0.43,
-            0.85,
-            4,
-            10
-        ),
-        new THREE.MeshStandardMaterial({
-            color
-        })
-    );
+    const body =
+        new THREE.Mesh(
+            new THREE.CapsuleGeometry(
+                0.45,
+                0.8,
+                4,
+                10
+            ),
+            new THREE.MeshStandardMaterial({
+                color: color
+            })
+        );
 
     body.position.y = 1;
-
     body.castShadow = true;
 
     group.add(body);
 
 
-    const head = new THREE.Mesh(
-        new THREE.SphereGeometry(
-            0.3,
-            16,
-            16
-        ),
-        new THREE.MeshStandardMaterial({
-            color: 0xc88962
-        })
-    );
+    const head =
+        new THREE.Mesh(
+            new THREE.SphereGeometry(
+                0.3,
+                16,
+                16
+            ),
+            new THREE.MeshStandardMaterial({
+                color: 0xd69b73
+            })
+        );
 
     head.position.y = 1.85;
-
     head.castShadow = true;
 
     group.add(head);
 
-
     group.userData.name = name;
+
+    scene.add(group);
 
     return group;
 }
 
 
 /* =========================================================
-   RESET MATCH
+   START MATCH
    ========================================================= */
 
-function resetPositions() {
+function startMatch() {
 
-    if (!controlledPlayer || !ball)
+    if (!initializeMatch()) {
         return;
+    }
 
-    controlledPlayer.position.set(
+    /*
+       THIS WAS ONE OF THE BIG PROBLEMS
+       IN THE OLD VERSION.
+
+       The match existed, but the match-screen
+       wasn't actually being activated.
+    */
+
+    const matchScreen =
+        $("match-screen");
+
+    if (matchScreen) {
+        matchScreen.classList.add("active");
+    }
+
+
+    document
+        .querySelectorAll(".page-screen")
+        .forEach(page => {
+            page.classList.remove("active");
+        });
+
+
+    const home =
+        $("home-screen");
+
+    if (home) {
+        home.classList.remove("active");
+    }
+
+
+    const navigation =
+        $("navigation");
+
+    if (navigation) {
+        navigation.classList.remove("visible");
+    }
+
+
+    gameStarted = true;
+
+    homeScore = 0;
+    awayScore = 0;
+
+    matchTime = 120;
+    stamina = 100;
+
+    shooting = false;
+    passing = false;
+
+    player.position.set(
         0,
         0,
-        8
+        7
     );
 
-    controlledPlayer.rotation.y = 0;
+    resetBall();
 
-    teammates.forEach((p, i) => {
-        const positions = [
-            [-6, 5],
-            [6, 5],
-            [-4, -2],
-            [4, -3],
-            [0, -8]
-        ];
+    updateScore();
+    updateMatchTimer();
+    updateStamina();
 
-        p.position.set(
-            positions[i][0],
-            0,
-            positions[i][1]
-        );
-    });
-
-    opponents.forEach((p, i) => {
-        const positions = [
-            [-5, -1],
-            [5, -2],
-            [-3, -7],
-            [3, -8],
-            [0, -12],
-            [-7, -9]
-        ];
-
-        p.position.set(
-            positions[i][0],
-            0,
-            positions[i][1]
-        );
-    });
-
-    ballOwner = controlledPlayer;
-
-    ballVelocity.set(0, 0, 0);
-
-    attachBallToPlayer();
-}
-
-
-function attachBallToPlayer() {
-
-    if (!ball || !controlledPlayer)
-        return;
-
-    ball.position.set(
-        controlledPlayer.position.x,
-        0.35,
-        controlledPlayer.position.z - 1
+    showNotification(
+        "MATCH STARTED"
     );
 }
+
+window.startGame = startMatch;
 
 
 /* =========================================================
@@ -1373,8 +1445,9 @@ function attachBallToPlayer() {
 
 function updatePlayer(delta) {
 
-    if (!gameStarted || !controlledPlayer)
+    if (!gameStarted || !player) {
         return;
+    }
 
     let x = 0;
     let z = 0;
@@ -1382,111 +1455,150 @@ function updatePlayer(delta) {
     const controls =
         save.settings.controls;
 
+
     if (
         keys[controls.left] ||
         keys["arrowleft"]
-    )
+    ) {
         x -= 1;
+    }
 
     if (
         keys[controls.right] ||
         keys["arrowright"]
-    )
+    ) {
         x += 1;
+    }
 
     if (
         keys[controls.up] ||
         keys["arrowup"]
-    )
+    ) {
         z -= 1;
+    }
 
     if (
         keys[controls.down] ||
         keys["arrowdown"]
-    )
+    ) {
         z += 1;
+    }
+
 
     x += mobileInput.x;
     z += mobileInput.y;
 
-    const magnitude =
+
+    const length =
         Math.hypot(x, z);
 
-    if (magnitude > 0) {
-        x /= magnitude;
-        z /= magnitude;
+    if (length <= 0) {
 
-        const sprint =
-            keys[controls.sprint] ||
-            mobileInput.sprint;
+        stamina += delta * 10;
 
-        let speed = 5.2;
+        stamina =
+            Math.min(
+                100,
+                stamina
+            );
 
-        if (sprint && stamina > 0) {
-            speed = 8.2;
-            stamina -= delta * 25;
-        } else {
-            stamina += delta * 15;
-        }
+        return;
+    }
 
-        stamina = THREE.MathUtils.clamp(
-            stamina,
+
+    x /= length;
+    z /= length;
+
+
+    const sprint =
+        keys[controls.sprint] ||
+        mobileInput.sprint;
+
+
+    let speed = 5.5;
+
+
+    if (
+        sprint &&
+        stamina > 0
+    ) {
+
+        speed = 8.5;
+
+        stamina -=
+            delta * 22;
+
+    } else {
+
+        stamina +=
+            delta * 12;
+    }
+
+
+    stamina =
+        Math.max(
             0,
-            100
+            Math.min(
+                100,
+                stamina
+            )
         );
 
-        controlledPlayer.position.x +=
-            x * speed * delta;
 
-        controlledPlayer.position.z +=
-            z * speed * delta;
+    player.position.x +=
+        x * speed * delta;
 
-        controlledPlayer.position.x =
-            THREE.MathUtils.clamp(
-                controlledPlayer.position.x,
-                -10.8,
-                10.8
-            );
-
-        controlledPlayer.position.z =
-            THREE.MathUtils.clamp(
-                controlledPlayer.position.z,
-                -18.5,
-                18.5
-            );
-
-        controlledPlayer.rotation.y =
-            Math.atan2(x, z);
-    }
-
-    if (ballOwner === controlledPlayer) {
-        attachBallToPlayer();
-    } else {
-        tryTakeBall();
-    }
-}
+    player.position.z +=
+        z * speed * delta;
 
 
-/* =========================================================
-   BALL CONTROL
-   ========================================================= */
+    player.position.x =
+        THREE.MathUtils.clamp(
+            player.position.x,
+            -9.8,
+            9.8
+        );
 
-function tryTakeBall() {
+    player.position.z =
+        THREE.MathUtils.clamp(
+            player.position.z,
+            -15.8,
+            15.8
+        );
 
-    if (!ball)
-        return;
+
+    player.rotation.y =
+        Math.atan2(
+            x,
+            z
+        );
+
+
+    /* BALL CONTROL */
 
     const distance =
-        controlledPlayer.position.distanceTo(
+        player.position.distanceTo(
             ball.position
         );
 
+
     if (
-        distance < 1.45 &&
-        ballVelocity.length() < 0.5
+        distance < 1.7 &&
+        !shooting &&
+        !passing
     ) {
-        ballOwner = controlledPlayer;
-        attachBallToPlayer();
+
+        ball.position.x =
+            player.position.x -
+            Math.sin(
+                player.rotation.y
+            ) * 0.9;
+
+        ball.position.z =
+            player.position.z -
+            Math.cos(
+                player.rotation.y
+            ) * 0.9;
     }
 }
 
@@ -1497,29 +1609,19 @@ function tryTakeBall() {
 
 function shoot() {
 
-    if (
-        !gameStarted ||
-        !controlledPlayer ||
-        !ball ||
-        actionLocked
-    )
-        return;
-
-    const distance =
-        controlledPlayer.position.distanceTo(
-            ball.position
-        );
-
-    if (
-        ballOwner !== controlledPlayer &&
-        distance > 1.8
-    ) {
-        notify("Get closer to the ball!");
+    if (!gameStarted || shooting) {
         return;
     }
 
-    actionLocked = true;
-    ballOwner = null;
+    if (
+        player.position.distanceTo(
+            ball.position
+        ) > 2
+    ) {
+        return;
+    }
+
+    shooting = true;
 
     const direction =
         new THREE.Vector3(
@@ -1529,20 +1631,27 @@ function shoot() {
         );
 
     direction.applyQuaternion(
-        controlledPlayer.quaternion
+        player.quaternion
     );
 
-    ballVelocity.copy(
-        direction.multiplyScalar(18)
+    const start =
+        ball.position.clone();
+
+    /*
+       Make the shot travel forward.
+    */
+
+    const target =
+        start.clone().add(
+            direction.multiplyScalar(18)
+        );
+
+    animateBall(
+        start,
+        target,
+        0.55,
+        "shoot"
     );
-
-    ballVelocity.y = 4.5;
-
-    notify("SHOT!");
-
-    setTimeout(() => {
-        actionLocked = false;
-    }, 350);
 }
 
 window.shoot = shoot;
@@ -1554,68 +1663,65 @@ window.shoot = shoot;
 
 function pass() {
 
-    if (
-        !gameStarted ||
-        !controlledPlayer ||
-        !ball ||
-        actionLocked
-    )
-        return;
-
-    const distance =
-        controlledPlayer.position.distanceTo(
-            ball.position
-        );
-
-    if (
-        ballOwner !== controlledPlayer &&
-        distance > 1.8
-    ) {
-        notify("Get the ball first!");
+    if (!gameStarted || passing) {
         return;
     }
 
-    if (!teammates.length)
+    if (
+        player.position.distanceTo(
+            ball.position
+        ) > 2
+    ) {
         return;
+    }
 
-    actionLocked = true;
-    ballOwner = null;
+    if (!teammates.length) {
+        return;
+    }
 
-    let target =
+    passing = true;
+
+    let closest =
         teammates[0];
 
-    let bestDistance = Infinity;
+    let closestDistance =
+        Infinity;
 
-    teammates.forEach(teammate => {
+    teammates.forEach(
+        teammate => {
 
-        const d =
-            controlledPlayer.position.distanceTo(
-                teammate.position
-            );
+            const distance =
+                player.position.distanceTo(
+                    teammate.position
+                );
 
-        if (d < bestDistance) {
-            bestDistance = d;
-            target = teammate;
+            if (
+                distance <
+                closestDistance
+            ) {
+
+                closestDistance = distance;
+                closest = teammate;
+            }
         }
-    });
-
-    const direction =
-        target.position
-            .clone()
-            .sub(ball.position)
-            .normalize();
-
-    ballVelocity.copy(
-        direction.multiplyScalar(12)
     );
 
-    ballVelocity.y = 1.2;
 
-    notify("PASS!");
+    const start =
+        ball.position.clone();
 
-    setTimeout(() => {
-        actionLocked = false;
-    }, 250);
+    const target =
+        closest.position.clone();
+
+    target.y = 0.35;
+
+
+    animateBall(
+        start,
+        target,
+        0.45,
+        "pass"
+    );
 }
 
 window.pass = pass;
@@ -1627,11 +1733,17 @@ window.pass = pass;
 
 function dribble() {
 
-    if (!gameStarted || !controlledPlayer)
+    if (!gameStarted) {
         return;
+    }
 
-    if (ballOwner !== controlledPlayer)
+    if (
+        player.position.distanceTo(
+            ball.position
+        ) > 2
+    ) {
         return;
+    }
 
     const direction =
         new THREE.Vector3(
@@ -1641,177 +1753,165 @@ function dribble() {
         );
 
     direction.applyQuaternion(
-        controlledPlayer.quaternion
+        player.quaternion
     );
 
-    controlledPlayer.position.add(
-        direction.multiplyScalar(0.65)
+    ball.position.x =
+        player.position.x +
+        direction.x * 1.1;
+
+    ball.position.z =
+        player.position.z +
+        direction.z * 1.1;
+
+    showNotification(
+        "DRIBBLE!"
     );
-
-    controlledPlayer.position.x =
-        THREE.MathUtils.clamp(
-            controlledPlayer.position.x,
-            -10.8,
-            10.8
-        );
-
-    controlledPlayer.position.z =
-        THREE.MathUtils.clamp(
-            controlledPlayer.position.z,
-            -18.5,
-            18.5
-        );
-
-    attachBallToPlayer();
-
-    notify("DRIBBLE!");
 }
 
 window.dribble = dribble;
 
 
 /* =========================================================
-   BALL PHYSICS
+   BALL ANIMATION
    ========================================================= */
 
-function updateBall(delta) {
+function animateBall(
+    start,
+    target,
+    duration,
+    type
+) {
 
-    if (!ball)
-        return;
+    const startTime =
+        performance.now();
 
-    if (ballOwner === controlledPlayer) {
-        attachBallToPlayer();
-        return;
-    }
+    function animate() {
 
-    if (ballVelocity.lengthSq() <= 0.001)
-        return;
+        if (!ball) {
+            return;
+        }
 
-    ball.position.addScaledVector(
-        ballVelocity,
-        delta
-    );
-
-    ballVelocity.multiplyScalar(
-        Math.pow(0.35, delta)
-    );
-
-    ballVelocity.y -=
-        18 * delta;
-
-    if (ball.position.y <= 0.35) {
-        ball.position.y = 0.35;
-
-        ballVelocity.y *= -0.35;
-
-        if (Math.abs(ballVelocity.y) < 0.5)
-            ballVelocity.y = 0;
-    }
-
-    ball.rotation.x += delta * 8;
-    ball.rotation.z += delta * 6;
-
-    checkBallPickup();
-    checkGoal();
-}
+        const progress =
+            Math.min(
+                (
+                    performance.now() -
+                    startTime
+                ) /
+                (duration * 1000),
+                1
+            );
 
 
-function checkBallPickup() {
-
-    if (
-        !controlledPlayer ||
-        !ball
-    )
-        return;
-
-    if (
-        ballVelocity.length() > 2
-    )
-        return;
-
-    const distance =
-        controlledPlayer.position.distanceTo(
-            ball.position
+        ball.position.lerpVectors(
+            start,
+            target,
+            progress
         );
 
-    if (distance < 1.25) {
-        ballOwner = controlledPlayer;
-        ballVelocity.set(0, 0, 0);
-        attachBallToPlayer();
+
+        ball.position.y =
+            0.35 +
+            Math.sin(
+                progress * Math.PI
+            ) *
+            (
+                type === "shoot"
+                    ? 1.4
+                    : 0.4
+            );
+
+
+        if (progress < 1) {
+
+            requestAnimationFrame(
+                animate
+            );
+
+        } else {
+
+            ball.position.y = 0.35;
+
+            if (type === "shoot") {
+
+                shooting = false;
+
+                checkGoal();
+
+            } else {
+
+                passing = false;
+            }
+        }
     }
+
+    animate();
 }
 
 
 /* =========================================================
-   GOAL DETECTION
+   GOALS
    ========================================================= */
 
 function checkGoal() {
 
-    if (!ball)
+    if (!ball) {
         return;
+    }
+
 
     if (
-        ball.position.z <= -20.5 &&
-        Math.abs(ball.position.x) < 2.7
+        ball.position.z < -17.5
     ) {
+
         homeScore++;
 
         updateScore();
 
-        showGoal("CRISTIANO RONALDO");
+        showGoal(
+            "CRISTIANO RONALDO"
+        );
 
-        resetAfterGoal();
+        resetBall();
 
-        return;
-    }
-
-    if (
-        ball.position.z >= 20.5 &&
-        Math.abs(ball.position.x) < 2.7
+    } else if (
+        ball.position.z > 17.5
     ) {
+
         awayScore++;
 
         updateScore();
 
-        showGoal("RIVAL FC");
-
-        resetAfterGoal();
+        resetBall();
     }
 }
 
 
-function resetAfterGoal() {
+function resetBall() {
 
-    ballOwner = controlledPlayer;
-    ballVelocity.set(0, 0, 0);
-
-    controlledPlayer.position.set(
-        0,
-        0,
-        8
-    );
-
-    attachBallToPlayer();
-}
-
-
-function showGoal(scorer) {
-
-    const message = $("goal-message");
-
-    if (!message)
+    if (!ball) {
         return;
+    }
 
-    if ($("goal-scorer"))
-        $("goal-scorer").textContent =
-            scorer;
+    if (player) {
 
-    message.classList.add("show");
+        ball.position.set(
+            player.position.x,
+            0.35,
+            player.position.z - 1
+        );
 
-    setTimeout(() => {
-        message.classList.remove("show");
-    }, 1800);
+    } else {
+
+        ball.position.set(
+            0,
+            0.35,
+            5.5
+        );
+    }
+
+    shooting = false;
+    passing = false;
 }
 
 
@@ -1821,13 +1921,46 @@ function showGoal(scorer) {
 
 function updateScore() {
 
-    if ($("home-score"))
+    if ($("home-score")) {
         $("home-score").textContent =
             homeScore;
+    }
 
-    if ($("away-score"))
+    if ($("away-score")) {
         $("away-score").textContent =
             awayScore;
+    }
+}
+
+
+/* =========================================================
+   GOAL MESSAGE
+   ========================================================= */
+
+function showGoal(scorer) {
+
+    updateScore();
+
+    const message =
+        $("goal-message");
+
+    if (!message) {
+        return;
+    }
+
+    if ($("goal-scorer")) {
+        $("goal-scorer").textContent =
+            scorer;
+    }
+
+    message.classList.add("show");
+
+    setTimeout(
+        () => {
+            message.classList.remove("show");
+        },
+        1800
+    );
 }
 
 
@@ -1839,8 +1972,9 @@ function updateMatchTimer() {
 
     const timer = $("timer");
 
-    if (!timer)
+    if (!timer) {
         return;
+    }
 
     const minutes =
         Math.floor(matchTime / 60);
@@ -1855,28 +1989,33 @@ function updateMatchTimer() {
 
 function updateTimer(delta) {
 
-    if (!gameStarted)
+    if (!gameStarted) {
         return;
+    }
 
     matchTime -= delta;
+
 
     if (matchTime <= 0) {
 
         matchTime = 0;
 
-        updateMatchTimer();
-
         gameStarted = false;
 
-        setTimeout(() => {
+        updateMatchTimer();
 
-            alert(
-                `FULL TIME!\n\n${homeScore} - ${awayScore}`
-            );
+        setTimeout(
+            () => {
 
-            leaveMatch();
+                alert(
+                    `FULL TIME!\n${homeScore} - ${awayScore}`
+                );
 
-        }, 100);
+                leaveMatch();
+
+            },
+            100
+        );
 
         return;
     }
@@ -1891,145 +2030,20 @@ function updateTimer(delta) {
 
 function updateStamina() {
 
-    const fill = $("stamina-fill");
+    const fill =
+        $("stamina-fill");
 
-    if (fill)
-        fill.style.width =
-            `${stamina}%`;
-}
-
-
-/* =========================================================
-   AI
-   ========================================================= */
-
-function updateOpponents(delta) {
-
-    if (!gameStarted)
+    if (!fill) {
         return;
+    }
 
-    opponents.forEach((opponent, index) => {
-
-        const target =
-            index === 0 && ball
-                ? ball.position
-                : controlledPlayer.position;
-
-        const direction =
-            target.clone()
-                .sub(opponent.position);
-
-        direction.y = 0;
-
-        const distance =
-            direction.length();
-
-        if (
-            distance > 1.7 &&
-            distance < 13
-        ) {
-            direction.normalize();
-
-            opponent.position.addScaledVector(
-                direction,
-                delta * 1.8
-            );
-
-            opponent.rotation.y =
-                Math.atan2(
-                    direction.x,
-                    direction.z
-                );
-        }
-
-        opponent.position.x =
-            THREE.MathUtils.clamp(
-                opponent.position.x,
-                -10.5,
-                10.5
-            );
-
-        opponent.position.z =
-            THREE.MathUtils.clamp(
-                opponent.position.z,
-                -18.5,
-                18.5
-            );
-    });
+    fill.style.width =
+        `${stamina}%`;
 }
 
 
 /* =========================================================
-   CAMERA
-   ========================================================= */
-
-function updateCamera() {
-
-    if (
-        !camera ||
-        !controlledPlayer
-    )
-        return;
-
-    const desiredX =
-        controlledPlayer.position.x;
-
-    const desiredZ =
-        controlledPlayer.position.z + 13;
-
-    camera.position.x +=
-        (desiredX - camera.position.x) *
-        0.08;
-
-    camera.position.z +=
-        (desiredZ - camera.position.z) *
-        0.08;
-
-    camera.lookAt(
-        controlledPlayer.position.x,
-        0,
-        controlledPlayer.position.z
-    );
-}
-
-
-/* =========================================================
-   MATCH LOOP
-   ========================================================= */
-
-function matchLoop() {
-
-    requestAnimationFrame(matchLoop);
-
-    if (!renderer)
-        return;
-
-    const now = performance.now();
-
-    const delta =
-        Math.min(
-            (now - previousFrame) / 1000,
-            0.05
-        );
-
-    previousFrame = now;
-
-    updatePlayer(delta);
-    updateBall(delta);
-    updateOpponents(delta);
-    updateTimer(delta);
-    updateStamina();
-    updateCamera();
-
-    renderer.render(
-        scene,
-        camera
-    );
-}
-
-
-/* =========================================================
-   KEYBOARD CONTROLS
+   KEYBOARD
    ========================================================= */
 
 window.addEventListener(
@@ -2041,24 +2055,30 @@ window.addEventListener(
 
         keys[key] = true;
 
-        if (event.code === "Space") {
+
+        if (
+            event.code === "Space"
+        ) {
+
             event.preventDefault();
+
             shoot();
         }
+
 
         const controls =
             save.settings.controls;
 
+
         if (
-            key === controls.pass &&
-            key !== controls.shoot
+            key === controls.pass
         ) {
             pass();
         }
 
+
         if (
-            key === controls.dribble &&
-            key !== controls.shoot
+            key === controls.dribble
         ) {
             dribble();
         }
@@ -2081,14 +2101,19 @@ window.addEventListener(
    MOBILE CONTROLS
    ========================================================= */
 
-function setupTouchControls() {
+function setupMatchControls() {
 
-    const joystick = $("joystick");
-    const stick = $("joystick-stick");
+    const joystick =
+        $("joystick");
+
+    const stick =
+        $("joystick-stick");
+
 
     if (joystick && stick) {
 
         let active = false;
+
 
         function moveJoystick(touch) {
 
@@ -2103,6 +2128,7 @@ function setupTouchControls() {
                 rect.top +
                 rect.height / 2;
 
+
             let dx =
                 touch.clientX -
                 centerX;
@@ -2111,27 +2137,31 @@ function setupTouchControls() {
                 touch.clientY -
                 centerY;
 
+
             const max =
                 rect.width / 2 - 25;
+
 
             const distance =
                 Math.hypot(dx, dy);
 
+
             if (distance > max) {
+
                 dx =
-                    dx / distance *
-                    max;
+                    dx / distance * max;
 
                 dy =
-                    dy / distance *
-                    max;
+                    dy / distance * max;
             }
+
 
             mobileInput.x =
                 dx / max;
 
             mobileInput.y =
                 dy / max;
+
 
             stick.style.left =
                 `${50 + mobileInput.x * 35}%`;
@@ -2140,11 +2170,10 @@ function setupTouchControls() {
                 `${50 + mobileInput.y * 35}%`;
         }
 
+
         joystick.addEventListener(
             "touchstart",
             event => {
-
-                event.preventDefault();
 
                 active = true;
 
@@ -2152,22 +2181,25 @@ function setupTouchControls() {
                     event.touches[0]
                 );
             },
-            {passive:false}
+            { passive: true }
         );
+
 
         joystick.addEventListener(
             "touchmove",
             event => {
 
-                event.preventDefault();
+                if (!active) {
+                    return;
+                }
 
-                if (active)
-                    moveJoystick(
-                        event.touches[0]
-                    );
+                moveJoystick(
+                    event.touches[0]
+                );
             },
-            {passive:false}
+            { passive: true }
         );
+
 
         joystick.addEventListener(
             "touchend",
@@ -2185,23 +2217,19 @@ function setupTouchControls() {
     }
 
 
-    setupActionButton(
+    setupTouchButton(
         "shoot-button",
         shoot
     );
 
-    setupActionButton(
+    setupTouchButton(
         "pass-button",
         pass
     );
 
-    setupActionButton(
-        "dribble-button",
-        dribble
-    );
 
-
-    const sprint = $("sprint-button");
+    const sprint =
+        $("sprint-button");
 
     if (sprint) {
 
@@ -2213,8 +2241,9 @@ function setupTouchControls() {
 
                 mobileInput.sprint = true;
             },
-            {passive:false}
+            { passive: false }
         );
+
 
         sprint.addEventListener(
             "touchend",
@@ -2223,12 +2252,14 @@ function setupTouchControls() {
             }
         );
 
+
         sprint.addEventListener(
             "mousedown",
             () => {
                 mobileInput.sprint = true;
             }
         );
+
 
         sprint.addEventListener(
             "mouseup",
@@ -2240,12 +2271,17 @@ function setupTouchControls() {
 }
 
 
-function setupActionButton(id, callback) {
+function setupTouchButton(
+    id,
+    callback
+) {
 
     const button = $(id);
 
-    if (!button)
+    if (!button) {
         return;
+    }
+
 
     button.addEventListener(
         "touchstart",
@@ -2255,8 +2291,9 @@ function setupActionButton(id, callback) {
 
             callback();
         },
-        {passive:false}
+        { passive: false }
     );
+
 
     button.addEventListener(
         "click",
@@ -2278,10 +2315,26 @@ function leaveMatch() {
 
     gameStarted = false;
 
-    const match = $("match-screen");
+    shooting = false;
+    passing = false;
 
-    if (match)
+    mobileInput.x = 0;
+    mobileInput.y = 0;
+    mobileInput.sprint = false;
+
+
+    const match =
+        $("match-screen");
+
+    if (match) {
         match.classList.remove("active");
+    }
+
+
+    /*
+       Return to the actual match menu,
+       NOT directly into a match.
+    */
 
     openPage("match-menu");
 }
@@ -2290,147 +2343,96 @@ window.leaveMatch = leaveMatch;
 
 
 /* =========================================================
-   SETTINGS
+   CAMERA
    ========================================================= */
 
-function setupSettings() {
+function updateCamera() {
 
-    document
-        .querySelectorAll("[data-control]")
-        .forEach(input => {
-
-            const control =
-                input.dataset.control;
-
-            input.value =
-                save.settings.controls[control] || "";
-
-            input.addEventListener(
-                "change",
-                () => {
-
-                    save.settings.controls[control] =
-                        input.value.toLowerCase();
-
-                    saveGame();
-
-                    notify("Keybind saved");
-                }
-            );
-        });
+    if (!player || !camera) {
+        return;
+    }
 
 
-    const graphics =
-        $("graphics-setting");
+    const targetX =
+        player.position.x;
 
-    if (graphics) {
+    const targetZ =
+        player.position.z + 13;
 
-        graphics.value =
-            save.settings.graphics;
 
-        graphics.addEventListener(
-            "change",
-            () => {
+    camera.position.x +=
+        (
+            targetX -
+            camera.position.x
+        ) * 0.08;
 
-                save.settings.graphics =
-                    graphics.value;
 
-                saveGame();
+    camera.position.z +=
+        (
+            targetZ -
+            camera.position.z
+        ) * 0.08;
 
-                notify(
-                    `Graphics: ${graphics.value}`
-                );
-            }
+
+    camera.lookAt(
+        player.position.x,
+        0,
+        player.position.z
+    );
+}
+
+
+/* =========================================================
+   GAME LOOP
+   ========================================================= */
+
+function gameLoop() {
+
+    requestAnimationFrame(
+        gameLoop
+    );
+
+
+    if (!renderer) {
+        return;
+    }
+
+
+    const now =
+        performance.now();
+
+
+    const delta =
+        Math.min(
+            (now - previousTime) / 1000,
+            0.05
         );
+
+
+    previousTime = now;
+
+
+    updatePlayer(delta);
+    updateTimer(delta);
+    updateStamina();
+    updateCamera();
+
+
+    if (ball) {
+
+        ball.rotation.x +=
+            delta * 5;
+
+        ball.rotation.z +=
+            delta * 3;
     }
+
+
+    renderer.render(
+        scene,
+        camera
+    );
 }
-
-
-/* =========================================================
-   TEAM SELECTION
-   ========================================================= */
-
-function setupTeams() {
-
-    document
-        .querySelectorAll(".team-card")
-        .forEach(card => {
-
-            card.addEventListener(
-                "click",
-                () => {
-
-                    const name =
-                        card.querySelector("h2");
-
-                    if (!name)
-                        return;
-
-                    save.selectedTeam =
-                        name.textContent;
-
-                    saveGame();
-
-                    document
-                        .querySelectorAll(".team-card")
-                        .forEach(c =>
-                            c.classList.remove("selected")
-                        );
-
-                    card.classList.add("selected");
-
-                    notify(
-                        `${save.selectedTeam} selected`
-                    );
-                }
-            );
-        });
-}
-
-
-/* =========================================================
-   INITIALIZATION
-   ========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        updateCoinsUI();
-
-        renderSquad();
-
-        setupSettings();
-
-        setupTeams();
-
-        /* Fix the HTML's inline START button */
-
-        const startButton =
-            $("start-button");
-
-        if (startButton) {
-            startButton.onclick =
-                startMatch;
-        }
-
-        /* Fix pack button */
-
-        const packButton =
-            $("packButton");
-
-        if (packButton) {
-            packButton.onclick =
-                () => openPack("bronze");
-        }
-
-        /* Prepare Three.js */
-
-        if ($("game-container")) {
-            initializeMatch();
-        }
-    }
-);
 
 
 /* =========================================================
@@ -2441,8 +2443,9 @@ window.addEventListener(
     "resize",
     () => {
 
-        if (!camera || !renderer)
+        if (!camera || !renderer) {
             return;
+        }
 
         camera.aspect =
             window.innerWidth /
@@ -2454,5 +2457,133 @@ window.addEventListener(
             window.innerWidth,
             window.innerHeight
         );
+    }
+);
+
+
+/* =========================================================
+   INITIALIZATION
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        console.log(
+            "Football Legends game.js loaded successfully."
+        );
+
+
+        loadSave();
+
+        updateCoinsUI();
+
+        renderSquad();
+
+        renderShop();
+
+        setupTeams();
+
+        setupSettings();
+
+
+        /*
+           Fix the existing pack button if it exists.
+        */
+
+        const packButton =
+            $("packButton");
+
+        if (packButton) {
+
+            packButton.onclick =
+                () => openPack("standard");
+        }
+
+
+        /*
+           The HTML already has onclick="startGame()",
+           but this makes sure the button works too.
+        */
+
+        const startButton =
+            $("start-button");
+
+        if (startButton) {
+
+            startButton.onclick =
+                event => {
+
+                    event.preventDefault();
+
+                    startMatch();
+                };
+        }
+
+
+        /*
+           The HTML already has onclick="leaveMatch()".
+        */
+
+        const leaveButton =
+            $("leave-match");
+
+        if (leaveButton) {
+
+            leaveButton.onclick =
+                event => {
+
+                    event.preventDefault();
+
+                    leaveMatch();
+                };
+        }
+
+
+        /*
+           Make sure premium pack works even
+           if the inline HTML function isn't found.
+        */
+
+        document
+            .querySelectorAll(
+                ".premium-pack .pack-button"
+            )
+            .forEach(button => {
+
+                button.onclick =
+                    event => {
+
+                        event.preventDefault();
+
+                        openPremiumPack();
+                    };
+            });
+
+
+        /*
+           Standard pack.
+        */
+
+        document
+            .querySelectorAll(
+                ".standard-pack .pack-button"
+            )
+            .forEach(button => {
+
+                button.onclick =
+                    event => {
+
+                        event.preventDefault();
+
+                        openPack("standard");
+                    };
+            });
+
+
+        console.log(
+            "Football Legends initialized."
+        );
+
     }
 );
