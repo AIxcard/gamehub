@@ -1,7 +1,6 @@
 /* =========================================================
    FOOTBALL LEGENDS
-   GAME.JS
-   Match + Squad + Packs + Shop + Settings
+   GAME.JS — COMPLETE REPLACEMENT
    ========================================================= */
 
 "use strict";
@@ -11,273 +10,68 @@
    ========================================================= */
 
 const PLAYERS = [
-    {
-        id: "ronaldo",
-        name: "Cristiano Ronaldo",
-        rating: 99,
-        position: "LW",
-        country: "Portugal",
-        club: "Al Nassr",
-        rarity: "ICON",
-        avatar: "CR7"
-    },
-    {
-        id: "messi",
-        name: "Lionel Messi",
-        rating: 99,
-        position: "RW",
-        country: "Argentina",
-        club: "Inter Miami",
-        rarity: "ICON",
-        avatar: "LM10"
-    },
-    {
-        id: "mbappe",
-        name: "Kylian Mbappé",
-        rating: 98,
-        position: "ST",
-        country: "France",
-        club: "Real Madrid",
-        rarity: "LEGENDARY",
-        avatar: "KM"
-    },
-    {
-        id: "haaland",
-        name: "Erling Haaland",
-        rating: 98,
-        position: "ST",
-        country: "Norway",
-        club: "Manchester City",
-        rarity: "LEGENDARY",
-        avatar: "EH9"
-    },
-    {
-        id: "vinicius",
-        name: "Vinícius Júnior",
-        rating: 97,
-        position: "LW",
-        country: "Brazil",
-        club: "Real Madrid",
-        rarity: "LEGENDARY",
-        avatar: "VJR"
-    },
-    {
-        id: "bellingham",
-        name: "Jude Bellingham",
-        rating: 97,
-        position: "CM",
-        country: "England",
-        club: "Real Madrid",
-        rarity: "LEGENDARY",
-        avatar: "JB"
-    },
-    {
-        id: "debruyne",
-        name: "Kevin De Bruyne",
-        rating: 96,
-        position: "CM",
-        country: "Belgium",
-        club: "Manchester City",
-        rarity: "EPIC",
-        avatar: "KDB"
-    },
-    {
-        id: "salah",
-        name: "Mohamed Salah",
-        rating: 96,
-        position: "RW",
-        country: "Egypt",
-        club: "Liverpool",
-        rarity: "EPIC",
-        avatar: "MS"
-    },
-    {
-        id: "kane",
-        name: "Harry Kane",
-        rating: 95,
-        position: "ST",
-        country: "England",
-        club: "Bayern Munich",
-        rarity: "EPIC",
-        avatar: "HK9"
-    },
-    {
-        id: "neymar",
-        name: "Neymar Jr",
-        rating: 95,
-        position: "LW",
-        country: "Brazil",
-        club: "Santos",
-        rarity: "EPIC",
-        avatar: "NEY"
-    },
-    {
-        id: "modric",
-        name: "Luka Modrić",
-        rating: 94,
-        position: "CM",
-        country: "Croatia",
-        club: "Real Madrid",
-        rarity: "EPIC",
-        avatar: "LM"
-    },
-    {
-        id: "rodri",
-        name: "Rodri",
-        rating: 94,
-        position: "CDM",
-        country: "Spain",
-        club: "Manchester City",
-        rarity: "RARE",
-        avatar: "RD"
-    },
-    {
-        id: "van_dijk",
-        name: "Virgil van Dijk",
-        rating: 94,
-        position: "CB",
-        country: "Netherlands",
-        club: "Liverpool",
-        rarity: "RARE",
-        avatar: "VVD"
-    },
-    {
-        id: "courtois",
-        name: "Thibaut Courtois",
-        rating: 94,
-        position: "GK",
-        country: "Belgium",
-        club: "Real Madrid",
-        rarity: "RARE",
-        avatar: "TC"
-    },
-    {
-        id: "alisson",
-        name: "Alisson Becker",
-        rating: 93,
-        position: "GK",
-        country: "Brazil",
-        club: "Liverpool",
-        rarity: "RARE",
-        avatar: "AB"
-    },
-    {
-        id: "kvaratskhelia",
-        name: "Khvicha Kvaratskhelia",
-        rating: 91,
-        position: "LW",
-        country: "Georgia",
-        club: "PSG",
-        rarity: "RARE",
-        avatar: "KK"
-    },
-    {
-        id: "musiala",
-        name: "Jamal Musiala",
-        rating: 91,
-        position: "CAM",
-        country: "Germany",
-        club: "Bayern Munich",
-        rarity: "RARE",
-        avatar: "JM"
-    },
-    {
-        id: "saka",
-        name: "Bukayo Saka",
-        rating: 90,
-        position: "RW",
-        country: "England",
-        club: "Arsenal",
-        rarity: "RARE",
-        avatar: "BS"
-    },
-    {
-        id: "foden",
-        name: "Phil Foden",
-        rating: 90,
-        position: "RW",
-        country: "England",
-        club: "Manchester City",
-        rarity: "RARE",
-        avatar: "PF"
-    },
-    {
-        id: "pedri",
-        name: "Pedri",
-        rating: 90,
-        position: "CM",
-        country: "Spain",
-        club: "Barcelona",
-        rarity: "RARE",
-        avatar: "PD"
-    },
-    {
-        id: "yamal",
-        name: "Lamine Yamal",
-        rating: 89,
-        position: "RW",
-        country: "Spain",
-        club: "Barcelona",
-        rarity: "RARE",
-        avatar: "LY"
-    },
-    {
-        id: "gavi",
-        name: "Gavi",
-        rating: 88,
-        position: "CM",
-        country: "Spain",
-        club: "Barcelona",
-        rarity: "COMMON",
-        avatar: "GV"
-    },
-    {
-        id: "wirtz",
-        name: "Florian Wirtz",
-        rating: 89,
-        position: "CAM",
-        country: "Germany",
-        club: "Liverpool",
-        rarity: "COMMON",
-        avatar: "FW"
-    },
-    {
-        id: "martinez",
-        name: "Lautaro Martínez",
-        rating: 90,
-        position: "ST",
-        country: "Argentina",
-        club: "Inter",
-        rarity: "RARE",
-        avatar: "LM"
-    },
-    {
-        id: "son",
-        name: "Son Heung-min",
-        rating: 89,
-        position: "LW",
-        country: "South Korea",
-        club: "LAFC",
-        rarity: "COMMON",
-        avatar: "SON"
-    }
+    {id:"ronaldo",name:"Cristiano Ronaldo",rating:99,position:"LW",country:"Portugal",club:"Al Nassr",rarity:"ICON",avatar:"CR7"},
+    {id:"messi",name:"Lionel Messi",rating:99,position:"RW",country:"Argentina",club:"Inter Miami",rarity:"ICON",avatar:"LM10"},
+    {id:"mbappe",name:"Kylian Mbappé",rating:98,position:"ST",country:"France",club:"Real Madrid",rarity:"LEGENDARY",avatar:"KM"},
+    {id:"haaland",name:"Erling Haaland",rating:98,position:"ST",country:"Norway",club:"Manchester City",rarity:"LEGENDARY",avatar:"EH9"},
+    {id:"vinicius",name:"Vinícius Júnior",rating:97,position:"LW",country:"Brazil",club:"Real Madrid",rarity:"LEGENDARY",avatar:"VJR"},
+    {id:"bellingham",name:"Jude Bellingham",rating:97,position:"CM",country:"England",club:"Real Madrid",rarity:"LEGENDARY",avatar:"JB"},
+    {id:"debruyne",name:"Kevin De Bruyne",rating:96,position:"CM",country:"Belgium",club:"Manchester City",rarity:"EPIC",avatar:"KDB"},
+    {id:"salah",name:"Mohamed Salah",rating:96,position:"RW",country:"Egypt",club:"Liverpool",rarity:"EPIC",avatar:"MS"},
+    {id:"kane",name:"Harry Kane",rating:95,position:"ST",country:"England",club:"Bayern Munich",rarity:"EPIC",avatar:"HK9"},
+    {id:"neymar",name:"Neymar Jr",rating:95,position:"LW",country:"Brazil",club:"Santos",rarity:"EPIC",avatar:"NEY"},
+    {id:"modric",name:"Luka Modrić",rating:94,position:"CM",country:"Croatia",club:"Real Madrid",rarity:"EPIC",avatar:"LM"},
+    {id:"rodri",name:"Rodri",rating:94,position:"CDM",country:"Spain",club:"Manchester City",rarity:"RARE",avatar:"RD"},
+    {id:"vandijk",name:"Virgil van Dijk",rating:94,position:"CB",country:"Netherlands",club:"Liverpool",rarity:"RARE",avatar:"VVD"},
+    {id:"courtois",name:"Thibaut Courtois",rating:94,position:"GK",country:"Belgium",club:"Real Madrid",rarity:"RARE",avatar:"TC"},
+    {id:"alisson",name:"Alisson Becker",rating:93,position:"GK",country:"Brazil",club:"Liverpool",rarity:"RARE",avatar:"AB"},
+    {id:"kvara",name:"Khvicha Kvaratskhelia",rating:91,position:"LW",country:"Georgia",club:"PSG",rarity:"RARE",avatar:"KK"},
+    {id:"musiala",name:"Jamal Musiala",rating:91,position:"CAM",country:"Germany",club:"Bayern Munich",rarity:"RARE",avatar:"JM"},
+    {id:"saka",name:"Bukayo Saka",rating:90,position:"RW",country:"England",club:"Arsenal",rarity:"RARE",avatar:"BS"},
+    {id:"foden",name:"Phil Foden",rating:90,position:"RW",country:"England",club:"Manchester City",rarity:"RARE",avatar:"PF"},
+    {id:"pedri",name:"Pedri",rating:90,position:"CM",country:"Spain",club:"Barcelona",rarity:"RARE",avatar:"PD"},
+    {id:"yamal",name:"Lamine Yamal",rating:89,position:"RW",country:"Spain",club:"Barcelona",rarity:"RARE",avatar:"LY"},
+    {id:"gavi",name:"Gavi",rating:88,position:"CM",country:"Spain",club:"Barcelona",rarity:"COMMON",avatar:"GV"},
+    {id:"wirtz",name:"Florian Wirtz",rating:89,position:"CAM",country:"Germany",club:"Liverpool",rarity:"COMMON",avatar:"FW"},
+    {id:"martinez",name:"Lautaro Martínez",rating:90,position:"ST",country:"Argentina",club:"Inter",rarity:"RARE",avatar:"LM"},
+    {id:"son",name:"Son Heung-min",rating:89,position:"LW",country:"South Korea",club:"LAFC",rarity:"COMMON",avatar:"SON"}
 ];
 
 
 /* =========================================================
-   SAVE DATA
+   TEAMS
    ========================================================= */
 
-const SAVE_KEY = "football_legends_save_v2";
+const TEAMS = [
+    "Manchester United",
+    "Manchester City",
+    "Real Madrid",
+    "Barcelona",
+    "Liverpool",
+    "Arsenal",
+    "Bayern Munich",
+    "Inter Milan",
+    "AC Milan",
+    "PSG"
+];
 
-const defaultSave = {
+
+/* =========================================================
+   SAVE SYSTEM
+   ========================================================= */
+
+const SAVE_KEY = "football_legends_save_v3";
+
+const DEFAULT_SAVE = {
     coins: 1000,
-    collection: [],
-    squad: [],
+    collection: ["ronaldo"],
+    squad: ["ronaldo"],
+    selectedTeam: "Football Legends FC",
     settings: {
         music: true,
         effects: true,
         vibration: true,
+        graphics: "High",
         controls: {
             up: "w",
             down: "s",
@@ -293,27 +87,35 @@ const defaultSave = {
 
 let save;
 
+function cloneDefault() {
+    return JSON.parse(JSON.stringify(DEFAULT_SAVE));
+}
+
 function loadSave() {
-
     try {
+        const raw = localStorage.getItem(SAVE_KEY);
 
-        const stored =
-            localStorage.getItem(SAVE_KEY);
+        if (raw) {
+            const loaded = JSON.parse(raw);
 
-        save = stored
-            ? {
-                ...defaultSave,
-                ...JSON.parse(stored)
-            }
-            : structuredClone(defaultSave);
-
+            save = {
+                ...cloneDefault(),
+                ...loaded,
+                settings: {
+                    ...cloneDefault().settings,
+                    ...(loaded.settings || {}),
+                    controls: {
+                        ...cloneDefault().settings.controls,
+                        ...((loaded.settings || {}).controls || {})
+                    }
+                }
+            };
+        } else {
+            save = cloneDefault();
+        }
     } catch {
-
-        save = structuredClone(defaultSave);
+        save = cloneDefault();
     }
-
-    save.coins =
-        Number(save.coins) || 1000;
 
     if (!Array.isArray(save.collection))
         save.collection = [];
@@ -321,16 +123,13 @@ function loadSave() {
     if (!Array.isArray(save.squad))
         save.squad = [];
 
-    if (!save.settings)
-        save.settings = structuredClone(defaultSave.settings);
+    save.coins = Number(save.coins);
 
-    if (!save.settings.controls)
-        save.settings.controls =
-            structuredClone(defaultSave.settings.controls);
+    if (!Number.isFinite(save.coins))
+        save.coins = 1000;
 }
 
 function saveGame() {
-
     localStorage.setItem(
         SAVE_KEY,
         JSON.stringify(save)
@@ -343,57 +142,53 @@ loadSave();
 
 
 /* =========================================================
-   DOM HELPERS
+   HELPERS
    ========================================================= */
 
 function $(id) {
     return document.getElementById(id);
 }
 
-function createElement(tag, className, text) {
-
-    const element =
-        document.createElement(tag);
-
-    if (className)
-        element.className = className;
-
-    if (text !== undefined)
-        element.textContent = text;
-
-    return element;
+function getPlayer(id) {
+    return PLAYERS.find(p => p.id === id);
 }
 
+function notify(message, type = "normal") {
+    let box = $("game-notification");
 
-/* =========================================================
-   COINS
-   ========================================================= */
+    if (!box) {
+        box = document.createElement("div");
+        box.id = "game-notification";
+        box.className = "game-notification";
+        document.body.appendChild(box);
+    }
+
+    box.textContent = message;
+    box.dataset.type = type;
+    box.classList.add("visible");
+
+    clearTimeout(box._timer);
+
+    box._timer = setTimeout(() => {
+        box.classList.remove("visible");
+    }, 1800);
+}
 
 function updateCoinsUI() {
-
-    const elements =
-        document.querySelectorAll(
-            "#coins, .coins-value"
-        );
-
-    elements.forEach(
-        element => {
-            element.textContent =
-                save.coins;
-        }
-    );
+    document.querySelectorAll("#coins, .coins-value").forEach(el => {
+        el.textContent = Math.floor(save.coins);
+    });
 }
 
 
 /* =========================================================
-   PACKS
+   PACK SYSTEM
    ========================================================= */
 
 const PACKS = {
     bronze: {
         name: "BRONZE PACK",
         price: 100,
-        description: "A basic pack with a chance of finding a rare player.",
         chances: {
             COMMON: 60,
             RARE: 30,
@@ -404,8 +199,7 @@ const PACKS = {
 
     gold: {
         name: "GOLD PACK",
-        price: 300,
-        description: "Better players. Better chances.",
+        price: 250,
         chances: {
             COMMON: 25,
             RARE: 45,
@@ -417,7 +211,6 @@ const PACKS = {
     elite: {
         name: "ELITE PACK",
         price: 750,
-        description: "High chance of an elite footballer.",
         chances: {
             RARE: 30,
             EPIC: 45,
@@ -427,100 +220,70 @@ const PACKS = {
     }
 };
 
-
 function weightedRarity(chances) {
+    let roll = Math.random() * 100;
 
-    const random =
-        Math.random() * 100;
+    for (const rarity of Object.keys(chances)) {
+        roll -= chances[rarity];
 
-    let total = 0;
-
-    for (const rarity in chances) {
-
-        total += chances[rarity];
-
-        if (random <= total)
+        if (roll <= 0)
             return rarity;
     }
 
     return Object.keys(chances)[0];
 }
 
+function getPackPlayer(pack) {
+    const rarity = weightedRarity(pack.chances);
 
-function getPlayerFromPack(pack) {
+    let available = PLAYERS.filter(
+        p => p.rarity === rarity
+    );
 
-    const rarity =
-        weightedRarity(pack.chances);
-
-    const possible =
-        PLAYERS.filter(
-            player =>
-                player.rarity === rarity
-        );
-
-    if (!possible.length) {
-
-        const fallback =
-            PLAYERS.filter(
-                player =>
-                    player.rating >= 85
-            );
-
-        return fallback[
-            Math.floor(
-                Math.random() *
-                fallback.length
-            )
-        ];
+    if (!available.length) {
+        available = PLAYERS;
     }
 
-    return possible[
-        Math.floor(
-            Math.random() *
-            possible.length
-        )
+    return available[
+        Math.floor(Math.random() * available.length)
     ];
 }
 
-
 function openPack(packId = "bronze") {
-
     const pack = PACKS[packId];
 
     if (!pack)
         return;
 
     if (save.coins < pack.price) {
-
-        showNotification(
-            "Not enough coins!",
-            "error"
-        );
-
+        notify("Not enough coins!", "error");
         return;
     }
 
     save.coins -= pack.price;
 
-    const player =
-        getPlayerFromPack(pack);
+    const player = getPackPlayer(pack);
 
-    save.collection.push(player.id);
-
-    if (save.squad.length < 11) {
-
-        save.squad.push(
-            player.id
-        );
-    }
+    if (!save.collection.includes(player.id))
+        save.collection.push(player.id);
 
     saveGame();
 
     showPackResult(player);
 }
 
-
 window.openPack = openPack;
+
+
+/* =========================================================
+   PREMIUM PACK COMPATIBILITY
+   ========================================================= */
+
+function openPremiumPack() {
+    openPack("gold");
+}
+
+window.openPremiumPack = openPremiumPack;
 
 
 /* =========================================================
@@ -528,28 +291,22 @@ window.openPack = openPack;
    ========================================================= */
 
 function showPackResult(player) {
-
-    const result =
-        $("packResult");
+    const result = $("packResult");
 
     if (!result)
         return;
 
     if ($("resultRating"))
-        $("resultRating").textContent =
-            player.rating;
+        $("resultRating").textContent = player.rating;
 
     if ($("resultPosition"))
-        $("resultPosition").textContent =
-            player.position;
+        $("resultPosition").textContent = player.position;
 
     if ($("resultAvatar"))
-        $("resultAvatar").textContent =
-            player.avatar;
+        $("resultAvatar").textContent = player.avatar;
 
     if ($("resultName"))
-        $("resultName").textContent =
-            player.name;
+        $("resultName").textContent = player.name;
 
     if ($("resultCountry"))
         $("resultCountry").textContent =
@@ -559,11 +316,8 @@ function showPackResult(player) {
     result.classList.add("show");
 }
 
-
 function closePack() {
-
-    const result =
-        $("packResult");
+    const result = $("packResult");
 
     if (!result)
         return;
@@ -574,7 +328,6 @@ function closePack() {
     renderSquad();
 }
 
-
 window.closePack = closePack;
 
 
@@ -582,136 +335,116 @@ window.closePack = closePack;
    SQUAD
    ========================================================= */
 
-function getPlayer(id) {
+function calculateSquadRating() {
+    if (!save.squad.length)
+        return 0;
 
-    return PLAYERS.find(
-        player => player.id === id
+    const ratings = save.squad
+        .map(id => getPlayer(id))
+        .filter(Boolean)
+        .map(p => p.rating);
+
+    if (!ratings.length)
+        return 0;
+
+    return Math.round(
+        ratings.reduce((a, b) => a + b, 0) /
+        ratings.length
     );
 }
 
+function addToSquad(id) {
+    const player = getPlayer(id);
+
+    if (!player)
+        return;
+
+    if (save.squad.includes(id)) {
+        save.squad = save.squad.filter(
+            playerId => playerId !== id
+        );
+
+        notify("Player removed from squad");
+    } else {
+        if (save.squad.length >= 11) {
+            notify("Squad is full — maximum 11 players", "error");
+            return;
+        }
+
+        save.squad.push(id);
+        notify(`${player.name} added to squad`);
+    }
+
+    saveGame();
+    renderSquad();
+}
+
+window.addToSquad = addToSquad;
 
 function renderSquad() {
-
-    const squad =
-        $("squad");
+    const squad = $("squad");
 
     if (!squad)
         return;
 
     squad.innerHTML = "";
 
-    if (!save.collection.length) {
+    const unique = [...new Set(save.collection)];
 
-        squad.innerHTML =
-            `<div class="empty">
-                Open a pack to get your first player!
-            </div>`;
-
+    if (!unique.length) {
+        squad.innerHTML = `
+            <div class="empty">
+                <strong>Your squad is empty.</strong>
+                <p>Open packs in the Shop to get players.</p>
+            </div>
+        `;
         return;
     }
 
-    const uniquePlayers =
-        [...new Set(save.collection)];
+    unique.forEach(id => {
+        const player = getPlayer(id);
 
-    uniquePlayers.forEach(
-        id => {
-
-            const player =
-                getPlayer(id);
-
-            if (!player)
-                return;
-
-            const card =
-                createElement(
-                    "div",
-                    "player-card"
-                );
-
-            card.innerHTML = `
-                <div class="rating">
-                    ${player.rating}
-                </div>
-
-                <div class="position">
-                    ${player.position}
-                </div>
-
-                <div class="player-avatar">
-                    ${player.avatar}
-                </div>
-
-                <h3>${player.name}</h3>
-
-                <p>
-                    ${player.country}
-                    •
-                    ${player.club}
-                </p>
-
-                <button class="squad-add">
-                    ${save.squad.includes(player.id)
-                        ? "IN SQUAD"
-                        : "ADD TO SQUAD"}
-                </button>
-            `;
-
-            const button =
-                card.querySelector(
-                    ".squad-add"
-                );
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    addToSquad(
-                        player.id
-                    );
-                }
-            );
-
-            squad.appendChild(card);
-        }
-    );
-}
-
-
-function addToSquad(id) {
-
-    if (save.squad.includes(id)) {
-
-        save.squad =
-            save.squad.filter(
-                playerId =>
-                    playerId !== id
-            );
-
-        showNotification(
-            "Removed from squad"
-        );
-
-    } else {
-
-        if (save.squad.length >= 11) {
-
-            showNotification(
-                "Your squad already has 11 players!",
-                "error"
-            );
-
+        if (!player)
             return;
-        }
 
-        save.squad.push(id);
+        const card = document.createElement("div");
+        card.className = `player-card rarity-${player.rarity.toLowerCase()}`;
 
-        showNotification(
-            "Player added to squad"
-        );
-    }
+        card.innerHTML = `
+            <div class="rating">${player.rating}</div>
+            <div class="position">${player.position}</div>
 
-    saveGame();
-    renderSquad();
+            <div class="player-avatar">
+                ${player.avatar}
+            </div>
+
+            <h3>${player.name}</h3>
+
+            <p>
+                ${player.country} • ${player.club}
+            </p>
+
+            <button class="squad-add">
+                ${
+                    save.squad.includes(player.id)
+                        ? "REMOVE"
+                        : "ADD TO SQUAD"
+                }
+            </button>
+        `;
+
+        card.querySelector(".squad-add")
+            .addEventListener("click", () => {
+                addToSquad(player.id);
+            });
+
+        squad.appendChild(card);
+    });
+
+    const rating = $("squad-rating");
+
+    if (rating)
+        rating.textContent = calculateSquadRating();
 }
 
 
@@ -720,134 +453,145 @@ function addToSquad(id) {
    ========================================================= */
 
 function renderShop() {
-
-    let shop =
-        $("shop");
+    const shop = $("shop");
 
     if (!shop)
         return;
 
     shop.innerHTML = "";
 
-    Object.entries(PACKS)
-        .forEach(
-            ([id, pack]) => {
+    Object.entries(PACKS).forEach(([id, pack]) => {
+        const card = document.createElement("div");
 
-                const card =
-                    createElement(
-                        "div",
-                        "pack-card"
-                    );
+        card.className = "pack-card";
 
-                card.innerHTML = `
-                    <div class="pack-icon">⚽</div>
+        card.innerHTML = `
+            <div class="pack-icon">⚽</div>
 
-                    <div class="pack-rarity">
-                        FOOTBALL PACK
-                    </div>
+            <div class="pack-rarity">
+                FOOTBALL PACK
+            </div>
 
-                    <h2>${pack.name}</h2>
+            <h2>${pack.name}</h2>
 
-                    <p>${pack.description}</p>
+            <p>
+                ${
+                    id === "bronze"
+                        ? "A basic pack with a chance of finding a rare player."
+                        : id === "gold"
+                            ? "A premium pack with much better player odds."
+                            : "The ultimate pack. Your best chance at an ICON."
+                }
+            </p>
 
-                    <div class="pack-price">
-                        🪙 ${pack.price}
-                    </div>
+            <div class="pack-price">
+                🪙 ${pack.price}
+            </div>
 
-                    <button class="open-pack">
-                        OPEN PACK
-                    </button>
-                `;
+            <button class="open-pack">
+                OPEN PACK
+            </button>
+        `;
 
-                card
-                    .querySelector(".open-pack")
-                    .addEventListener(
-                        "click",
-                        () => openPack(id)
-                    );
+        card.querySelector(".open-pack")
+            .addEventListener("click", () => {
+                openPack(id);
+            });
 
-                shop.appendChild(card);
-            }
-        );
+        shop.appendChild(card);
+    });
 }
 
 
 /* =========================================================
-   NOTIFICATIONS
+   PAGE SYSTEM
    ========================================================= */
 
-function showNotification(
-    message,
-    type = "normal"
-) {
-
-    let notification =
-        $("game-notification");
-
-    if (!notification) {
-
-        notification =
-            createElement(
-                "div",
-                "game-notification"
-            );
-
-        notification.id =
-            "game-notification";
-
-        document.body.appendChild(
-            notification
-        );
-    }
-
-    notification.textContent =
-        message;
-
-    notification.dataset.type =
-        type;
-
-    notification.classList.add(
-        "visible"
-    );
-
-    clearTimeout(
-        notification._timer
-    );
-
-    notification._timer =
-        setTimeout(
-            () => {
-                notification.classList.remove(
-                    "visible"
-                );
-            },
-            1800
-        );
+function closeAllPages() {
+    document
+        .querySelectorAll(".page-screen")
+        .forEach(page => {
+            page.classList.remove("active");
+        });
 }
+
+function openPage(pageId) {
+    closeAllPages();
+
+    const page = $(pageId);
+
+    if (page)
+        page.classList.add("active");
+
+    const home = $("home-screen");
+
+    if (home)
+        home.classList.remove("active");
+
+    const nav = $("navigation");
+
+    if (nav)
+        nav.classList.add("visible");
+
+    if (pageId === "squad-page")
+        renderSquad();
+
+    window.scrollTo(0, 0);
+}
+
+window.openPage = openPage;
+
+function showHome() {
+    closeAllPages();
+
+    const match = $("match-screen");
+
+    if (match)
+        match.classList.remove("active");
+
+    const home = $("home-screen");
+
+    if (home)
+        home.classList.add("active");
+
+    const nav = $("navigation");
+
+    if (nav)
+        nav.classList.remove("visible");
+
+    window.scrollTo(0, 0);
+}
+
+window.showHome = showHome;
 
 
 /* =========================================================
-   THREE.JS MATCH
+   THREE.JS MATCH VARIABLES
    ========================================================= */
 
 let scene = null;
 let camera = null;
 let renderer = null;
 
-let player = null;
+let matchInitialized = false;
+let gameStarted = false;
+
+let controlledPlayer = null;
 let ball = null;
 
-let gameStarted = false;
+let teammates = [];
+let opponents = [];
+
+let ballVelocity = new THREE.Vector3();
+let ballOwner = null;
 
 let homeScore = 0;
 let awayScore = 0;
 
-let matchTime = 180;
-
+let matchTime = 120;
 let stamina = 100;
 
-let shooting = false;
-let passing = false;
+let previousFrame = performance.now();
 
 const keys = {};
 
@@ -857,103 +601,133 @@ const mobileInput = {
     sprint: false
 };
 
-let teammates = [];
-let opponents = [];
+let actionLocked = false;
 
 
 /* =========================================================
-   INITIALIZE MATCH
+   MATCH OPENING
+   ========================================================= */
+
+function showMatchScreen() {
+    closeAllPages();
+
+    const home = $("home-screen");
+
+    if (home)
+        home.classList.remove("active");
+
+    const nav = $("navigation");
+
+    if (nav)
+        nav.classList.remove("visible");
+
+    const match = $("match-screen");
+
+    if (match)
+        match.classList.add("active");
+}
+
+function startMatch() {
+    showMatchScreen();
+
+    if (!matchInitialized)
+        initializeMatch();
+
+    gameStarted = true;
+
+    homeScore = 0;
+    awayScore = 0;
+    matchTime = 120;
+    stamina = 100;
+
+    resetPositions();
+
+    updateScore();
+    updateMatchTimer();
+    updateStamina();
+
+    notify("MATCH STARTED");
+}
+
+window.startGame = startMatch;
+
+
+/* =========================================================
+   INITIALIZE THREE.JS
    ========================================================= */
 
 function initializeMatch() {
-
-    if (typeof THREE === "undefined") {
-
-        console.error(
-            "Three.js was not loaded."
-        );
-
+    if (matchInitialized)
         return;
-    }
 
-    const container =
-        $("game-container");
+    const container = $("game-container");
 
     if (!container)
         return;
 
-    if (renderer)
+    if (typeof THREE === "undefined") {
+        console.error("Three.js failed to load.");
+        notify("Three.js failed to load", "error");
         return;
+    }
 
-    scene =
-        new THREE.Scene();
+    matchInitialized = true;
 
-    scene.background =
-        new THREE.Color(
-            0x6fa8dc
-        );
+    scene = new THREE.Scene();
 
+    scene.background = new THREE.Color(0x0b1520);
 
-    camera =
-        new THREE.PerspectiveCamera(
-            55,
-            window.innerWidth /
-            window.innerHeight,
-            0.1,
-            1000
-        );
-
-    camera.position.set(
-        0,
-        13,
-        18
+    camera = new THREE.PerspectiveCamera(
+        58,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        300
     );
 
+    camera.position.set(0, 16, 21);
 
-    renderer =
-        new THREE.WebGLRenderer({
-            antialias: true
-        });
+    renderer = new THREE.WebGLRenderer({
+        antialias: true
+    });
+
+    renderer.setPixelRatio(
+        Math.min(window.devicePixelRatio, 2)
+    );
 
     renderer.setSize(
         window.innerWidth,
         window.innerHeight
     );
 
-    renderer.setPixelRatio(
-        Math.min(
-            window.devicePixelRatio,
-            2
-        )
-    );
+    renderer.shadowMap.enabled = true;
 
-    renderer.shadowMap.enabled =
-        true;
+    renderer.shadowMap.type =
+        THREE.PCFSoftShadowMap;
 
-    container.appendChild(
-        renderer.domElement
-    );
+    container.innerHTML = "";
+    container.appendChild(renderer.domElement);
 
 
-    /* LIGHT */
+    /* =====================================================
+       LIGHTING
+       ===================================================== */
 
     scene.add(
         new THREE.HemisphereLight(
             0xffffff,
-            0x315d3b,
+            0x15251b,
             2
         )
     );
 
-    const sun =
-        new THREE.DirectionalLight(
-            0xffffff,
-            2.5
-        );
+    const sun = new THREE.DirectionalLight(
+        0xffffff,
+        2.2
+    );
 
     sun.position.set(
-        10,
-        25,
+        15,
+        30,
         10
     );
 
@@ -962,58 +736,172 @@ function initializeMatch() {
     scene.add(sun);
 
 
-    /* FIELD */
+    /* =====================================================
+       STADIUM
+       ===================================================== */
 
-    const fieldWidth = 22;
-    const fieldLength = 34;
+    createStadium();
 
-    const field =
-        new THREE.Mesh(
-            new THREE.BoxGeometry(
-                fieldWidth,
-                0.25,
-                fieldLength
-            ),
-            new THREE.MeshStandardMaterial({
-                color: 0x208548,
-                roughness: 0.9
-            })
+
+    /* =====================================================
+       PLAYERS
+       ===================================================== */
+
+    controlledPlayer =
+        createPlayer3D(
+            0x111111,
+            "Cristiano Ronaldo"
         );
 
-    field.position.y = -0.15;
+    scene.add(controlledPlayer);
+
+    controlledPlayer.position.set(
+        0,
+        0,
+        8
+    );
+
+
+    const teammatePositions = [
+        [-6, 5],
+        [6, 5],
+        [-4, -2],
+        [4, -3],
+        [0, -8]
+    ];
+
+    teammates = [];
+
+    teammatePositions.forEach((pos, index) => {
+        const teammate =
+            createPlayer3D(
+                0x1464d2,
+                `Teammate ${index + 1}`
+            );
+
+        teammate.position.set(
+            pos[0],
+            0,
+            pos[1]
+        );
+
+        teammates.push(teammate);
+    });
+
+
+    const opponentPositions = [
+        [-5, -1],
+        [5, -2],
+        [-3, -7],
+        [3, -8],
+        [0, -12],
+        [-7, -9]
+    ];
+
+    opponents = [];
+
+    opponentPositions.forEach((pos, index) => {
+        const opponent =
+            createPlayer3D(
+                0xd51f35,
+                `Rival ${index + 1}`
+            );
+
+        opponent.position.set(
+            pos[0],
+            0,
+            pos[1]
+        );
+
+        opponents.push(opponent);
+    });
+
+
+    /* =====================================================
+       BALL
+       ===================================================== */
+
+    ball = new THREE.Mesh(
+        new THREE.SphereGeometry(
+            0.32,
+            24,
+            24
+        ),
+        new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            roughness: 0.35
+        })
+    );
+
+    ball.castShadow = true;
+
+    scene.add(ball);
+
+    resetPositions();
+
+
+    /* =====================================================
+       CONTROLS
+       ===================================================== */
+
+    setupTouchControls();
+
+    requestAnimationFrame(matchLoop);
+}
+
+
+/* =========================================================
+   STADIUM CREATION
+   ========================================================= */
+
+function createStadium() {
+
+    const fieldWidth = 24;
+    const fieldLength = 40;
+
+
+    /* FIELD */
+
+    const field = new THREE.Mesh(
+        new THREE.PlaneGeometry(
+            fieldWidth,
+            fieldLength
+        ),
+        new THREE.MeshStandardMaterial({
+            color: 0x176b38,
+            roughness: 0.9
+        })
+    );
+
+    field.rotation.x = -Math.PI / 2;
     field.receiveShadow = true;
 
     scene.add(field);
 
 
-    /* FIELD STRIPES */
+    /* STRIPES */
 
     for (
         let z = -fieldLength / 2;
         z < fieldLength / 2;
         z += 4
     ) {
+        const stripe = new THREE.Mesh(
+            new THREE.PlaneGeometry(
+                fieldWidth,
+                4
+            ),
+            new THREE.MeshBasicMaterial({
+                color:
+                    Math.floor(
+                        (z + fieldLength / 2) / 4
+                    ) % 2
+                        ? 0x196f3c
+                        : 0x1b7741
+            })
+        );
 
-        const stripe =
-            new THREE.Mesh(
-                new THREE.PlaneGeometry(
-                    fieldWidth,
-                    4
-                ),
-                new THREE.MeshBasicMaterial({
-                    color:
-                        Math.floor(
-                            (z + fieldLength / 2) /
-                            4
-                        ) % 2 === 0
-                            ? 0x208548
-                            : 0x1c7a40
-                })
-            );
-
-        stripe.rotation.x =
-            -Math.PI / 2;
-
+        stripe.rotation.x = -Math.PI / 2;
         stripe.position.set(
             0,
             0.01,
@@ -1024,64 +912,66 @@ function initializeMatch() {
     }
 
 
-    /* FIELD LINES */
+    /* TOUCHLINE */
 
-    createMatchLine(
+    createLine(
         0,
-        -17,
-        22,
+        -20,
+        24,
         0.12
     );
 
-    createMatchLine(
+    createLine(
         0,
-        17,
-        22,
+        20,
+        24,
         0.12
     );
 
-    createMatchLine(
-        -11,
+    createLine(
+        -12,
         0,
         0.12,
-        34
+        40
     );
 
-    createMatchLine(
-        11,
+    createLine(
+        12,
         0,
         0.12,
-        34
+        40
     );
 
-    createMatchLine(
+
+    /* HALF WAY */
+
+    createLine(
         0,
         0,
-        22,
+        24,
         0.08
     );
 
 
     /* CENTER CIRCLE */
 
-    const points = [];
+    const circlePoints = [];
 
     for (
         let i = 0;
         i <= 64;
         i++
     ) {
-
         const angle =
-            i / 64 *
+            (i / 64) *
             Math.PI *
             2;
 
-        points.push(
+        circlePoints.push(
             new THREE.Vector3(
-                Math.cos(angle) * 3,
+                Math.cos(angle) * 3.2,
                 0.04,
-                Math.sin(angle) * 3
+                Math.sin(angle) * 3.2
             )
         );
     }
@@ -1089,7 +979,7 @@ function initializeMatch() {
     const centerCircle =
         new THREE.LineLoop(
             new THREE.BufferGeometry()
-                .setFromPoints(points),
+                .setFromPoints(circlePoints),
             new THREE.LineBasicMaterial({
                 color: 0xffffff
             })
@@ -1098,149 +988,73 @@ function initializeMatch() {
     scene.add(centerCircle);
 
 
+    /* PENALTY BOXES */
+
+    createPenaltyBox(-15);
+    createPenaltyBox(15);
+
+
     /* GOALS */
 
-    createGoal(
-        -17
-    );
-
-    createGoal(
-        17
-    );
+    createGoal(-20);
+    createGoal(20);
 
 
-    /* PLAYERS */
+    /* STANDS */
 
-    player =
-        createPlayer3D(
-            0xffffff,
-            "Cristiano Ronaldo"
-        );
-
-    player.position.set(
+    createStand(
+        -15,
         0,
+        3,
+        44
+    );
+
+    createStand(
+        15,
         0,
-        7
+        3,
+        44
     );
 
-
-    const teammatePositions = [
-        [-5, 0, 3],
-        [5, 0, 1],
-        [-3, 0, -4],
-        [4, 0, -7]
-    ];
-
-    teammates = [];
-
-    teammatePositions.forEach(
-        position => {
-
-            const p =
-                createPlayer3D(
-                    0x1769aa,
-                    "Teammate"
-                );
-
-            p.position.set(
-                position[0],
-                position[1],
-                position[2]
-            );
-
-            teammates.push(p);
-        }
-    );
-
-
-    const opponentPositions = [
-        [-4, 0, -3],
-        [4, 0, -5],
-        [0, 0, -9],
-        [-5, 0, -11],
-        [5, 0, -12]
-    ];
-
-    opponents = [];
-
-    opponentPositions.forEach(
-        position => {
-
-            const p =
-                createPlayer3D(
-                    0xd62828,
-                    "Opponent"
-                );
-
-            p.position.set(
-                position[0],
-                position[1],
-                position[2]
-            );
-
-            opponents.push(p);
-        }
-    );
-
-
-    /* BALL */
-
-    ball =
-        new THREE.Mesh(
-            new THREE.SphereGeometry(
-                0.3,
-                24,
-                24
-            ),
-            new THREE.MeshStandardMaterial({
-                color: 0xffffff,
-                roughness: 0.4
-            })
-        );
-
-    ball.position.set(
+    createStand(
         0,
-        0.35,
-        5.5
+        -23,
+        30,
+        3
     );
 
-    ball.castShadow = true;
+    createStand(
+        0,
+        23,
+        30,
+        3
+    );
 
-    scene.add(ball);
 
+    /* FLOODLIGHTS */
 
-    setupMatchControls();
-
-    gameLoop();
+    createFloodlight(-17, -17);
+    createFloodlight(17, -17);
+    createFloodlight(-17, 17);
+    createFloodlight(17, 17);
 }
 
 
-/* =========================================================
-   MATCH FIELD LINE
-   ========================================================= */
-
-function createMatchLine(
-    x,
-    z,
-    width,
-    depth
-) {
-
-    const line =
-        new THREE.Mesh(
-            new THREE.BoxGeometry(
-                width,
-                0.04,
-                depth
-            ),
-            new THREE.MeshBasicMaterial({
-                color: 0xffffff
-            })
-        );
+function createLine(x, z, width, depth) {
+    const line = new THREE.Mesh(
+        new THREE.BoxGeometry(
+            width,
+            0.035,
+            depth
+        ),
+        new THREE.MeshBasicMaterial({
+            color: 0xffffff
+        })
+    );
 
     line.position.set(
         x,
-        0.03,
+        0.035,
         z
     );
 
@@ -1248,95 +1062,208 @@ function createMatchLine(
 }
 
 
-/* =========================================================
-   GOAL
-   ========================================================= */
+function createPenaltyBox(z) {
+
+    const depth = 6;
+    const width = 14;
+
+    const front =
+        z > 0
+            ? z - depth
+            : z + depth;
+
+    createLine(
+        0,
+        front,
+        width,
+        0.07
+    );
+
+    createLine(
+        -7,
+        (z + front) / 2,
+        0.07,
+        depth
+    );
+
+    createLine(
+        7,
+        (z + front) / 2,
+        0.07,
+        depth
+    );
+}
+
 
 function createGoal(z) {
 
-    const group =
-        new THREE.Group();
+    const group = new THREE.Group();
 
     const material =
         new THREE.MeshStandardMaterial({
             color: 0xffffff
         });
 
-    const left =
-        new THREE.Mesh(
-            new THREE.BoxGeometry(
-                0.15,
-                2.5,
-                0.15
-            ),
-            material
-        );
+    const post1 = new THREE.Mesh(
+        new THREE.BoxGeometry(
+            0.16,
+            2.7,
+            0.16
+        ),
+        material
+    );
 
-    const right =
-        left.clone();
+    const post2 = post1.clone();
 
-    const crossbar =
-        new THREE.Mesh(
-            new THREE.BoxGeometry(
-                5,
-                0.15,
-                0.15
-            ),
-            material
-        );
+    const crossbar = new THREE.Mesh(
+        new THREE.BoxGeometry(
+            5.2,
+            0.16,
+            0.16
+        ),
+        material
+    );
 
-    left.position.set(
-        -2.5,
-        1.25,
+    post1.position.set(
+        -2.6,
+        1.35,
         0
     );
 
-    right.position.set(
-        2.5,
-        1.25,
+    post2.position.set(
+        2.6,
+        1.35,
         0
     );
 
-    crossbar.position.y =
-        2.5;
+    crossbar.position.y = 2.7;
 
     group.add(
-        left,
-        right,
+        post1,
+        post2,
         crossbar
     );
 
-    group.position.z =
-        z;
+    group.position.z = z;
 
     scene.add(group);
 }
 
 
-/* =========================================================
-   3D PLAYER
-   ========================================================= */
-
-function createPlayer3D(
-    color,
-    name
+function createStand(
+    x,
+    z,
+    width,
+    depth
 ) {
+    const stand = new THREE.Mesh(
+        new THREE.BoxGeometry(
+            width,
+            4,
+            depth
+        ),
+        new THREE.MeshStandardMaterial({
+            color: 0x202a35,
+            roughness: 0.8
+        })
+    );
 
-    const group =
-        new THREE.Group();
+    stand.position.set(
+        x,
+        2,
+        z
+    );
 
-    const body =
-        new THREE.Mesh(
-            new THREE.CapsuleGeometry(
-                0.45,
-                0.8,
-                4,
-                10
+    scene.add(stand);
+
+
+    /* SEAT ROWS */
+
+    for (
+        let y = 1;
+        y < 4;
+        y += 0.75
+    ) {
+        const row = new THREE.Mesh(
+            new THREE.BoxGeometry(
+                width - 0.4,
+                0.12,
+                depth - 0.4
             ),
             new THREE.MeshStandardMaterial({
-                color
+                color: 0x364453
             })
         );
+
+        row.position.set(
+            x,
+            y,
+            z
+        );
+
+        scene.add(row);
+    }
+}
+
+
+function createFloodlight(x, z) {
+
+    const pole = new THREE.Mesh(
+        new THREE.CylinderGeometry(
+            0.12,
+            0.18,
+            10,
+            12
+        ),
+        new THREE.MeshStandardMaterial({
+            color: 0x3c4652
+        })
+    );
+
+    pole.position.set(
+        x,
+        5,
+        z
+    );
+
+    scene.add(pole);
+
+
+    const light = new THREE.PointLight(
+        0xffffff,
+        18,
+        30
+    );
+
+    light.position.set(
+        x,
+        10,
+        z
+    );
+
+    scene.add(light);
+}
+
+
+/* =========================================================
+   PLAYER MODEL
+   ========================================================= */
+
+function createPlayer3D(color, name) {
+
+    const group = new THREE.Group();
+
+    const body = new THREE.Mesh(
+        new THREE.CapsuleGeometry(
+            0.43,
+            0.85,
+            4,
+            10
+        ),
+        new THREE.MeshStandardMaterial({
+            color
+        })
+    );
 
     body.position.y = 1;
 
@@ -1345,79 +1272,108 @@ function createPlayer3D(
     group.add(body);
 
 
-    const head =
-        new THREE.Mesh(
-            new THREE.SphereGeometry(
-                0.3,
-                16,
-                16
-            ),
-            new THREE.MeshStandardMaterial({
-                color: 0xd69b73
-            })
-        );
+    const head = new THREE.Mesh(
+        new THREE.SphereGeometry(
+            0.3,
+            16,
+            16
+        ),
+        new THREE.MeshStandardMaterial({
+            color: 0xc88962
+        })
+    );
 
-    head.position.y =
-        1.85;
+    head.position.y = 1.85;
 
     head.castShadow = true;
 
     group.add(head);
 
-    group.userData.name =
-        name;
 
-    scene.add(group);
+    group.userData.name = name;
 
     return group;
 }
 
 
 /* =========================================================
-   START MATCH
+   RESET MATCH
    ========================================================= */
 
-function startMatch() {
+function resetPositions() {
 
-    if (!renderer)
-        initializeMatch();
+    if (!controlledPlayer || !ball)
+        return;
 
-    gameStarted = true;
+    controlledPlayer.position.set(
+        0,
+        0,
+        8
+    );
 
-    homeScore = 0;
-    awayScore = 0;
+    controlledPlayer.rotation.y = 0;
 
-    matchTime = 180;
-    stamina = 100;
+    teammates.forEach((p, i) => {
+        const positions = [
+            [-6, 5],
+            [6, 5],
+            [-4, -2],
+            [4, -3],
+            [0, -8]
+        ];
 
-    resetBall();
+        p.position.set(
+            positions[i][0],
+            0,
+            positions[i][1]
+        );
+    });
 
-    updateScore();
-    updateMatchTimer();
+    opponents.forEach((p, i) => {
+        const positions = [
+            [-5, -1],
+            [5, -2],
+            [-3, -7],
+            [3, -8],
+            [0, -12],
+            [-7, -9]
+        ];
 
-    const start =
-        $("start-screen");
+        p.position.set(
+            positions[i][0],
+            0,
+            positions[i][1]
+        );
+    });
 
-    if (start)
-        start.style.display =
-            "none";
+    ballOwner = controlledPlayer;
 
-    showNotification(
-        "MATCH STARTED"
+    ballVelocity.set(0, 0, 0);
+
+    attachBallToPlayer();
+}
+
+
+function attachBallToPlayer() {
+
+    if (!ball || !controlledPlayer)
+        return;
+
+    ball.position.set(
+        controlledPlayer.position.x,
+        0.35,
+        controlledPlayer.position.z - 1
     );
 }
 
 
-window.startGame = startMatch;
-
-
 /* =========================================================
-   MATCH MOVEMENT
+   PLAYER MOVEMENT
    ========================================================= */
 
 function updatePlayer(delta) {
 
-    if (!gameStarted || !player)
+    if (!gameStarted || !controlledPlayer)
         return;
 
     let x = 0;
@@ -1427,141 +1383,110 @@ function updatePlayer(delta) {
         save.settings.controls;
 
     if (
-        keys[
-            controls.left
-        ] ||
+        keys[controls.left] ||
         keys["arrowleft"]
     )
         x -= 1;
 
     if (
-        keys[
-            controls.right
-        ] ||
+        keys[controls.right] ||
         keys["arrowright"]
     )
         x += 1;
 
     if (
-        keys[
-            controls.up
-        ] ||
+        keys[controls.up] ||
         keys["arrowup"]
     )
         z -= 1;
 
     if (
-        keys[
-            controls.down
-        ] ||
+        keys[controls.down] ||
         keys["arrowdown"]
     )
         z += 1;
 
-
     x += mobileInput.x;
     z += mobileInput.y;
 
-
-    const length =
+    const magnitude =
         Math.hypot(x, z);
 
-    if (length <= 0)
-        return;
+    if (magnitude > 0) {
+        x /= magnitude;
+        z /= magnitude;
 
-    x /= length;
-    z /= length;
+        const sprint =
+            keys[controls.sprint] ||
+            mobileInput.sprint;
 
+        let speed = 5.2;
 
-    const sprint =
-        keys[
-            controls.sprint
-        ] ||
-        mobileInput.sprint;
+        if (sprint && stamina > 0) {
+            speed = 8.2;
+            stamina -= delta * 25;
+        } else {
+            stamina += delta * 15;
+        }
 
+        stamina = THREE.MathUtils.clamp(
+            stamina,
+            0,
+            100
+        );
 
-    let speed = 5.5;
+        controlledPlayer.position.x +=
+            x * speed * delta;
 
-    if (
-        sprint &&
-        stamina > 0
-    ) {
+        controlledPlayer.position.z +=
+            z * speed * delta;
 
-        speed = 8.5;
+        controlledPlayer.position.x =
+            THREE.MathUtils.clamp(
+                controlledPlayer.position.x,
+                -10.8,
+                10.8
+            );
 
-        stamina -=
-            delta * 22;
+        controlledPlayer.position.z =
+            THREE.MathUtils.clamp(
+                controlledPlayer.position.z,
+                -18.5,
+                18.5
+            );
 
-    } else {
-
-        stamina +=
-            delta * 12;
+        controlledPlayer.rotation.y =
+            Math.atan2(x, z);
     }
 
-
-    stamina =
-        Math.max(
-            0,
-            Math.min(
-                100,
-                stamina
-            )
-        );
+    if (ballOwner === controlledPlayer) {
+        attachBallToPlayer();
+    } else {
+        tryTakeBall();
+    }
+}
 
 
-    player.position.x +=
-        x * speed * delta;
+/* =========================================================
+   BALL CONTROL
+   ========================================================= */
 
-    player.position.z +=
-        z * speed * delta;
+function tryTakeBall() {
 
-
-    player.position.x =
-        THREE.MathUtils.clamp(
-            player.position.x,
-            -9.8,
-            9.8
-        );
-
-    player.position.z =
-        THREE.MathUtils.clamp(
-            player.position.z,
-            -15.8,
-            15.8
-        );
-
-
-    player.rotation.y =
-        Math.atan2(
-            x,
-            z
-        );
-
-
-    /* BALL CONTROL */
+    if (!ball)
+        return;
 
     const distance =
-        player.position.distanceTo(
+        controlledPlayer.position.distanceTo(
             ball.position
         );
 
     if (
-        distance < 1.7 &&
-        !shooting &&
-        !passing
+        distance < 1.45 &&
+        ballVelocity.length() < 0.5
     ) {
-
-        ball.position.x =
-            player.position.x -
-            Math.sin(
-                player.rotation.y
-            ) * 0.9;
-
-        ball.position.z =
-            player.position.z -
-            Math.cos(
-                player.rotation.y
-            ) * 0.9;
+        ballOwner = controlledPlayer;
+        attachBallToPlayer();
     }
 }
 
@@ -1572,17 +1497,29 @@ function updatePlayer(delta) {
 
 function shoot() {
 
-    if (!gameStarted || shooting)
-        return;
-
     if (
-        player.position.distanceTo(
-            ball.position
-        ) > 2
+        !gameStarted ||
+        !controlledPlayer ||
+        !ball ||
+        actionLocked
     )
         return;
 
-    shooting = true;
+    const distance =
+        controlledPlayer.position.distanceTo(
+            ball.position
+        );
+
+    if (
+        ballOwner !== controlledPlayer &&
+        distance > 1.8
+    ) {
+        notify("Get closer to the ball!");
+        return;
+    }
+
+    actionLocked = true;
+    ballOwner = null;
 
     const direction =
         new THREE.Vector3(
@@ -1592,24 +1529,23 @@ function shoot() {
         );
 
     direction.applyQuaternion(
-        player.quaternion
+        controlledPlayer.quaternion
     );
 
-    const start =
-        ball.position.clone();
-
-    const target =
-        start.clone().add(
-            direction.multiplyScalar(15)
-        );
-
-    animateBall(
-        start,
-        target,
-        0.5,
-        "shoot"
+    ballVelocity.copy(
+        direction.multiplyScalar(18)
     );
+
+    ballVelocity.y = 4.5;
+
+    notify("SHOT!");
+
+    setTimeout(() => {
+        actionLocked = false;
+    }, 350);
 }
+
+window.shoot = shoot;
 
 
 /* =========================================================
@@ -1618,64 +1554,71 @@ function shoot() {
 
 function pass() {
 
-    if (!gameStarted || passing)
-        return;
-
     if (
-        player.position.distanceTo(
-            ball.position
-        ) > 2
+        !gameStarted ||
+        !controlledPlayer ||
+        !ball ||
+        actionLocked
     )
         return;
+
+    const distance =
+        controlledPlayer.position.distanceTo(
+            ball.position
+        );
+
+    if (
+        ballOwner !== controlledPlayer &&
+        distance > 1.8
+    ) {
+        notify("Get the ball first!");
+        return;
+    }
 
     if (!teammates.length)
         return;
 
-    passing = true;
+    actionLocked = true;
+    ballOwner = null;
 
-    let closest =
+    let target =
         teammates[0];
 
-    let closestDistance =
-        Infinity;
+    let bestDistance = Infinity;
 
-    teammates.forEach(
-        teammate => {
+    teammates.forEach(teammate => {
 
-            const distance =
-                player.position.distanceTo(
-                    teammate.position
-                );
+        const d =
+            controlledPlayer.position.distanceTo(
+                teammate.position
+            );
 
-            if (
-                distance <
-                closestDistance
-            ) {
-
-                closestDistance =
-                    distance;
-
-                closest =
-                    teammate;
-            }
+        if (d < bestDistance) {
+            bestDistance = d;
+            target = teammate;
         }
+    });
+
+    const direction =
+        target.position
+            .clone()
+            .sub(ball.position)
+            .normalize();
+
+    ballVelocity.copy(
+        direction.multiplyScalar(12)
     );
 
-    const start =
-        ball.position.clone();
+    ballVelocity.y = 1.2;
 
-    const target =
-        closest.position.clone();
+    notify("PASS!");
 
-    target.y = 0.35;
-
-    animateBall(
-        start,
-        target,
-        0.4,
-        "pass"
-    );
+    setTimeout(() => {
+        actionLocked = false;
+    }, 250);
 }
+
+window.pass = pass;
 
 
 /* =========================================================
@@ -1684,14 +1627,10 @@ function pass() {
 
 function dribble() {
 
-    if (!gameStarted)
+    if (!gameStarted || !controlledPlayer)
         return;
 
-    if (
-        player.position.distanceTo(
-            ball.position
-        ) > 2
-    )
+    if (ballOwner !== controlledPlayer)
         return;
 
     const direction =
@@ -1702,153 +1641,177 @@ function dribble() {
         );
 
     direction.applyQuaternion(
-        player.quaternion
+        controlledPlayer.quaternion
     );
 
-    ball.position.x =
-        player.position.x +
-        direction.x * 1.1;
-
-    ball.position.z =
-        player.position.z +
-        direction.z * 1.1;
-
-    showNotification(
-        "DRIBBLE!"
+    controlledPlayer.position.add(
+        direction.multiplyScalar(0.65)
     );
+
+    controlledPlayer.position.x =
+        THREE.MathUtils.clamp(
+            controlledPlayer.position.x,
+            -10.8,
+            10.8
+        );
+
+    controlledPlayer.position.z =
+        THREE.MathUtils.clamp(
+            controlledPlayer.position.z,
+            -18.5,
+            18.5
+        );
+
+    attachBallToPlayer();
+
+    notify("DRIBBLE!");
 }
+
+window.dribble = dribble;
 
 
 /* =========================================================
-   BALL ANIMATION
+   BALL PHYSICS
    ========================================================= */
 
-function animateBall(
-    start,
-    target,
-    duration,
-    type
-) {
-
-    const startTime =
-        performance.now();
-
-    function animate() {
-
-        const progress =
-            Math.min(
-                (
-                    performance.now() -
-                    startTime
-                ) /
-                (duration * 1000),
-                1
-            );
-
-        ball.position.lerpVectors(
-            start,
-            target,
-            progress
-        );
-
-        ball.position.y =
-            0.35 +
-            Math.sin(
-                progress * Math.PI
-            ) *
-            (
-                type === "shoot"
-                    ? 1.4
-                    : 0.4
-            );
-
-        if (progress < 1) {
-
-            requestAnimationFrame(
-                animate
-            );
-
-        } else {
-
-            ball.position.y =
-                0.35;
-
-            if (type === "shoot")
-                checkGoal();
-
-            if (type === "pass") {
-
-                passing = false;
-
-                setTimeout(
-                    () => {
-
-                        ball.position.copy(
-                            target
-                        );
-
-                    },
-                    50
-                );
-
-            } else {
-
-                shooting = false;
-            }
-        }
-    }
-
-    animate();
-}
-
-
-/* =========================================================
-   GOAL
-   ========================================================= */
-
-function checkGoal() {
-
-    if (
-        ball.position.z <
-        -17.5
-    ) {
-
-        homeScore++;
-
-        showGoal(
-            "CRISTIANO RONALDO"
-        );
-
-        resetBall();
-
-    } else if (
-        ball.position.z >
-        17.5
-    ) {
-
-        awayScore++;
-
-        updateScore();
-
-        resetBall();
-    }
-}
-
-
-function resetBall() {
+function updateBall(delta) {
 
     if (!ball)
         return;
 
-    ball.position.set(
-        player
-            ? player.position.x
-            : 0,
-        0.35,
-        player
-            ? player.position.z - 1
-            : 5.5
+    if (ballOwner === controlledPlayer) {
+        attachBallToPlayer();
+        return;
+    }
+
+    if (ballVelocity.lengthSq() <= 0.001)
+        return;
+
+    ball.position.addScaledVector(
+        ballVelocity,
+        delta
     );
+
+    ballVelocity.multiplyScalar(
+        Math.pow(0.35, delta)
+    );
+
+    ballVelocity.y -=
+        18 * delta;
+
+    if (ball.position.y <= 0.35) {
+        ball.position.y = 0.35;
+
+        ballVelocity.y *= -0.35;
+
+        if (Math.abs(ballVelocity.y) < 0.5)
+            ballVelocity.y = 0;
+    }
+
+    ball.rotation.x += delta * 8;
+    ball.rotation.z += delta * 6;
+
+    checkBallPickup();
+    checkGoal();
+}
+
+
+function checkBallPickup() {
+
+    if (
+        !controlledPlayer ||
+        !ball
+    )
+        return;
+
+    if (
+        ballVelocity.length() > 2
+    )
+        return;
+
+    const distance =
+        controlledPlayer.position.distanceTo(
+            ball.position
+        );
+
+    if (distance < 1.25) {
+        ballOwner = controlledPlayer;
+        ballVelocity.set(0, 0, 0);
+        attachBallToPlayer();
+    }
+}
+
+
+/* =========================================================
+   GOAL DETECTION
+   ========================================================= */
+
+function checkGoal() {
+
+    if (!ball)
+        return;
+
+    if (
+        ball.position.z <= -20.5 &&
+        Math.abs(ball.position.x) < 2.7
+    ) {
+        homeScore++;
+
+        updateScore();
+
+        showGoal("CRISTIANO RONALDO");
+
+        resetAfterGoal();
+
+        return;
+    }
+
+    if (
+        ball.position.z >= 20.5 &&
+        Math.abs(ball.position.x) < 2.7
+    ) {
+        awayScore++;
+
+        updateScore();
+
+        showGoal("RIVAL FC");
+
+        resetAfterGoal();
+    }
+}
+
+
+function resetAfterGoal() {
+
+    ballOwner = controlledPlayer;
+    ballVelocity.set(0, 0, 0);
+
+    controlledPlayer.position.set(
+        0,
+        0,
+        8
+    );
+
+    attachBallToPlayer();
+}
+
+
+function showGoal(scorer) {
+
+    const message = $("goal-message");
+
+    if (!message)
+        return;
+
+    if ($("goal-scorer"))
+        $("goal-scorer").textContent =
+            scorer;
+
+    message.classList.add("show");
+
+    setTimeout(() => {
+        message.classList.remove("show");
+    }, 1800);
 }
 
 
@@ -1869,63 +1832,24 @@ function updateScore() {
 
 
 /* =========================================================
-   GOAL MESSAGE
-   ========================================================= */
-
-function showGoal(
-    scorer
-) {
-
-    updateScore();
-
-    const message =
-        $("goal-message");
-
-    if (!message)
-        return;
-
-    if ($("goal-scorer"))
-        $("goal-scorer").textContent =
-            scorer;
-
-    message.classList.add(
-        "show"
-    );
-
-    setTimeout(
-        () => {
-
-            message.classList.remove(
-                "show"
-            );
-
-        },
-        1800
-    );
-}
-
-
-/* =========================================================
    TIMER
    ========================================================= */
 
 function updateMatchTimer() {
 
-    if ($("timer")) {
+    const timer = $("timer");
 
-        const minutes =
-            Math.floor(
-                matchTime / 60
-            );
+    if (!timer)
+        return;
 
-        const seconds =
-            Math.floor(
-                matchTime % 60
-            );
+    const minutes =
+        Math.floor(matchTime / 60);
 
-        $("timer").textContent =
-            `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-    }
+    const seconds =
+        Math.floor(matchTime % 60);
+
+    timer.textContent =
+        `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
 
@@ -1940,20 +1864,19 @@ function updateTimer(delta) {
 
         matchTime = 0;
 
-        gameStarted = false;
-
         updateMatchTimer();
 
-        setTimeout(
-            () => {
+        gameStarted = false;
 
-                alert(
-                    `FULL TIME!\n${homeScore} - ${awayScore}`
-                );
+        setTimeout(() => {
 
-            },
-            100
-        );
+            alert(
+                `FULL TIME!\n\n${homeScore} - ${awayScore}`
+            );
+
+            leaveMatch();
+
+        }, 100);
 
         return;
     }
@@ -1968,16 +1891,145 @@ function updateTimer(delta) {
 
 function updateStamina() {
 
-    if ($("stamina-fill")) {
+    const fill = $("stamina-fill");
 
-        $("stamina-fill").style.width =
+    if (fill)
+        fill.style.width =
             `${stamina}%`;
-    }
 }
 
 
 /* =========================================================
-   KEYBOARD
+   AI
+   ========================================================= */
+
+function updateOpponents(delta) {
+
+    if (!gameStarted)
+        return;
+
+    opponents.forEach((opponent, index) => {
+
+        const target =
+            index === 0 && ball
+                ? ball.position
+                : controlledPlayer.position;
+
+        const direction =
+            target.clone()
+                .sub(opponent.position);
+
+        direction.y = 0;
+
+        const distance =
+            direction.length();
+
+        if (
+            distance > 1.7 &&
+            distance < 13
+        ) {
+            direction.normalize();
+
+            opponent.position.addScaledVector(
+                direction,
+                delta * 1.8
+            );
+
+            opponent.rotation.y =
+                Math.atan2(
+                    direction.x,
+                    direction.z
+                );
+        }
+
+        opponent.position.x =
+            THREE.MathUtils.clamp(
+                opponent.position.x,
+                -10.5,
+                10.5
+            );
+
+        opponent.position.z =
+            THREE.MathUtils.clamp(
+                opponent.position.z,
+                -18.5,
+                18.5
+            );
+    });
+}
+
+
+/* =========================================================
+   CAMERA
+   ========================================================= */
+
+function updateCamera() {
+
+    if (
+        !camera ||
+        !controlledPlayer
+    )
+        return;
+
+    const desiredX =
+        controlledPlayer.position.x;
+
+    const desiredZ =
+        controlledPlayer.position.z + 13;
+
+    camera.position.x +=
+        (desiredX - camera.position.x) *
+        0.08;
+
+    camera.position.z +=
+        (desiredZ - camera.position.z) *
+        0.08;
+
+    camera.lookAt(
+        controlledPlayer.position.x,
+        0,
+        controlledPlayer.position.z
+    );
+}
+
+
+/* =========================================================
+   MATCH LOOP
+   ========================================================= */
+
+function matchLoop() {
+
+    requestAnimationFrame(matchLoop);
+
+    if (!renderer)
+        return;
+
+    const now = performance.now();
+
+    const delta =
+        Math.min(
+            (now - previousFrame) / 1000,
+            0.05
+        );
+
+    previousFrame = now;
+
+    updatePlayer(delta);
+    updateBall(delta);
+    updateOpponents(delta);
+    updateTimer(delta);
+    updateStamina();
+    updateCamera();
+
+    renderer.render(
+        scene,
+        camera
+    );
+}
+
+
+/* =========================================================
+   KEYBOARD CONTROLS
    ========================================================= */
 
 window.addEventListener(
@@ -1989,28 +2041,27 @@ window.addEventListener(
 
         keys[key] = true;
 
-        if (
-            event.code === "Space"
-        ) {
-
+        if (event.code === "Space") {
             event.preventDefault();
-
-            if (gameStarted)
-                shoot();
+            shoot();
         }
 
         const controls =
             save.settings.controls;
 
         if (
-            key === controls.pass
-        )
+            key === controls.pass &&
+            key !== controls.shoot
+        ) {
             pass();
+        }
 
         if (
-            key === controls.dribble
-        )
+            key === controls.dribble &&
+            key !== controls.shoot
+        ) {
             dribble();
+        }
     }
 );
 
@@ -2030,21 +2081,16 @@ window.addEventListener(
    MOBILE CONTROLS
    ========================================================= */
 
-function setupMatchControls() {
+function setupTouchControls() {
 
-    const joystick =
-        $("joystick");
-
-    const stick =
-        $("joystick-stick");
+    const joystick = $("joystick");
+    const stick = $("joystick-stick");
 
     if (joystick && stick) {
 
         let active = false;
 
-        function moveJoystick(
-            touch
-        ) {
+        function moveJoystick(touch) {
 
             const rect =
                 joystick.getBoundingClientRect();
@@ -2066,14 +2112,12 @@ function setupMatchControls() {
                 centerY;
 
             const max =
-                rect.width / 2 -
-                25;
+                rect.width / 2 - 25;
 
             const distance =
                 Math.hypot(dx, dy);
 
             if (distance > max) {
-
                 dx =
                     dx / distance *
                     max;
@@ -2096,10 +2140,11 @@ function setupMatchControls() {
                 `${50 + mobileInput.y * 35}%`;
         }
 
-
         joystick.addEventListener(
             "touchstart",
             event => {
+
+                event.preventDefault();
 
                 active = true;
 
@@ -2107,24 +2152,22 @@ function setupMatchControls() {
                     event.touches[0]
                 );
             },
-            { passive: true }
+            {passive:false}
         );
-
 
         joystick.addEventListener(
             "touchmove",
             event => {
 
-                if (!active)
-                    return;
+                event.preventDefault();
 
-                moveJoystick(
-                    event.touches[0]
-                );
+                if (active)
+                    moveJoystick(
+                        event.touches[0]
+                    );
             },
-            { passive: true }
+            {passive:false}
         );
-
 
         joystick.addEventListener(
             "touchend",
@@ -2135,34 +2178,30 @@ function setupMatchControls() {
                 mobileInput.x = 0;
                 mobileInput.y = 0;
 
-                stick.style.left =
-                    "50%";
-
-                stick.style.top =
-                    "50%";
+                stick.style.left = "50%";
+                stick.style.top = "50%";
             }
         );
     }
 
 
-    setupTouchButton(
+    setupActionButton(
         "shoot-button",
         shoot
     );
 
-    setupTouchButton(
+    setupActionButton(
         "pass-button",
         pass
     );
 
-    setupTouchButton(
+    setupActionButton(
         "dribble-button",
         dribble
     );
 
 
-    const sprint =
-        $("sprint-button");
+    const sprint = $("sprint-button");
 
     if (sprint) {
 
@@ -2172,31 +2211,38 @@ function setupMatchControls() {
 
                 event.preventDefault();
 
-                mobileInput.sprint =
-                    true;
+                mobileInput.sprint = true;
             },
-            { passive: false }
+            {passive:false}
         );
 
         sprint.addEventListener(
             "touchend",
             () => {
+                mobileInput.sprint = false;
+            }
+        );
 
-                mobileInput.sprint =
-                    false;
+        sprint.addEventListener(
+            "mousedown",
+            () => {
+                mobileInput.sprint = true;
+            }
+        );
+
+        sprint.addEventListener(
+            "mouseup",
+            () => {
+                mobileInput.sprint = false;
             }
         );
     }
 }
 
 
-function setupTouchButton(
-    id,
-    callback
-) {
+function setupActionButton(id, callback) {
 
-    const button =
-        $(id);
+    const button = $(id);
 
     if (!button)
         return;
@@ -2209,10 +2255,8 @@ function setupTouchButton(
 
             callback();
         },
-        { passive: false }
+        {passive:false}
     );
-
-    /* Also allow mouse clicks on PC */
 
     button.addEventListener(
         "click",
@@ -2234,123 +2278,163 @@ function leaveMatch() {
 
     gameStarted = false;
 
-    const match =
-        $("match-screen");
+    const match = $("match-screen");
 
     if (match)
-        match.classList.remove(
-            "active"
-        );
+        match.classList.remove("active");
 
-    const home =
-        $("home-screen");
-
-    if (home)
-        home.classList.add(
-            "active"
-        );
-
-    const navigation =
-        $("navigation");
-
-    if (navigation)
-        navigation.classList.add(
-            "visible"
-        );
+    openPage("match-menu");
 }
 
-
-window.leaveMatch =
-    leaveMatch;
+window.leaveMatch = leaveMatch;
 
 
 /* =========================================================
-   CAMERA
+   SETTINGS
    ========================================================= */
 
-function updateCamera() {
+function setupSettings() {
 
-    if (!player || !camera)
-        return;
+    document
+        .querySelectorAll("[data-control]")
+        .forEach(input => {
 
-    const targetX =
-        player.position.x;
+            const control =
+                input.dataset.control;
 
-    const targetZ =
-        player.position.z + 13;
+            input.value =
+                save.settings.controls[control] || "";
 
-    camera.position.x +=
-        (
-            targetX -
-            camera.position.x
-        ) * 0.08;
+            input.addEventListener(
+                "change",
+                () => {
 
-    camera.position.z +=
-        (
-            targetZ -
-            camera.position.z
-        ) * 0.08;
+                    save.settings.controls[control] =
+                        input.value.toLowerCase();
 
-    camera.lookAt(
-        player.position.x,
-        0,
-        player.position.z
-    );
-}
+                    saveGame();
+
+                    notify("Keybind saved");
+                }
+            );
+        });
 
 
-/* =========================================================
-   GAME LOOP
-   ========================================================= */
+    const graphics =
+        $("graphics-setting");
 
-let previousTime =
-    performance.now();
+    if (graphics) {
 
+        graphics.value =
+            save.settings.graphics;
 
-function gameLoop() {
+        graphics.addEventListener(
+            "change",
+            () => {
 
-    requestAnimationFrame(
-        gameLoop
-    );
+                save.settings.graphics =
+                    graphics.value;
 
-    if (!renderer)
-        return;
+                saveGame();
 
-    const now =
-        performance.now();
-
-    const delta =
-        Math.min(
-            (now - previousTime) /
-            1000,
-            0.05
+                notify(
+                    `Graphics: ${graphics.value}`
+                );
+            }
         );
-
-    previousTime = now;
-
-    updatePlayer(delta);
-    updateTimer(delta);
-    updateStamina();
-    updateCamera();
-
-    if (ball) {
-
-        ball.rotation.x +=
-            delta * 5;
-
-        ball.rotation.z +=
-            delta * 3;
     }
-
-    renderer.render(
-        scene,
-        camera
-    );
 }
 
 
 /* =========================================================
-   WINDOW RESIZE
+   TEAM SELECTION
+   ========================================================= */
+
+function setupTeams() {
+
+    document
+        .querySelectorAll(".team-card")
+        .forEach(card => {
+
+            card.addEventListener(
+                "click",
+                () => {
+
+                    const name =
+                        card.querySelector("h2");
+
+                    if (!name)
+                        return;
+
+                    save.selectedTeam =
+                        name.textContent;
+
+                    saveGame();
+
+                    document
+                        .querySelectorAll(".team-card")
+                        .forEach(c =>
+                            c.classList.remove("selected")
+                        );
+
+                    card.classList.add("selected");
+
+                    notify(
+                        `${save.selectedTeam} selected`
+                    );
+                }
+            );
+        });
+}
+
+
+/* =========================================================
+   INITIALIZATION
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        updateCoinsUI();
+
+        renderSquad();
+
+        setupSettings();
+
+        setupTeams();
+
+        /* Fix the HTML's inline START button */
+
+        const startButton =
+            $("start-button");
+
+        if (startButton) {
+            startButton.onclick =
+                startMatch;
+        }
+
+        /* Fix pack button */
+
+        const packButton =
+            $("packButton");
+
+        if (packButton) {
+            packButton.onclick =
+                () => openPack("bronze");
+        }
+
+        /* Prepare Three.js */
+
+        if ($("game-container")) {
+            initializeMatch();
+        }
+    }
+);
+
+
+/* =========================================================
+   RESIZE
    ========================================================= */
 
 window.addEventListener(
@@ -2370,208 +2454,5 @@ window.addEventListener(
             window.innerWidth,
             window.innerHeight
         );
-    }
-);
-
-
-/* =========================================================
-   PAGE BUTTONS
-   ========================================================= */
-
-function setupNavigation() {
-
-    document
-        .querySelectorAll(
-            "[data-page]"
-        )
-        .forEach(
-            button => {
-
-                button.addEventListener(
-                    "click",
-                    () => {
-
-                        const page =
-                            button.dataset.page;
-
-                        showPage(page);
-                    }
-                );
-            }
-        );
-}
-
-
-function showPage(page) {
-
-    document
-        .querySelectorAll(
-            ".page-screen"
-        )
-        .forEach(
-            screen => {
-
-                screen.classList.remove(
-                    "active"
-                );
-            }
-        );
-
-    const target =
-        document.getElementById(
-            `${page}-screen`
-        );
-
-    if (target)
-        target.classList.add(
-            "active"
-        );
-
-    const home =
-        $("home-screen");
-
-    if (home)
-        home.classList.remove(
-            "active"
-        );
-
-    if (page === "squad")
-        renderSquad();
-
-    if (page === "shop")
-        renderShop();
-}
-
-
-function showHome() {
-
-    document
-        .querySelectorAll(
-            ".page-screen"
-        )
-        .forEach(
-            screen => {
-
-                screen.classList.remove(
-                    "active"
-                );
-            }
-        );
-
-    const home =
-        $("home-screen");
-
-    if (home)
-        home.classList.add(
-            "active"
-        );
-}
-
-
-/* =========================================================
-   SETTINGS
-   ========================================================= */
-
-function setupSettings() {
-
-    const controls =
-        save.settings.controls;
-
-    document
-        .querySelectorAll(
-            "[data-control]"
-        )
-        .forEach(
-            element => {
-
-                const control =
-                    element.dataset.control;
-
-                if (
-                    controls[control]
-                ) {
-
-                    element.value =
-                        controls[control];
-                }
-
-                element.addEventListener(
-                    "change",
-                    () => {
-
-                        controls[control] =
-                            element.value
-                                .toLowerCase();
-
-                        saveGame();
-
-                        showNotification(
-                            "Keybind saved"
-                        );
-                    }
-                );
-            }
-        );
-}
-
-
-/* =========================================================
-   INITIAL UI
-   ========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        updateCoinsUI();
-
-        renderSquad();
-
-        renderShop();
-
-        setupNavigation();
-
-        setupSettings();
-
-        const startButton =
-            $("start-button");
-
-        if (startButton) {
-
-            startButton.addEventListener(
-                "click",
-                startMatch
-            );
-        }
-
-
-        const leaveButton =
-            $("leave-match");
-
-        if (leaveButton) {
-
-            leaveButton.addEventListener(
-                "click",
-                leaveMatch
-            );
-        }
-
-
-        /* Current HTML pack button */
-
-        const packButton =
-            $("packButton");
-
-        if (packButton) {
-
-            packButton.onclick =
-                () => openPack("bronze");
-        }
-
-
-        /* Match controls */
-
-        if ($("game-container"))
-            initializeMatch();
     }
 );
