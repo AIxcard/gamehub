@@ -1,1 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+    <header class="navbar">
+        <div class="logo">GAME<span>HUB</span></div>
+
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#games">Games</a>
+        </nav>
+
+        <button class="search-btn" onclick="focusSearch()">🔍</button>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <div class="hero-content">
+                <p class="hero-label">WELCOME TO GAMEHUB</p>
+
+                <h1>PLAY.<br><span>HAVE FUN.</span></h1>
+
+                <p class="hero-description">
+                    Discover and play games directly in your browser.
+                    No downloads. No waiting.
+                </p>
+
+                <button class="play-button" onclick="scrollToGames()">
+                    EXPLORE GAMES
+                </button>
+            </div>
+        </section>
+
+        <section class="games-section" id="games">
+
+            <div class="section-header">
+                <div>
+                    <p class="section-label">OUR LIBRARY</p>
+                    <h2>Featured Games</h2>
+                </div>
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search games..."
+                    oninput="searchGames()"
+                >
+            </div>
+
+            <div class="game-grid" id="gameGrid">
+
+                <article class="game-card" data-name="Football">
+                    <div class="game-image football-image">
+                        ⚽
+                    </div>
+
+                    <div class="game-info">
+                        <span class="game-category">SPORTS</span>
+                        <h3>Football</h3>
+                        <p>Take the field and play.</p>
+
+                        <a href="football/index.html" class="game-button">
+                            PLAY NOW →
+                        </a>
+                    </div>
+                </article>
+
+                <article class="game-card coming-soon">
+                    <div class="game-image">
+                        🎯
+                    </div>
+
+                    <div class="game-info">
+                        <span class="game-category">COMING SOON</span>
+                        <h3>Game #2</h3>
+                        <p>Something new is coming.</p>
+                    </div>
+                </article>
+
+                <article class="game-card coming-soon">
+                    <div class="game-image">
+                        🧩
+                    </div>
+
+                    <div class="game-info">
+                        <span class="game-category">COMING SOON</span>
+                        <h3>Game #3</h3>
+                        <p>Something new is coming.</p>
+                    </div>
+                </article>
+
+            </div>
+
+            <p id="noResults" class="no-results">
+                No games found.
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="logo">GAME<span>HUB</span></div>
+        <p>Play anywhere. Have fun.</p>
+    </footer>
+
+    <script>
+        function scrollToGames() {
+            document.getElementById("games").scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+
+        function focusSearch() {
+            document.getElementById("search").focus();
+        }
+
+        function searchGames() {
+            const search = document
+                .getElementById("search")
+                .value
+                .toLowerCase();
+
+            const cards = document.querySelectorAll(".game-card");
+            let found = false;
+
+            cards.forEach(card => {
+                const name = card.dataset.name || "";
+
+                if (name.includes(search) || search === "") {
+                    card.style.display = "";
+                    found = true;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            document.getElementById("noResults").style.display =
+                found ? "none" : "block";
+        }
+    </script>
+
+</body>
+</html>
