@@ -1,155 +1,233 @@
 /* =========================================================
-   FOOTBALL LEGENDS - GAME ENGINE & NAVIGATION CONTROLLER
+   FOOTBALL LEGENDS 3D - COMPLETE ENGINE & ROUTER
    ========================================================= */
 
 // --- STATE MANAGEMENT ---
 const state = {
-  coins: 1000,
   squad: [
-    { id: 'p1', name: 'Haaland', pos: 'ST', rating: 91, x: 50, y: 20 },
-    { id: 'p2', name: 'De Bruyne', pos: 'CM', rating: 91, x: 50, y: 50 },
-    { id: 'p3', name: 'Van Dijk', pos: 'CB', rating: 89, x: 50, y: 75 },
-    { id: 'p4', name: 'Alisson', pos: 'GK', rating: 89, x: 50, y: 90 }
-  ],
-  collection: [
-    { id: 'p1', name: 'Haaland', pos: 'ST', rating: 91, club: 'Man City' },
-    { id: 'p2', name: 'De Bruyne', pos: 'CM', rating: 91, club: 'Man City' },
-    { id: 'p3', name: 'Van Dijk', pos: 'CB', rating: 89, club: 'Liverpool' },
-    { id: 'p4', name: 'Alisson', pos: 'GK', rating: 89, club: 'Liverpool' }
+    { name: 'HAALAND', rating: 91, pos: 'ST', image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=150', pac: 89, sho: 93, pas: 75 },
+    { name: 'DE BRUYNE', rating: 91, pos: 'CM', image: 'https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=150', pac: 76, sho: 88, pas: 93 }
   ]
 };
 
-// --- DOM ROUTING ENGINE ---
+// --- DOM ROUTER ---
 function navigateTo(pageId) {
   if (!pageId) return;
-  
-  // Hide all sections with class .page
-  const pages = document.querySelectorAll('.page');
-  pages.forEach(page => page.classList.remove('active'));
-
-  // Update navbar button highlights
-  const navButtons = document.querySelectorAll('.nav-links button');
-  navButtons.forEach(btn => {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links button').forEach(btn => {
     btn.classList.toggle('active', btn.getAttribute('data-page') === pageId);
   });
-
-  // Activate target section
-  const targetPage = document.getElementById(pageId);
-  if (targetPage) {
-    targetPage.classList.add('active');
-    window.scrollTo(0, 0);
-  }
+  const target = document.getElementById(pageId);
+  if (target) target.classList.add('active');
 }
 
-// --- RENDER FUNCTIONS ---
+// --- RENDER CARDS ---
 function renderSquad() {
-  const pitchContainer = document.querySelector('.pitch');
-  if (!pitchContainer) return;
-
-  pitchContainer.innerHTML = state.squad.map(player => `
-    <div class="formation-player" style="left: ${player.x}%; top: ${player.y}%;">
-      <div class="formation-player-dot">${player.rating}</div>
-      <span class="formation-player-name">${player.name}</span>
+  const container = document.getElementById('squad-container');
+  if (!container) return;
+  container.innerHTML = state.squad.map(player => `
+    <div class="fut-card">
+      <div class="card-top">
+        <div>
+          <div class="card-rating">${player.rating}</div>
+          <div class="card-position">${player.pos}</div>
+        </div>
+      </div>
+      <img class="card-image" src="${player.image}" alt="${player.name}" />
+      <div class="card-name">${player.name}</div>
+      <div class="card-stats">
+        <div>PAC <span>${player.pac}</span></div>
+        <div>SHO <span>${player.sho}</span></div>
+        <div>PAS <span>${player.pas}</span></div>
+      </div>
     </div>
   `).join('');
 }
 
-// --- MATCH CANVAS ENGINE ---
-class MatchEngine {
-  constructor() {
-    this.canvas = document.getElementById('match-canvas');
-    if (!this.canvas) return;
-    this.ctx = this.canvas.getContext('2d');
-    this.isRunning = false;
-    this.keys = {};
+// --- PACK ANIMATION SYSTEM ---
+function openPack() {
+  const overlay = document.getElementById('pack-overlay');
+  const newPlayer = {
+    name: 'MBAPPÉ', rating: 92, pos: 'ST',
+    image: 'https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=150',
+    pac: 97, sho: 89, pas: 80
+  };
 
-    this.player = { x: 200, y: 300, speed: 4, radius: 12 };
-    this.ball = { x: 400, y: 300, vx: 0, vy: 0, radius: 8 };
+  overlay.innerHTML = `
+    <div class="fut-card pack-card-reveal">
+      <div class="card-top">
+        <div>
+          <div class="card-rating">${newPlayer.rating}</div>
+          <div class="card-position">${newPlayer.pos}</div>
+        </div>
+      </div>
+      <img class="card-image" src="${newPlayer.image}" alt="${newPlayer.name}" />
+      <div class="card-name">${newPlayer.name}</div>
+      <div class="card-stats">
+        <div>PAC <span>${newPlayer.pac}</span></div>
+        <div>SHO <span>${newPlayer.sho}</span></div>
+        <div>PAS <span>${newPlayer.pas}</span></div>
+      </div>
+    </div>
+    <button class="claim-btn" id="close-pack-btn">CLAIM PLAYER</button>
+  `;
 
-    window.addEventListener('keydown', e => this.keys[e.key.toLowerCase()] = true);
-    window.addEventListener('keyup', e => this.keys[e.key.toLowerCase()] = false);
-  }
+  overlay.classList.add('active');
+  state.squad.push(newPlayer);
+  renderSquad();
 
-  start() {
-    if (!this.canvas) return;
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
-    this.isRunning = true;
-    
-    const matchScreen = document.querySelector('.match-screen');
-    if (matchScreen) matchScreen.classList.add('active');
-
-    requestAnimationFrame(this.loop.bind(this));
-  }
-
-  stop() {
-    this.isRunning = false;
-    const matchScreen = document.querySelector('.match-screen');
-    if (matchScreen) matchScreen.classList.remove('active');
-  }
-
-  update() {
-    if (this.keys['w'] || this.keys['arrowup']) this.player.y -= this.player.speed;
-    if (this.keys['s'] || this.keys['arrowdown']) this.player.y += this.player.speed;
-    if (this.keys['a'] || this.keys['arrowleft']) this.player.x -= this.player.speed;
-    if (this.keys['d'] || this.keys['arrowright']) this.player.x += this.player.speed;
-
-    // Ball movement
-    this.ball.x += this.ball.vx;
-    this.ball.y += this.ball.vy;
-    this.ball.vx *= 0.98;
-    this.ball.vy *= 0.98;
-
-    // Ball-player collision
-    const dist = Math.hypot(this.player.x - this.ball.x, this.player.y - this.ball.y);
-    if (dist < this.player.radius + this.ball.radius) {
-      this.ball.vx = (this.ball.x - this.player.x) * 0.2;
-      this.ball.vy = (this.ball.y - this.player.y) * 0.2;
-    }
-  }
-
-  render() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-    // Draw Player
-    this.ctx.fillStyle = '#19d66b';
-    this.ctx.beginPath();
-    this.ctx.arc(this.player.x, this.player.y, this.player.radius, 0, Math.PI * 2);
-    this.ctx.fill();
-
-    // Draw Ball
-    this.ctx.fillStyle = '#ffffff';
-    this.ctx.beginPath();
-    this.ctx.arc(this.ball.x, this.ball.y, this.ball.radius, 0, Math.PI * 2);
-    this.ctx.fill();
-  }
-
-  loop() {
-    if (!this.isRunning) return;
-    this.update();
-    this.render();
-    requestAnimationFrame(this.loop.bind(this));
-  }
+  document.getElementById('close-pack-btn').addEventListener('click', () => {
+    overlay.classList.remove('active');
+  });
 }
 
-const matchEngine = new MatchEngine();
+// --- 3D THREE.JS MATCH ENGINE ---
+let scene, camera, renderer, player, ball;
+let keys = {};
+let ballVelocity = { x: 0, y: 0, z: 0 };
+let isMatchActive = false;
 
-// --- BIND ALL CLICK EVENTS ---
+function init3DMatch() {
+  const container = document.getElementById('canvas-container');
+  container.innerHTML = '';
+
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x070a0e);
+  scene.fog = new THREE.FogExp2(0x070a0e, 0.015);
+
+  camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 18, 25);
+
+  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.shadowMap.enabled = true;
+  container.appendChild(renderer.domElement);
+
+  // Lights
+  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+  const light = new THREE.DirectionalLight(0xffffff, 0.8);
+  light.position.set(20, 40, 20);
+  light.castShadow = true;
+  scene.add(light);
+
+  // 3D Pitch Ground
+  const pitchGeo = new THREE.PlaneGeometry(60, 40);
+  const pitchMat = new THREE.MeshStandardMaterial({ color: 0x155229, roughness: 0.6 });
+  const pitch = new THREE.Mesh(pitchGeo, pitchMat);
+  pitch.rotation.x = -Math.PI / 2;
+  pitch.receiveShadow = true;
+  scene.add(pitch);
+
+  // 3D Player Character
+  const playerGeo = new THREE.CapsuleGeometry(0.6, 1.2, 8, 16);
+  const playerMat = new THREE.MeshStandardMaterial({ color: 0x00ff66, roughness: 0.3 });
+  player = new THREE.Mesh(playerGeo, playerMat);
+  player.position.set(0, 1.2, 5);
+  player.castShadow = true;
+  scene.add(player);
+
+  // 3D Soccer Ball
+  const ballGeo = new THREE.SphereGeometry(0.4, 32, 32);
+  const ballMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.2 });
+  ball = new THREE.Mesh(ballGeo, ballMat);
+  ball.position.set(0, 0.4, 0);
+  ball.castShadow = true;
+  scene.add(ball);
+
+  isMatchActive = true;
+  animate3D();
+}
+
+function animate3D() {
+  if (!isMatchActive) return;
+  requestAnimationFrame(animate3D);
+
+  const speed = 0.15;
+  if (keys['w'] || keys['arrowup']) player.position.z -= speed;
+  if (keys['s'] || keys['arrowdown']) player.position.z += speed;
+  if (keys['a'] || keys['arrowleft']) player.position.x -= speed;
+  if (keys['d'] || keys['arrowright']) player.position.x += speed;
+
+  // Pitch Boundaries
+  player.position.x = Math.max(-28, Math.min(28, player.position.x));
+  player.position.z = Math.max(-18, Math.min(18, player.position.z));
+
+  // Ball Dribble Physics
+  const dist = player.position.distanceTo(ball.position);
+  if (dist < 1.2) {
+    const angle = Math.atan2(ball.position.z - player.position.z, ball.position.x - player.position.x);
+    ball.position.x = player.position.x + Math.cos(angle) * 1.1;
+    ball.position.z = player.position.z + Math.sin(angle) * 1.1;
+  }
+
+  // Ball Physics
+  ball.position.x += ballVelocity.x;
+  ball.position.y += ballVelocity.y;
+  ball.position.z += ballVelocity.z;
+
+  if (ball.position.y > 0.4) ballVelocity.y -= 0.02;
+  else { ball.position.y = 0.4; ballVelocity.y = 0; }
+  ballVelocity.x *= 0.95;
+  ballVelocity.z *= 0.95;
+
+  // Broadcast Camera Follow
+  camera.position.x = player.position.x * 0.4;
+  camera.position.z = player.position.z + 18;
+  camera.lookAt(player.position.x * 0.2, 0, player.position.z * 0.2);
+
+  renderer.render(scene, camera);
+}
+
+// --- INITIALIZATION & EVENTS ---
 document.addEventListener('DOMContentLoaded', () => {
   renderSquad();
 
-  // Dynamic Event Delegation for Navigation
+  // Navigation Click Handler
   document.body.addEventListener('click', (e) => {
     const target = e.target.closest('[data-page]');
-    if (target) {
-      const pageId = target.getAttribute('data-page');
-      
-      if (pageId === 'play') {
-        matchEngine.start();
-      } else {
-        matchEngine.stop();
-        navigateTo(pageId);
-      }
+    if (target) navigateTo(target.getAttribute('data-page'));
+  });
+
+  // Controls Listener
+  window.addEventListener('keydown', e => keys[e.key.toLowerCase()] = true);
+  window.addEventListener('keyup', e => keys[e.key.toLowerCase()] = false);
+
+  // Mobile Touch Controls
+  const bindTouch = (id, key) => {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    btn.addEventListener('touchstart', (e) => { e.preventDefault(); keys[key] = true; });
+    btn.addEventListener('touchend', (e) => { e.preventDefault(); keys[key] = false; });
+  };
+  bindTouch('btn-up', 'w');
+  bindTouch('btn-down', 's');
+  bindTouch('btn-left', 'a');
+  bindTouch('btn-right', 'd');
+
+  // Match Actions
+  document.getElementById('start-match-btn')?.addEventListener('click', () => {
+    document.getElementById('match-screen').classList.add('active');
+    init3DMatch();
+  });
+
+  document.getElementById('exit-match-btn')?.addEventListener('click', () => {
+    isMatchActive = false;
+    document.getElementById('match-screen').classList.remove('active');
+  });
+
+  document.getElementById('btn-shoot')?.addEventListener('click', () => {
+    if (player.position.distanceTo(ball.position) < 2.0) {
+      ballVelocity.z = -0.8;
+      ballVelocity.y = 0.3;
     }
   });
+
+  document.getElementById('btn-pass')?.addEventListener('click', () => {
+    if (player.position.distanceTo(ball.position) < 2.0) {
+      ballVelocity.z = -0.5;
+      ballVelocity.y = 0.05;
+    }
+  });
+
+  document.getElementById('open-pack-btn')?.addEventListener('click', openPack);
 });
