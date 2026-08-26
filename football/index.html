@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Football Legends 3D</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Three.js Library -->
+  <!-- Three.js CDN Library for 3D Graphics -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
@@ -21,7 +21,7 @@
     <div class="currency">🪙 15,000</div>
   </nav>
 
-  <!-- HOME PAGE -->
+  <!-- HOME PAGE SECTION -->
   <main id="home" class="page active">
     <div class="hero">
       <h1>NEXT-GEN <br/><span class="green-text">3D FOOTBALL</span></h1>
@@ -33,13 +33,13 @@
     </div>
   </main>
 
-  <!-- SQUAD PAGE -->
+  <!-- SQUAD PAGE SECTION -->
   <main id="squad" class="page">
     <h2>My Ultimate Squad</h2>
     <div class="squad-grid" id="squad-container"></div>
   </main>
 
-  <!-- SHOP PAGE -->
+  <!-- SHOP PAGE SECTION -->
   <main id="shop" class="page">
     <h2>Pack Shop</h2>
     <div class="shop-card">
@@ -49,10 +49,10 @@
     </div>
   </main>
 
-  <!-- PACK OVERLAY ANIMATION -->
+  <!-- PACK REVEAL MODAL OVERLAY -->
   <div id="pack-overlay" class="pack-overlay"></div>
 
-  <!-- 3D MATCH SCREEN -->
+  <!-- 3D MATCH SCREEN & HUD -->
   <div id="match-screen" class="match-screen">
     <div class="match-ui">
       <span>HOME</span>
@@ -62,6 +62,7 @@
 
     <button id="exit-match-btn" class="exit-match-btn">✕ EXIT</button>
 
+    <!-- Three.js 3D Viewport Mount -->
     <div id="canvas-container"></div>
 
     <!-- TOUCH CONTROLS FOR MOBILE/TABLET -->
@@ -81,6 +82,7 @@
     </div>
   </div>
 
+  <!-- MAIN SCRIPT -->
   <script src="game.js"></script>
 </body>
 </html>
