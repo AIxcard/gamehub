@@ -1,3 +1,4 @@
+// GLOBAL SQUAD STATE
 const state = {
   squad: [
     { name: 'HAALAND', rating: 91, pos: 'ST', image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=150', pac: 89, sho: 93, pas: 75 },
@@ -16,7 +17,7 @@ function navigateTo(pageId) {
   if (target) target.classList.add('active');
 }
 
-// RENDER SQUAD
+// RENDER FUT CARDS TO SQUAD CONTAINER
 function renderSquad() {
   const container = document.getElementById('squad-container');
   if (!container) return;
@@ -37,7 +38,7 @@ function renderSquad() {
   `).join('');
 }
 
-// PACK OPENING
+// PACK OPENING MECHANIC
 function openPack() {
   const overlay = document.getElementById('pack-overlay');
   const newPlayer = {
@@ -133,7 +134,7 @@ function animate3D() {
   if (keys['a'] || keys['arrowleft']) player.position.x -= speed;
   if (keys['d'] || keys['arrowright']) player.position.x += speed;
 
-  // Dribbling collision
+  // Dribble mechanics
   const dist = player.position.distanceTo(ball.position);
   if (dist < 1.2) {
     const angle = Math.atan2(ball.position.z - player.position.z, ball.position.x - player.position.x);
@@ -141,13 +142,18 @@ function animate3D() {
     ball.position.z = player.position.z + Math.sin(angle) * 1.1;
   }
 
-  // Ball Movement
+  // Ball Velocity Update
   ball.position.x += ballVelocity.x;
   ball.position.y += ballVelocity.y;
   ball.position.z += ballVelocity.z;
 
-  if (ball.position.y > 0.4) ballVelocity.y -= 0.02;
-  else { ball.position.y = 0.4; ballVelocity.y = 0; }
+  // Gravity & Friction
+  if (ball.position.y > 0.4) {
+    ballVelocity.y -= 0.02;
+  } else {
+    ball.position.y = 0.4;
+    ballVelocity.y = 0;
+  }
   ballVelocity.x *= 0.95;
   ballVelocity.z *= 0.95;
 
@@ -163,7 +169,7 @@ function animate3D() {
 document.addEventListener('DOMContentLoaded', () => {
   renderSquad();
 
-  // Navigation
+  // Navigation listener
   document.body.addEventListener('click', (e) => {
     const target = e.target.closest('[data-page]');
     if (target) navigateTo(target.getAttribute('data-page'));
@@ -173,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('keydown', e => keys[e.key.toLowerCase()] = true);
   window.addEventListener('keyup', e => keys[e.key.toLowerCase()] = false);
 
-  // Touch controls
+  // Touch controls binding
   const bindTouch = (id, key) => {
     const btn = document.getElementById(id);
     if (!btn) return;
@@ -189,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('start-match-btn')?.addEventListener('click', () => {
     const matchScreen = document.getElementById('match-screen');
     matchScreen.classList.add('active');
-    setTimeout(init3DMatch, 50); // Small delay to guarantee container exists in DOM before rendering
+    setTimeout(init3DMatch, 50);
   });
 
   // Exit 3D Match
@@ -213,5 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Pack Shop
   document.getElementById('open-pack-btn')?.addEventListener('click', openPack);
 });
